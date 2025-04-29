@@ -31,12 +31,6 @@
             <h4>{!! $homePage->section_heading !!}</h4>
             <h3>{!! $homePage->section_title !!}</h3>
             <p>{!! $homePage->section_desc !!}.</p>
-            <ul>
-               <li>Scientific analysis and research-backed solutions</li>
-               <li>Professional guidance from industry experts</li>
-               <li>State-of-the-art equipment and tools</li>
-               <li>End-to-end assistance and training</li>
-            </ul>
             <a href="#" class="c-btn">Explore More</a>
          </div>
       </div>
@@ -48,46 +42,22 @@
             <h3>Our Business Verticals</h3>
          </div>
          <ul>
-            @foreach($ourPortfolios as $ourPortfolio)
+            @foreach($businessVerticals as $businessVertical)
             <li>
-               @if ($ourPortfolio->image && file_exists(public_path('assets/uploads/our-portfolios/' . $ourPortfolio->image)))
-              <img src="{{ asset('assets/uploads/our-portfolios/'.$ourPortfolio->image) }}" />
-               @else
-                   <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+               @if ($businessVertical->logo && file_exists(public_path('assets/uploads/business-verticals/' . $businessVertical->logo)))
+                <img src="{{ asset('assets/uploads/business-verticals/'.$businessVertical->logo) }}" />
+                @else
+                   <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="20"  data-holder-rendered="true" />
                @endif
-               <h3>{{ $ourPortfolio->title }}</h3>
+               <h3>{{ $businessVertical->label }}</h3>
             </li>
             @endforeach
          </ul>
       </div>
    </div>
    @include('front.elements.newsletter')
-   <div class="location">
-      <div class="container">
-         <div class="map"><img src="{{ asset('img/home/map/map.svg') }}" /></div>
-         <div class="textb">
-            <h4>Where we located?</h4>
-            <h3>Our Location</h3>
-            <div class="box-row">
-               <div class="col">
-                  <p>Presence in</p>
-                  <strong>{{ $websettingInfo->offices_in_countries }}</strong>
-                  <p>Countries</p>
-               </div>
-               <div class="col">
-                  <p>Customers in</p>
-                  <strong>{{ $websettingInfo->customers_in_countries }}</strong>
-                  <p>Countries</p>
-               </div>
-            </div>
-            <ul>
-               @foreach($countries as $country)
-               <li>{{ $country->label }}</li>
-               @endforeach
-            </ul>
-         </div>
-      </div>
-   </div>
+   @include('front.elements.location')
+   
    <!-- Prominent Customers -->
    @include('front.elements.prominent-customer')
    <div class="news-event">
@@ -152,29 +122,6 @@
          </div>
       </div>
    </div>
-
-   <div class="testimonials">
-      <div class="container">
-         <div class="title">
-            <h4>Customer testimonials</h4>
-            <h3>What our customers say</h3>
-         </div>
-         <div class="column">
-            @foreach($testimonials as $testimonial)
-            <div class="col">
-               <div class="user">
-                  @if ($testimonial->image && file_exists(public_path('assets/uploads/testimonials/' . $testimonial->image)))
-                  <img src="{{ asset('assets/uploads/testimonials/'.$testimonial->image) }}" />
-                   @else
-                       <img src="{{ asset('assets/images/no-image.png') }}" class="w-full h-full object-cover" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
-                   @endif
-               </div>
-               <h4>{{ $testimonial->name }}</h4>
-               <p>{{ $testimonial->description }}</p>
-            </div>
-            @endforeach
-         </div>
-      </div>
-   </div>
+   @include('front.elements.testimonial')
 </div>
 @endsection

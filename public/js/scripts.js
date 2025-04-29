@@ -154,7 +154,7 @@ $(".nav-menu .dd-menu .right-content li a").hover(
       $(".nav-menu .dd-menu .right-content .col .textb h3").text(newHeading);
       $(".nav-menu .dd-menu .right-content .col .textb p").text(newParagraph);
       if($(this).data("type") == 'portfolio') {
-      	$('#portfolio-img').html(imgDiv);
+      	$('#'+cat+'-portfolio-img').html(imgDiv);
   	  }else{
   	  	$('#'+cat+'-solution-img').html(imgDiv);
   	  }
