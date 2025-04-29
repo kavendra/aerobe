@@ -87,7 +87,7 @@
                   <ul>
                 @endif
                 <li>
-                  <a href="javascript:void(0)" data-heading="{{ $portfolio->title }}" data-paragraph="{{ $portfolio->short_description }}" data-type="portfolio">
+                  <a href="javascript:void(0)" data-cat="{{ $category->label }}" data-heading="{{ $portfolio->title }}" data-paragraph="{{ $portfolio->short_description }}" data-type="portfolio">
                     {{ $portfolio->title }}
                   </a>
                 </li>
@@ -106,7 +106,7 @@
               </ul>
             </div>
             <div class="col">
-               <div id="portfolio-img"></div>
+               <div id="{{$category->label}}-portfolio-img"></div>
                <div class="textb">
                   <h3></h3>
                   <p></p>

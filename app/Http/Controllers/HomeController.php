@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\HomePage;
 use App\Models\MainMenu;
 use App\Models\NewsAndEvent;
-use App\Models\OurPortfolio;
+use App\Models\BusinessVertical;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -29,11 +29,10 @@ class HomeController extends Controller
     public function root()
     {
         $homePage = HomePage::first();
-        $newsAndEvents = NewsAndEvent::get();
-        $ourPortfolios = OurPortfolio::get();
+        $newsAndEvents = NewsAndEvent::limit(3)->latest()->get();
+        $businessVerticals = BusinessVertical::latest()->get();
         
-       # dd($portfolioData);
-        return view('front.home.index', compact('homePage', 'newsAndEvents', 'ourPortfolios'));
+        return view('front.home.index', compact('homePage', 'newsAndEvents', 'businessVerticals'));
     }
 
     public function index(Request $request)
