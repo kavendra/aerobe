@@ -1,7 +1,7 @@
 <div class="our-client">
    <div class="container">
       <div class="textb">
-         <h4>Our Clients</h4>
+         <h4>OUR CLIENTS</h4>
          <h3>Our Prominent Customers</h3>
       </div>
       <div class="tab-box">
