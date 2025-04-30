@@ -1,7 +1,7 @@
 <div class="testimonials">
   <div class="container">
      <div class="title">
-        <h4>Customer testimonials</h4>
+        <h4>CUSTOMER TESTIMONIALS</h4>
         <h3>What our customers say</h3>
      </div>
      <div class="column">

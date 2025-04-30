@@ -38,7 +38,7 @@
    <div class="portfolio">
       <div class="container">
          <div class="title">
-            <h4>Our portfolio</h4>
+            <h4>OUR PORTFOLIO</h4>
             <h3>Our Business Verticals</h3>
          </div>
          <ul>
@@ -63,7 +63,7 @@
    <div class="news-event">
       <div class="container">
          <div class="title">
-            <h4>News & Events</h4>
+            <h4>NEWS & EVENTS</h4>
             <h3>News & Events</h3>
          </div>
          <div class="column">
