@@ -21,6 +21,7 @@
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
