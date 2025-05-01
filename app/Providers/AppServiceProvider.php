@@ -65,12 +65,13 @@ class AppServiceProvider extends ServiceProvider
                 })->toArray();
             }
             $portfolioJson = json_encode($portfolioData);
-            $ip = '106.219.238.209'; # $_SERVER['REMOTE_ADDR'] # 106.219.238.209
+            $ip = $_SERVER['REMOTE_ADDR']; # 106.219.238.209
             if (!session()->has('country') || empty(session('country'))) {
                 $country = $this->ip_info($ip, "Country");
                 session(['country' => $country]);
             }
             $countryName = strtoUpper(session('country'));
+            $isCountryExists = Country::where('is_main', 1)->where('label', $countryName)->first();
             // Share data with all views
             $view->with([
                 'websettingInfo' => $websettingInfo,
@@ -86,7 +87,7 @@ class AppServiceProvider extends ServiceProvider
                 'mainMenus' => $mainMenus,
                 'categories' => $categories, 
                 'portfolioJson' => $portfolioJson, 
-                'countryName' => $countryName, 
+                'countryName' => $isCountryExists ? $countryName : 'Global', 
             ]);
         });
     }

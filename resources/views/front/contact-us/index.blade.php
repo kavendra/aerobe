@@ -4,6 +4,7 @@
     <h1>Contact Us</h1>
     <p>Be in touch</p>
 </div>
+
 <div class="mid-section">
     <div class="contact-info">
         <div class="container">
@@ -44,14 +45,20 @@
                 </ul>
             </div>
             <div class="get-in-touch-c" style="display: block;">
+                @if(session('success'))
+                <div style="color: green;">
+                  {{ session('success') }}
+                </div>
+                @endif
                 <h3>Get in <span>Touch</span></h3>
                 <p>Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu leo molestie vel, ornare non id blandit netus.</p>
-                <form>
-                    <input type="text" class="input" placeholder="Name*">
-                    <input type="text" class="input" placeholder="Email">
-                    <input type="text" class="input" placeholder="Phone Number*">
-                    <textarea class="textarea" placeholder="Product info request"></textarea>
-                    <button class="c-btn">Send To Us</button>
+                <form method="post" action="{{ route('contact-us.store') }}">
+                @csrf    
+                    <input type="text" name="name" class="input" placeholder="Name*" required>
+                    <input type="email" name="email" class="input" placeholder="Email" required>
+                    <input type="text" name="phone" class="input" placeholder="Phone Number*" required>
+                    <textarea class="textarea" name="message" placeholder="Product info request" required></textarea>
+                    <button class="c-btn" type="submit">Send To Us</button>
                 </form>
             </div>
         </div>
@@ -73,7 +80,27 @@
                 </div>
             </div>
             <div class="map">
-                <iframe title="Aerobe PVT LTD" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.7147552670667!2d77.24895817665201!3d28.54829227571093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3b1f6b1acf9%3A0xaf024fe40440e7!2sAerobe%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1742809436116!5m2!1sen!2sin" width="600" height="450" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <?php
+                $company_name = $contactPage->$company_name;
+                $latitude = "28.54829227571093";
+                $longitude = "77.24895817665201";
+
+                // URL encode the company name for use in a URL
+                $encoded_company_name = urlencode($company_name);
+
+                // Build the dynamic iframe source URL
+                $map_src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.7147552670667!2d=$longitude!3d=$latitude!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3b1f6b1acf9%3A0xaf024fe40440e7!2s$encoded_company_name!5e0!3m2!1sen!2sin!4v1742809436116!5m2!1sen!2sin";
+                ?>
+                <!-- Output the iframe -->
+                <iframe title="<?= htmlspecialchars($company_name) ?>"
+                        src="<?= htmlspecialchars($map_src) ?>"
+                        width="600"
+                        height="450"
+                        style="border:0"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
         </div>

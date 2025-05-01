@@ -129,7 +129,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('/about-us', [AboutUsController::class, 'index']);
-Route::get('/contact-us', [ContactUsController::class, 'index']);
+Route::resource('contact-us', ContactUsController::class);
 Route::get('legal/{page}', [LegalInfoController::class, 'index']);
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
 Route::get('set-country', [App\Http\Controllers\HomeController::class, 'setCountry']);
