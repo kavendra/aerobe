@@ -28,7 +28,7 @@
          <ul>
             @foreach($connectWithUsMenus as $connectWithUsMenu)
             <li>
-              <a href="#">{{ $connectWithUsMenu->label }}</a>
+              <a href="{{ $connectWithUsMenu->link }}">{{ $connectWithUsMenu->label }}</a>
             </li>
             @endforeach
          </ul>
@@ -39,7 +39,7 @@
          <ul>
             @foreach($legalInformationMenus as $LegalInformationMenu)
             <li>
-              <a href="#">{{ $LegalInformationMenu->label }}</a>
+              <a href="{{ $LegalInformationMenu->link }}">{{ $LegalInformationMenu->label }}</a>
             </li>
             @endforeach
          </ul>

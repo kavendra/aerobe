@@ -49,6 +49,8 @@ use App\Http\Controllers\Admin\AerobeAcademyPageController;
 use App\Http\Controllers\Admin\NewsEventPageController;
 use App\Http\Controllers\Front\NewsletterController;
 use App\Http\Controllers\Front\AboutUsController;
+use App\Http\Controllers\Front\ContactUsController;
+use App\Http\Controllers\Front\LegalInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,6 +129,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('/about-us', [AboutUsController::class, 'index']);
+Route::get('/contact-us', [ContactUsController::class, 'index']);
+Route::get('legal/{page}', [LegalInfoController::class, 'index']);
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
 Route::get('set-country', [App\Http\Controllers\HomeController::class, 'setCountry']);
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
