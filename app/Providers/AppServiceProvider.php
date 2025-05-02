@@ -72,6 +72,7 @@ class AppServiceProvider extends ServiceProvider
             }
             $countryName = strtoUpper(session('country'));
             $isCountryExists = Country::where('is_main', 1)->where('label', $countryName)->first();
+            #dd($countryName);
             // Share data with all views
             $view->with([
                 'websettingInfo' => $websettingInfo,
@@ -156,5 +157,4 @@ class AppServiceProvider extends ServiceProvider
         }
         return $output;
     }
-
 }

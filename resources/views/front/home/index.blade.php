@@ -67,6 +67,7 @@
             <h3>News & Events</h3>
          </div>
          <div class="column">
+          @if($newsAndEvents->first())
             @php($featuredNewsAndEvent = $newsAndEvents->first())
             <div class="imgb">
                @if ($featuredNewsAndEvent->author_image && file_exists(public_path('assets/uploads/news-events/' . $featuredNewsAndEvent->image)))
@@ -89,6 +90,7 @@
                   </div>
                </div>
             </div>
+          @endif  
             <div class="news-list">
                <ul>
                   @foreach($newsAndEvents as $newsAndEvent)

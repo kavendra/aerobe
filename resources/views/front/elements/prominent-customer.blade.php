@@ -2,18 +2,18 @@
    <div class="container">
       <div class="textb">
          <h4>OUR CLIENTS</h4>
-         <h3>Our Prominent Customers</h3>
+         <h3>Our Prominent Customers </h3>
       </div>
       <div class="tab-box">
          <div class="client-tabnav">
             <ul>
                @foreach($countries as $country)
-               <li><a href="javascrit:void(0)" class="{{ $loop->first ? 'active' : '' }}" data-type="#{{ $country->label }}">{{ $country->label }}</a></li>
+               <li><a href="javascrit:void(0)" class="{{ ((strtoUpper(session('country')) == $country->label) || ((empty(session('country')) || session('country') == 'Global') && $loop->first)) ? 'active' : '' }}" data-type="#{{ $country->label }}">{{ $country->label }}</a></li>
                @endforeach
             </ul>
          </div>
          @foreach($countries as $country)
-         <div class="tab-content {{ $loop->first ? 'active' : '' }}" id="{{ $country->label }}">
+         <div class="tab-content {{ ((strtoUpper(session('country')) == $country->label) || ((empty(session('country')) || session('country') == 'Global') && $loop->first)) ? 'active' : '' }}" id="{{ $country->label }}">
             <ul>
                @foreach($country->prominents as $prominent)
                <li>

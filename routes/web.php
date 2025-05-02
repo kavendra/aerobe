@@ -51,6 +51,7 @@ use App\Http\Controllers\Front\NewsletterController;
 use App\Http\Controllers\Front\AboutUsController;
 use App\Http\Controllers\Front\ContactUsController;
 use App\Http\Controllers\Front\LegalInfoController;
+use App\Http\Controllers\Front\WorkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,7 +82,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('password/reset', [ResetPasswordController::class, 'reset']);
     
     // Admin-only routes protected by 'auth' and 'IsAdmin' middleware
-    Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::middleware(['auth', 'is_admin'])->namespace('App\Http\Controllers\Admin')->group(function () {
         Route::get('dashboard', [DashboardController::class, 'root'])->name('dashboard');
         Route::resource('user', UserController::class);
         Route::resource('user-role', UserRoleController::class);
@@ -128,10 +129,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 });
 
-Route::get('/about-us', [AboutUsController::class, 'index']);
+Route::resource('academy', App\Http\Controllers\Front\AcademyController::class);
+Route::resource('csr', App\Http\Controllers\Front\CsrController::class);
+Route::resource('shop', App\Http\Controllers\Front\ShopController::class);
+Route::resource('work', WorkController::class);
+Route::get('about-us', [AboutUsController::class, 'index']);
 Route::resource('contact-us', ContactUsController::class);
 Route::get('legal/{page}', [LegalInfoController::class, 'index']);
-Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
 Route::get('set-country', [App\Http\Controllers\HomeController::class, 'setCountry']);
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 Route::post('subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);

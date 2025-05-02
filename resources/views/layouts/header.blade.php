@@ -34,8 +34,9 @@
 
         <div class="global-menu">
           <ul>
+            <li><a href="{{ url('set-country') }}?country=Global" @if($countryName === 'Global') style="background-color: #CFCFCF" @endif>Global</a></li>
             @foreach($countries as $country)
-            <li><a href="{{ url('set-country') }}?country={{$country->label}}" @if($countryName == $country->label) style="background-color: #CFCFCF" @endif>{{ $country->label }}</a></li>
+            <li><a href="{{ url('set-country') }}?country={{$country->label}}" @if($countryName === $country->label) style="background-color: #CFCFCF" @endif>{{ $country->label }}</a></li>
             @endforeach
           </ul>
         </div>

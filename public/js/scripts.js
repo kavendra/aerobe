@@ -165,4 +165,50 @@ $(".nav-menu .dd-menu .right-content li a").hover(
       //$(".nav-menu .dd-menu .right-content .col .textb p").text("Default Paragraph");
     }
   );
+
+$("#categoryone").addClass("active");
+
+   $(".csr-section .tab-nav li a").click(function() {
+	$(".csr-section .tab-nav li a").removeClass("active");
+	$(this).addClass("active");
+	   var target = $(this).data("target");
+
+	   $(".blog-list").removeClass("active");
+
+	   if (target === "viewall") {
+		   $(".blog-list").addClass("active");
+	   } else {
+		   $("#" + target).addClass("active");
+	   }
+   });
+
+
+  $('#gridBtn').click(function() {
+	$(this).addClass("active");
+	$("#listBtn").removeClass("active");
+    $('.items-container')
+      .removeClass('list-view')
+      .addClass('grid-view');
+  });
+
+  $('#listBtn').click(function() {
+	$(this).addClass("active");
+	$("#gridBtn").removeClass("active");
+    $('.items-container')
+      .removeClass('grid-view')
+      .addClass('list-view');
+  });
+
+  function showFileName(input) {
+	const fileName = input.files.length ? input.files[0].name : "No file selected";
+	document.getElementById("file-name").textContent = fileName;
+	}
+
+	function showFileName(input) {
+	const fileName = input.files.length ? input.files[0].name : "No file selected";
+	document.getElementById("file-name-cv").textContent = fileName;
+	}
+
+	showFileName();
+	
 });
