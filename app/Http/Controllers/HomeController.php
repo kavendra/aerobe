@@ -7,6 +7,7 @@ use App\Models\MainMenu;
 use App\Models\NewsAndEvent;
 use App\Models\BusinessVertical;
 use App\Models\Category;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,7 +30,14 @@ class HomeController extends Controller
     public function root()
     {
         $homePage = HomePage::first();
-        $newsAndEvents = NewsAndEvent::limit(3)->latest()->get();
+        # dd(session('country'));
+        $countryName = strtoUpper(session('country'));
+        $country = Country::where('is_main', 1)->where('label', $countryName)->first();
+        $newsAndEvents = NewsAndEvent::where(function($query)use($country){
+                                if($country) {
+                                    $query->where('country_id', $country->id);
+                                }
+                            })->limit(3)->latest()->get();
         $businessVerticals = BusinessVertical::latest()->get();
         
         return view('front.home.index', compact('homePage', 'newsAndEvents', 'businessVerticals'));
@@ -46,10 +54,7 @@ class HomeController extends Controller
     public function setCountry(Request $request)
     {
         $country = $request->query('country'); // get country from URL
-        
-        if (!empty($country)) {
-            session(['country' => $country]);
-        }
+        session(['country' => $country]);
 
         return redirect()->back(); // redirect back to previous page
     }
