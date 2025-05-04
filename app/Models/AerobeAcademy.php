@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +11,7 @@ class AerobeAcademy extends Model
 {
     use SoftDeletes;
     use HasFactory;
-    protected $table = 'aerobe_academies';
+    
     protected $fillable = [
         'title',
         'image',
@@ -24,4 +25,9 @@ class AerobeAcademy extends Model
     protected $casts = [
         'country_id' => 'array', // Automatically converts JSON to array when retrieved
     ];
+
+    public function getEventDateAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format('M d, Y'):'';
+    }
 }

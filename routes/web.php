@@ -129,6 +129,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 });
 
+Route::resource('product', App\Http\Controllers\Front\ProductController::class);
+Route::resource('news-event', App\Http\Controllers\Front\NewsEventController::class);
+Route::resource('knowledge-hub', App\Http\Controllers\Front\KnowledgeHubController::class);
 Route::resource('academy', App\Http\Controllers\Front\AcademyController::class);
 Route::resource('csr', App\Http\Controllers\Front\CsrController::class);
 Route::resource('shop', App\Http\Controllers\Front\ShopController::class);

@@ -182,6 +182,20 @@ $("#categoryone").addClass("active");
 	   }
    });
 
+   $(".latest-post .left-tab li button").click(function() {
+   $(".items-container").css("display", 'none');
+	$(".latest-post .left-tab li button").removeClass("active");
+	$(this).addClass("active");
+	   var target = $(this).data("target");
+	   $(".items-container").removeClass("active");
+
+	   if (target === "viewall") {
+		   $(".items-container").addClass("active").css("display", 'flex');
+	   } else {
+		   $("#" + target).addClass("active").css("display", 'flex');
+	   }
+   });
+
 
   $('#gridBtn').click(function() {
 	$(this).addClass("active");

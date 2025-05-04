@@ -550,6 +550,8 @@ align-items: center;justify-content: center;border-radius: 100%;}
 .owl_carousel .owl-dots .owl-dot.active{background:#226caf;}
 /* owl_carouse css end *//* owl_carouse css end */
 
+/*.latest-post .items-container{display: none;}
+.latest-post .items-container.active{display: block;}*/
 
 
 

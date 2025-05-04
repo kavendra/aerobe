@@ -6,7 +6,7 @@ use App\Models\Category;
 use App\Models\NewsAndEvent;
 use App\Http\Controllers\Controller;
 
-class AcademyController extends Controller
+class KnowledgeHubController extends Controller
 {
 	public function index(Request $request)
 	{
@@ -16,6 +16,6 @@ class AcademyController extends Controller
 		$aerobeAcademies = $parents->flatMap(function ($parent) {
 		    return $parent->aerobeAcademy;
 		});
-	    return view('front.academy.index', compact('newsAndEvents', 'aerobeAcademies'));
+	    return view('front.knowledge-hub.index', compact('newsAndEvents', 'aerobeAcademies'));
 	}
 }
