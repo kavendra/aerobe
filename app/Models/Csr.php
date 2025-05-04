@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -27,4 +28,9 @@ class Csr extends Model
      protected $casts = [
         'tag_id' => 'array', // Automatically converts JSON to array when retrieved
     ];
+
+    public function getEventDateAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format('M d, Y'):'';
+    }
 }

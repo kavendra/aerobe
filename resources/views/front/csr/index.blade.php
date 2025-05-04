@@ -11,358 +11,48 @@
 		<div class="container">
 			<div class="tab-nav">
 				<ul>
-					<li><a href="javascript:void(0)" data-target="categoryone" class="active">Category One</a></li>
-					<li><a href="javascript:void(0)" data-target="Categorytwo">Category Two</a></li>
-					<li><a href="javascript:void(0)" data-target="Categorythree">Category Three</a></li>
-					<li><a href="javascript:void(0)" data-target="Categoryfour">Category Four</a></li>
+					@foreach($categories as $category)
+					<li><a href="javascript:void(0)" data-target="cate-{{ $category->label }}" class="{{ $loop->first ? 'active' : '' }}">{{ $category->label }}</a></li>
+					@endforeach
 					<li><a href="javascript:void(0)" data-target="viewall" >View All</a></li>
 				</ul>
 			</div>
 			<div class="tab-content">
-				<div class="blog-list" id="viewall">
+				@foreach($categories as $category)
+				<div class="blog-list {{ $loop->first ? 'active' : '' }}" id="cate-{{ $category->label }}">
 					<ul>
+						@foreach($category->csrs as $csr)
 						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
+							<div class="imgb">
+								@if ($csr->image && file_exists(public_path('assets/uploads/csrs/' . $csr->image)))
+						            <img src="{{ asset('assets/uploads/csrs/'.$csr->image) }}" />
+						        @else
+						            <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+						        @endif
+							</div>
 							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
+								<span class="cate-tag">{{ $category->label }}</span>
+								<h3>{{ $csr->title }}</h3>
+								<p>{{ $csr->short_description }}</p>
 								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
+									<div class="admin-icon">
+										@if($csr->author_image && file_exists(public_path('assets/uploads/csrs/' . $csr->author_image)))
+								            <img src="{{ asset('assets/uploads/csrs/'.$csr->author_image) }}" />
+								        @else
+								            <img src="{{ asset('img/img-user.jpg') }}" alt="" />
+								        @endif
+									</div>
 									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
+										<p><strong>{{ $csr->author_name }}</strong></p>
+										<p>{{ $csr->event_date }}<img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
 									</div>
 								</div>
 							</div>
 						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
+						@endforeach
 					</ul>
 				</div>
-
-
-				<div class="blog-list" id="categoryone">
-					<ul>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-
-
-				<div class="blog-list" id="Categorytwo">
-					<ul>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-
-
-				<div class="blog-list" id="Categorythree">
-					<ul>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						
-					</ul>
-				</div>
-
-
-				<div class="blog-list" id="Categoryfour">
-					<ul>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="imgb"><img src="{{ asset('img/img-dummy.jpg') }}" alt="" /></div>
-							<div class="textb">
-								<span class="cate-tag">Category</span>
-								<h3>Blog TItle Goes Here</h3>
-								<p>Brief excerpt of the blog post content.</p>
-								<div class="admin-info">
-									<div class="admin-icon"><img src="{{ asset('img/img-user.jpg') }}" alt="" /></div>
-									<div class="admin-text">
-										<p><strong>John Doe</strong></p>
-										<p>Jan 11, 2022 <img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
+				@endforeach
 			</div>
 		</div>
 	</div>

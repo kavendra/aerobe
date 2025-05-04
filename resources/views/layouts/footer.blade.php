@@ -18,7 +18,7 @@
          <ul>
             @foreach($productsResourceMenus as $productsResourceMenu)
             <li>
-              <a href="#">{{ $productsResourceMenu->label }}</a>
+              <a href="{{ $productsResourceMenu->link }}">{{ $productsResourceMenu->label }}</a>
             </li>
             @endforeach
          </ul>

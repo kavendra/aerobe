@@ -25,4 +25,14 @@ class Category extends Model
     {
         return $this->hasMany(Solution::class);
     }
+
+    public function csrs()
+    {
+        return $this->hasMany(Csr::class);
+    }
+
+    public function aerobeAcademy()
+    {
+        return $this->hasMany(AerobeAcademy::class);
+    }
 }

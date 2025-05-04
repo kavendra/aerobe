@@ -19,11 +19,10 @@
       <div class="top-row">
         <div class="left-tab">
           <ul>
-            <li><button type="button" class="btn active">All (71)</button></li>
-            <li><button type="button" class="btn">News (25)</button></li>
-            <li><button type="button" class="btn">Events (12)</button></li>
-            <li><button type="button" class="btn">Publications (25)</button></li>
-            <li><button type="button" class="btn">Product Updates (12)</button></li>
+            <li><button type="button" class="btn active" data-target="viewall"><div id="total-academy"></div></button></li>
+            @foreach($categories as $category)
+               <li><button type="button" class="btn academy-count" data-count="{{ $category->aerobeAcademy->count() }}" data-target="cate-{{ $category->label }}">{{ $category->label }} ({{ $category->aerobeAcademy->count() }})</button></li>
+            @endforeach
           </ul>
         </div>
         <div class="right-tab">
@@ -34,108 +33,37 @@
         </div>
       </div>
 
-      <div class="items-container grid-view">
-        <div class="item">
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Latest</div></div>
+      @foreach($categories as $category)  
+      <div class="items-container grid-view active" id="cate-{{ $category->label }}">
+         @foreach($category->aerobeAcademy as $aerobeAcademy)
+         <div class="item">
+          <div class="imgb">
+            @if ($aerobeAcademy->image && file_exists(public_path('assets/uploads/aerobe-academies/' . $aerobeAcademy->image)))
+               <img src="{{ asset('assets/uploads/aerobe-academies/'.$aerobeAcademy->image) }}" />
+            @else
+               <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+            @endif
+            <div class="img-tag">Latest</div></div>
           <div class="textb">
-            <span class="tag-text">Tecnology</span>
-            <h3><a href="#"> THe Impact of technology on the Workplace: How Technology is changing</a></h3>
-            <p>Explore how modern technology is revolutionizing workplace dynamics, communication methods, and productivity tools in the contemporary business environment.</p>
+            <span class="tag-text">{{ $category->label }}</span>
+            <h3><a href="#"> {{ $aerobeAcademy->short_description }}</a></h3>
             <div class="review">
               <p style="display: block;"><span>1,234</span> views <img src="{{ asset('img/dot.jpg') }}" /> <span>56</span> likes</p>
               <a  href="#">Read More</a>
             </div>
             <div class="user-info">
               <div class="icon"><img src="{{ asset('img/icon-dummy.png') }}" /></div>
-              <p><span> Jason Francisco </span><img src="{{ asset('img/dot.jpg') }}" /> Feb 15, 2023</p>
+              <p><span> {{ $aerobeAcademy->author_name }} </span><img src="{{ asset('img/dot.jpg') }}" /> {{ $aerobeAcademy->event_date }}</p>
             </div>
           </div>
         </div>
-        <div class="item">
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Latest</div></div>
-          <div class="textb">
-            <span class="tag-text">Tecnology</span>
-            <h3><a href="#"> THe Impact of technology on the Workplace: How Technology is changing</a></h3>
-            <p>Explore how modern technology is revolutionizing workplace dynamics, communication methods, and productivity tools in the contemporary business environment.</p>
-            <div class="review">
-              <p style="display: block;"><span>1,234</span> views <img src="{{ asset('img/dot.jpg') }}" /> <span>56</span> likes</p>
-              <a  href="#">Read More</a>
-            </div>
-            <div class="user-info">
-              <div class="icon"><img src="{{ asset('img/icon-dummy.png') }}" /></div>
-              <p><span> Jason Francisco </span><img src="{{ asset('img/dot.jpg') }}" /> Feb 15, 2023</p>
-            </div>
-          </div>
+        @endforeach
         </div>
-        <div class="item">
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Latest</div></div>
-          <div class="textb">
-            <span class="tag-text">Tecnology</span>
-            <h3><a href="#"> THe Impact of technology on the Workplace: How Technology is changing</a></h3>
-            <p>Explore how modern technology is revolutionizing workplace dynamics, communication methods, and productivity tools in the contemporary business environment.</p>
-            <div class="review">
-              <p style="display: block;"><span>1,234</span> views <img src="{{ asset('img/dot.jpg') }}" /> <span>56</span> likes</p>
-              <a  href="#">Read More</a>
-            </div>
-            <div class="user-info">
-              <div class="icon"><img src="{{ asset('img/icon-dummy.png') }}" /></div>
-              <p><span> Jason Francisco </span><img src="{{ asset('img/dot.jpg') }}" /> Feb 15, 2023</p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Latest</div></div>
-          <div class="textb">
-            <span class="tag-text">Tecnology</span>
-            <h3><a href="#"> THe Impact of technology on the Workplace: How Technology is changing</a></h3>
-            <p>Explore how modern technology is revolutionizing workplace dynamics, communication methods, and productivity tools in the contemporary business environment.</p>
-            <div class="review">
-              <p style="display: block;"><span>1,234</span> views <img src="{{ asset('img/dot.jpg') }}" /> <span>56</span> likes</p>
-              <a  href="#">Read More</a>
-            </div>
-            <div class="user-info">
-              <div class="icon"><img src="{{ asset('img/icon-dummy.png') }}" /></div>
-              <p><span> Jason Francisco </span><img src="{{ asset('img/dot.jpg') }}" /> Feb 15, 2023</p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Latest</div></div>
-          <div class="textb">
-            <span class="tag-text">Tecnology</span>
-            <h3><a href="#"> THe Impact of technology on the Workplace: How Technology is changing</a></h3>
-            <p>Explore how modern technology is revolutionizing workplace dynamics, communication methods, and productivity tools in the contemporary business environment.</p>
-            <div class="review">
-              <p style="display: block;"><span>1,234</span> views <img src="{{ asset('img/dot.jpg') }}" /> <span>56</span> likes</p>
-              <a  href="#">Read More</a>
-            </div>
-            <div class="user-info">
-              <div class="icon"><img src="{{ asset('img/icon-dummy.png') }}" /></div>
-              <p><span> Jason Francisco </span><img src="{{ asset('img/dot.jpg') }}" /> Feb 15, 2023</p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Latest</div></div>
-          <div class="textb">
-            <span class="tag-text">Tecnology</span>
-            <h3><a href="#"> THe Impact of technology on the Workplace: How Technology is changing</a></h3>
-            <p>Explore how modern technology is revolutionizing workplace dynamics, communication methods, and productivity tools in the contemporary business environment.</p>
-            <div class="review">
-              <p style="display: block;"><span>1,234</span> views <img src="{{ asset('img/dot.jpg') }}" /> <span>56</span> likes</p>
-              <a  href="#">Read More</a>
-            </div>
-            <div class="user-info">
-              <div class="icon"><img src="{{ asset('img/icon-dummy.png') }}" /></div>
-              <p><span> Jason Francisco </span><img src="{{ asset('img/dot.jpg') }}" /> Feb 15, 2023</p>
-            </div>
-          </div>
-        </div>
-        
-        </div>
-        <div class="btn-row">
+      @endforeach
+
+      <div class="btn-row">
         <a href="#">View All Post</a>
-        </div>
+      </div>
     </div>
   </div>
 
@@ -147,92 +75,38 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/>Etiam dignissim, sem non convallis molestie.</p>
       </div>
       <ul>
-        <li>
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Best Course</div></div>
+         @foreach($newsAndEvents as $newsAndEvent)
+         <li>
+          <div class="imgb">
+            @if ($newsAndEvent->image && file_exists(public_path('assets/uploads/news-events/' . $newsAndEvent->image)))
+             <img src="{{ asset('assets/uploads/news-events/'.$newsAndEvent->image) }}" />
+            @else
+               <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+            @endif
+            <div class="img-tag">Best Course</div></div>
           <div class="textb">
             <div class="top-title">
-              <h5>HTML & CSS</h5>
+              <h5>{{ $newsAndEvent->title ?? '' }}</h5>
               <a href="#">More Details</a>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>{{ $newsAndEvent->short_description ?? '' }}</p>
           </div>
         </li>
-        <li>
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Best Course</div></div>
-          <div class="textb">
-            <div class="top-title">
-              <h5>Photographer</h5>
-              <a href="#">More Details</a>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </li>
-        <li>
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Best Course</div></div>
-          <div class="textb">
-            <div class="top-title">
-              <h5>HTML & CSS</h5>
-              <a href="#">More Details</a>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </li>
-        <li>
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Best Course</div></div>
-          <div class="textb">
-            <div class="top-title">
-              <h5>Photographer</h5>
-              <a href="#">More Details</a>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </li>
-        <li>
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Best Course</div></div>
-          <div class="textb">
-            <div class="top-title">
-              <h5>HTML & CSS</h5>
-              <a href="#">More Details</a>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </li>
-        <li>
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Best Course</div></div>
-          <div class="textb">
-            <div class="top-title">
-              <h5>Design Grafis</h5>
-              <a href="#">More Details</a>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </li>
-        <li>
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Best Course</div></div>
-          <div class="textb">
-            <div class="top-title">
-              <h5>HTML & CSS</h5>
-              <a href="#">More Details</a>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </li>
-        <li>
-          <div class="imgb"><img src="{{ asset('img/placeholder.svg') }}" /><div class="img-tag">Best Course</div></div>
-          <div class="textb">
-            <div class="top-title">
-              <h5>Design Grafis</h5>
-              <a href="#">More Details</a>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </li>
+         @endforeach
       </ul>
-
+      @if($newsAndEvents->count() > 4)
       <div class="btn-row">
         <a href="#">See All</a>
-        </div>
+      </div>
+      @endif
     </div>
   </div>
 </div>
+<script type="text/javascript">
+var sum = 0;
+$('.academy-count').each(function(){
+    sum += parseFloat($(this).data('count'));  // Or this.innerHTML, this.innerText
+});
+$('#total-academy').html('All ('+sum+ ')');
+</script>
 @endsection

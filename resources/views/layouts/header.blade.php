@@ -190,12 +190,13 @@
       <div class="get-in-touch">
         <h3>Get in <span>Touch</span></h3>
         <p>Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu leo molestie vel, ornare non id blandit netus.</p>
-        <form>
-          <input type="text" class="input" placeholder="Name*">
-          <input type="text" class="input" placeholder="Email">
-          <input type="text" class="input" placeholder="Phone Number*">
-          <textarea class="textarea" placeholder="Product info request"></textarea>
-          <button class="c-btn">Send To Us</button>
+        <form method="post" action="{{ route('contact-us.store') }}">
+        @csrf
+          <input type="text" name="name" class="input" placeholder="Name*" required>
+          <input type="text" name="email" class="input" placeholder="Email" required>
+          <input type="text" name="phone" class="input" placeholder="Phone Number*" required>
+          <textarea class="textarea" name="message" placeholder="Product info request" required></textarea>
+          <button class="c-btn" type="submit">Send To Us</button>
         </form>
       </div>
     </div>
