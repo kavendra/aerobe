@@ -25,4 +25,9 @@ class Category extends Model
     {
         return $this->hasMany(Solution::class);
     }
+
+    public function csrs()
+    {
+        return $this->hasMany(Csr::class);
+    }
 }

@@ -31,7 +31,6 @@ class ContactUsController extends Controller
             'phone' => 'required|string|max:20',
             'message' => 'required',
         ]);
-
         ContactUs::create($request->all());
         
         return redirect()->back()->with('success', 'Successfully submitted');

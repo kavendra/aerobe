@@ -53,7 +53,7 @@
                 <h3>Get in <span>Touch</span></h3>
                 <p>Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu leo molestie vel, ornare non id blandit netus.</p>
                 <form method="post" action="{{ route('contact-us.store') }}">
-                @csrf    
+                @csrf
                     <input type="text" name="name" class="input" placeholder="Name*" required>
                     <input type="email" name="email" class="input" placeholder="Email" required>
                     <input type="text" name="phone" class="input" placeholder="Phone Number*" required>
