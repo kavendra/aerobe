@@ -172,7 +172,7 @@
         </div>
         </li>
         @else
-        <li><a href="{{ $mainMenu->link }}">{{ $mainMenu->label }}</a></li>
+        <li><a href="{{ $mainMenu->link }}" >{{ $mainMenu->label }}</a></li>
         @endif
         @endforeach
       </ul>
@@ -189,14 +189,15 @@
       <div class="connect-with">Connect with us <i class="fa fa-angle-down" aria-hidden="true"></i></div>
       <div class="get-in-touch">
         <h3>Get in <span>Touch</span></h3>
+        <p style="padding-bottom:2px; color: green;" id="success-msg"></p>
         <p>Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu leo molestie vel, ornare non id blandit netus.</p>
-        <form method="post" action="{{ route('contact-us.store') }}">
+        <form id="contactForm">
         @csrf
           <input type="text" name="name" class="input" placeholder="Name*" required>
           <input type="text" name="email" class="input" placeholder="Email" required>
           <input type="text" name="phone" class="input" placeholder="Phone Number*" required>
           <textarea class="textarea" name="message" placeholder="Product info request" required></textarea>
-          <button class="c-btn" type="submit">Send To Us</button>
+          <button class="c-btn" type="submit" id="send-us">Send To Us</button>
         </form>
       </div>
     </div>

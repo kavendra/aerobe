@@ -132,14 +132,11 @@
                                         <label for="long_description" class="form-label">Select Tags</label>
                                         <div class="row">
                                             @if($tags->count() > 0)
+                                                @php($tagId = json_decode($newsAndEvent->tag_id))
                                                 @foreach($tags as $tag)
-                                                    @php 
-                                                    $tag_arr = json_decode($newsAndEvent->tag_id);
-                                                    
-                                                    @endphp
                                                     <div class="col-lg-2 col-md-4 col-sm-6">
                                                         <div class="form-check form-check-right mb-3">
-                                                            <input class="form-check-input" type="checkbox" name="tag_id[]" id="tag-{{ $tag->id }}" value="{{ $tag->id }}" @if(in_array($tag->id, $tag_arr))checked @endif >
+                                                            <input class="form-check-input" type="radio" name="tag_id" id="tag-{{ $tag->id }}" value="{{ $tag->id }}" @if($tag->id == $tagId) checked @endif>
                                                             <label class="form-check-label" for="formCheckRight1">
                                                                 {{ $tag->label }}
                                                             </label>

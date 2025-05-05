@@ -76,7 +76,9 @@
                   <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
               @endif
                <div class="caption">
-                  <div class="tag-box">{{ $featuredNewsAndEvent->title }}</div>
+                  @if($featuredNewsAndEvent->tag)
+                  <div class="tag-box">{{ $featuredNewsAndEvent->tag->label }}</div>
+                  @endif
                   <h3>{{ $featuredNewsAndEvent->short_description }}</h3>
                   <div class="user">
                      <div class="icon-img">
@@ -96,7 +98,9 @@
                   @foreach($newsAndEvents as $newsAndEvent)
                   <li>
                      <div class="textb">
-                        <div class="tag-box red">RECENT UPDATES</div>
+                        @if($newsAndEvent->tag)
+                        <div class="tag-box red">{{ $newsAndEvent->tag->label }}</div>
+                        @endif
                         <h3><a href="#"> {{ $newsAndEvent->title ?? '' }}</a></h3>
                         <p><strong>4.83k</strong> views <strong>3.27k</strong> likes</p>
                         <div class="user">

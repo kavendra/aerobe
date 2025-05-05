@@ -213,7 +213,7 @@ $("#categoryone").addClass("active");
       .addClass('list-view');
   });
 
-  function showFileName(input) {
+  /*function showFileName(input) {
 	const fileName = input.files.length ? input.files[0].name : "No file selected";
 	document.getElementById("file-name").textContent = fileName;
 	}
@@ -223,6 +223,6 @@ $("#categoryone").addClass("active");
 	document.getElementById("file-name-cv").textContent = fileName;
 	}
 
-	showFileName();
+	showFileName();*/
 	
 });

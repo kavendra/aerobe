@@ -92,7 +92,7 @@ class NewsAndEventController extends Controller
         $newsAndEvent = NewsAndEvent::create([
             'title' => $request->title,
             'category_id' => $request->category_id,
-            'tag_id' => json_encode($request->tag_id),
+            'tag_id' => $request->tag_id,
             'event_date' => $request->event_date,
             'image' => $imageName,
             'author_name' => $request->author_name,
@@ -171,7 +171,7 @@ class NewsAndEventController extends Controller
 
         $newsAndEvent->title = $request->title;
         $newsAndEvent->category_id = $request->category_id;
-        $newsAndEvent->tag_id = json_encode($request->tag_id);
+        $newsAndEvent->tag_id = $request->tag_id;
         $newsAndEvent->event_date = $request->event_date;
         $newsAndEvent->author_name = $request->author_name;
         $newsAndEvent->short_description = $request->short_description;

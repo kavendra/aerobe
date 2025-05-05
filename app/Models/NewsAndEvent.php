@@ -35,4 +35,9 @@ class NewsAndEvent extends Model
     {
         return $value ? Carbon::parse($value)->format('M d, Y'):'';
     }
+
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class, 'tag_id');
+    }
 }
