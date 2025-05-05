@@ -131,7 +131,7 @@
                                                 @foreach($tags as $tag)
                                                     <div class="col-lg-2 col-md-4 col-sm-6">
                                                         <div class="form-check form-check-right mb-3">
-                                                            <input class="form-check-input" type="checkbox" name="tag_id[]" id="tag-{{ $tag->id }}" value="{{ $tag->id }}">
+                                                            <input class="form-check-input" type="radio" name="tag_id" id="tag-{{ $tag->id }}" value="{{ $tag->id }}">
                                                             <label class="form-check-label" for="formCheckRight1">
                                                                 {{ $tag->label }}
                                                             </label>

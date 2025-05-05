@@ -18,9 +18,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="{{ asset('js/owl.carousel.js') }}"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
 
 </head>
 
@@ -52,6 +52,27 @@
                 error: function (xhr) {
                     let error = xhr.responseJSON.errors.email[0];
                     $('#response-message').html('<p style="color: red;">' + error + '</p>');
+                }
+            });
+        });
+
+        $('#contactForm').on('submit', function(e) {
+            e.preventDefault();
+            $('#send-us').addClass('disabled');
+            $.ajax({
+                url: '{{ route('contact-us.store') }}',
+                method: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    $('#send-us').removeClass('disabled');
+                    $('#success-msg').text(response.message).fadeIn();
+                    setTimeout(function() {
+                        $('#success-msg').fadeOut();
+                    }, 3000); // 3 seconds
+                },
+                error: function(xhr) {
+                    let errors = xhr.responseJSON.errors;
+                    alert(Object.values(errors).join("\n"));
                 }
             });
         });

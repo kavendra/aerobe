@@ -12,7 +12,12 @@
           <h3>Join Our Team</h3>
           <p>We're looking for talented individuals who want to make a difference. Fill out the application form below to start your journey with us.</p>
         </div>
-        <form method="post" action="{{ route('work.store') }}">
+        @if(session('success'))
+          <div style="color: green;">
+            {{ session('success') }}
+          </div>
+        @endif
+        <form method="post" action="{{ route('work.store') }}" enctype="multipart/form-data">
         @csrf 
         <div class="formb">
             <div class="row-f">
@@ -24,15 +29,15 @@
                 <label>Gender</label>
                 <select class="select" name="gender" required>
                   <option>Select</option>
-                  <option>male</option>
-                  <option>Female</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
                 </select>
               </div>
             </div>
             <div class="row-f">
               <div class="col-f">
                 <label>Email Address</label>
-                <input type="text" name="email" class="input" placeholder="example@company.com" required>
+                <input type="email" name="email" class="input" placeholder="example@company.com" required>
               </div>
               <div class="col-f">
                 <label>Mobile Number</label>
@@ -136,18 +141,18 @@
                       <p class="file-name" id="file-name">Drop files to upload or browse</p>
                       <span class="max-file">Maximum file size : 5MB</span>
                     </label>
-                    <input type="file" name="photo" id="customFile" class="upload-input" onchange="showFileName(this)">
+                    <input type="file" name="photo_file" id="customFile" class="upload-input" onchange="showFileName(this)">
                   </div>
                 </div>
                 <div class="col-f">
                   <label>Upload your CV</label>
                   <div class="upload-box">
-                    <label class="upload-label" for="customFile">
+                    <label class="upload-label" for="customFilecv">
                       <img src="{{ asset('img/icon-upload.jpg') }}" />
                       <p class="file-name" id="file-name-cv">Drop files to upload or browse</p>
                       <span class="max-file">PDF, DOCX, MAX, 10MB</span>
                     </label>
-                    <input type="file" name="cv" id="customFilecv" class="upload-input" onchange="showFileName(this)">
+                    <input type="file" name="cv_file" id="customFilecv" class="upload-input" onchange="showFileName(this)">
                   </div>
                 </div>
               </div>

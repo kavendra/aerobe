@@ -25,9 +25,23 @@ class WorkController extends Controller
             'email' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
         ]);
-
+        if ($request->hasFile('photo_file')) {
+            // Upload new file
+            $file = $request->file('photo_file');
+            $photo = time().'_photo'.'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/work/'), $photo);
+            #dd($photo);
+            $request->merge(['photo'=> $photo]);
+        }
+        if ($request->hasFile('cv_file')) {
+            // Upload new file
+            $file = $request->file('cv_file');
+            $cv = time().'_cv'.'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/work/'), $cv);
+            $request->merge(['cv'=> $cv]);
+        }
         Work::create($request->all());
         
-        return redirect()->back()->with('success', 'Successfully submitted');
+        return redirect()->back()->with('success', 'Submitted successfully');
     }
 }
