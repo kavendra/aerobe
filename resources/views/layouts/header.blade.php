@@ -36,7 +36,7 @@
           <ul>
             <li><a href="{{ url('set-country') }}?country=Global" @if($countryName === 'Global') style="background-color: #CFCFCF" @endif>Global</a></li>
             @foreach($countries as $country)
-            <li><a href="{{ url('set-country') }}?country={{$country->label}}" @if($countryName === $country->label) style="background-color: #CFCFCF" @endif>{{ $country->label }}</a></li>
+            <li><a href="{{ url('set-country') }}?country={{$country->label}}" @if($countryName === $country->label) style="background-color: #CFCFCF" @endif>{{ \Illuminate\Support\Str::ucfirst(Str::lower($country->label)) }}</a></li>
             @endforeach
           </ul>
         </div>
@@ -81,7 +81,7 @@
          <div class="col">
          <ul>
             @foreach($category->ourPortfolios as $portfolio)
-                @if($portfolioCount > 0 && $portfolioCount % 5 == 0)
+                @if($portfolioCount > 0 && $portfolioCount % 6 == 0)
                   </ul>
                 </div>
                 <div class="col">
@@ -135,7 +135,7 @@
          <div class="col">
          <ul>
             @foreach($category->solutions as $solution)
-                @if($solutionCount > 0 && $solutionCount % 5 == 0)
+                @if($solutionCount > 0 && $solutionCount % 6 == 0)
                   </ul>
                 </div>
                 <div class="col">
