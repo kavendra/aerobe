@@ -40,10 +40,10 @@ class ContactUsController extends Controller
         ];
         ContactUs::create($data);
         
-        Mail::send('emails.contact', $data, function($message) use ($data) {
+        /*Mail::send('emails.contact', $data, function($message) use ($data) {
             $message->to('your-email@example.com')
                     ->subject('New Contact Form Message from');
-        });
+        });*/
         if($request->ajax()) {
             return response()->json(['success' => true, 'message' => 'Message sent successfully!']);
         }
