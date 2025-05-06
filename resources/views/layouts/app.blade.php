@@ -66,6 +66,7 @@
                 success: function(response) {
                     $('#send-us').removeClass('disabled');
                     $('#success-msg').text(response.message).fadeIn();
+                    $('.clear-form').val('');
                     setTimeout(function() {
                         $('#success-msg').fadeOut();
                     }, 3000); // 3 seconds

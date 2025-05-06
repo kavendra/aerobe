@@ -193,10 +193,10 @@
         <p>Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu leo molestie vel, ornare non id blandit netus.</p>
         <form id="contactForm">
         @csrf
-          <input type="text" name="name" class="input" placeholder="Name*" required>
-          <input type="text" name="email" class="input" placeholder="Email" required>
-          <input type="text" name="phone" class="input" placeholder="Phone Number*" required>
-          <textarea class="textarea" name="message" placeholder="Product info request" required></textarea>
+          <input type="text" name="name" class="input clear-form" placeholder="Name*" required>
+          <input type="email" name="email" class="input clear-form" placeholder="Email" required>
+          <input type="text" name="phone" class="input clear-form" placeholder="Phone Number*" required>
+          <textarea class="textarea clear-form" name="message" placeholder="Product info request" required></textarea>
           <button class="c-btn" type="submit" id="send-us">Send To Us</button>
         </form>
       </div>
