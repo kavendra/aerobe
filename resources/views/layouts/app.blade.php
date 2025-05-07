@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <title>@yield('pageTitle', 'Luxemcar Consultants Private Limited')</title>
+    <title>@yield('pageTitle', 'Aerobe Consultants Private Limited')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
@@ -16,11 +16,13 @@
 
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="{{ asset('js/owl.carousel.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+   
 
 </head>
 
@@ -79,5 +81,41 @@
         });
     });
   </script>
+
+<script>
+    $(document).ready(function () {
+        $('.testimonials-slide').owlCarousel({
+    items: 3,
+    loop: false,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    dots: false,
+    nav: true, // Enable navigation arrows
+    navText: [
+        '<span class="custom-prev"><i class="fa fa-chevron-left"></i> Previous</span>',
+        '<span class="custom-next">Next <i class="fa fa-chevron-right"></i></span>'
+    ],
+    responsive: {
+        0: {
+            items: 1,
+            dots: false,
+            loop: true
+        },
+        600: {
+            items: 3,
+            dots: false,
+            loop: true
+        },
+        1000: {
+            items: 3
+        }
+    }
+});
+   
+
+
+    });
+</script>
+
 </body>
 </html>

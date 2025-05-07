@@ -143,30 +143,21 @@ $(".get-in-touch").on("click", function(e) {
 
 $(".nav-menu .dd-menu .right-content li a").hover(
     function() {
-      var cat = $(this).data("cat");
       var newHeading = $(this).data("heading");
       var newParagraph = $(this).data("paragraph");
-      if($(this).data("type") == 'portfolio') {
-        var imgDiv = $(this).closest('li').next('.img').html();
-  		} else{
-  			var imgDiv = $(this).closest('li').next('.sol-img').html();
-  		}
+      
       $(".nav-menu .dd-menu .right-content .col .textb h3").text(newHeading);
       $(".nav-menu .dd-menu .right-content .col .textb p").text(newParagraph);
-      if($(this).data("type") == 'portfolio') {
-      	$('#'+cat+'-portfolio-img').html(imgDiv);
-  	  }else{
-  	  	$('#'+cat+'-solution-img').html(imgDiv);
-  	  }
     },
     function() {
       // (optional) Jab mouse hataayein tab default text wapas laana ho toh:
-      //$(".nav-menu .dd-menu .right-content .col .textb h3").text("Default Heading");
-      //$(".nav-menu .dd-menu .right-content .col .textb p").text("Default Paragraph");
+      $(".nav-menu .dd-menu .right-content .col .textb h3").text("Default Heading");
+      $(".nav-menu .dd-menu .right-content .col .textb p").text("Default Paragraph");
     }
   );
 
-$("#categoryone").addClass("active");
+
+   $("#categoryone").addClass("active");
 
    $(".csr-section .tab-nav li a").click(function() {
 	$(".csr-section .tab-nav li a").removeClass("active");
@@ -179,20 +170,6 @@ $("#categoryone").addClass("active");
 		   $(".blog-list").addClass("active");
 	   } else {
 		   $("#" + target).addClass("active");
-	   }
-   });
-
-   $(".latest-post .left-tab li button").click(function() {
-   $(".items-container").css("display", 'none');
-	$(".latest-post .left-tab li button").removeClass("active");
-	$(this).addClass("active");
-	   var target = $(this).data("target");
-	   $(".items-container").removeClass("active");
-
-	   if (target === "viewall") {
-		   $(".items-container").addClass("active").css("display", 'flex');
-	   } else {
-		   $("#" + target).addClass("active").css("display", 'flex');
 	   }
    });
 
@@ -213,7 +190,7 @@ $("#categoryone").addClass("active");
       .addClass('list-view');
   });
 
-  /*function showFileName(input) {
+  function showFileName(input) {
 	const fileName = input.files.length ? input.files[0].name : "No file selected";
 	document.getElementById("file-name").textContent = fileName;
 	}
@@ -223,6 +200,50 @@ $("#categoryone").addClass("active");
 	document.getElementById("file-name-cv").textContent = fileName;
 	}
 
-	showFileName();*/
-	
+	//showFileName();
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

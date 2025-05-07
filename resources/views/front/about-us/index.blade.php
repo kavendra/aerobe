@@ -15,7 +15,9 @@
 </div>
 <div class="mid-section">
     <div class="about">
+        <div class="container">
         {!! $aboutUs->about_desc !!}
+    </div>
     </div>
 
     @include('front.elements.newsletter')

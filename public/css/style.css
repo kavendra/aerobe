@@ -183,6 +183,7 @@ body{color: #09090b;}
 .booklet .col2{width: 50%;padding:30px; display: flex;align-items:center;}
 .booklet .col2 .c-btn{min-height: 50px;}
 .booklet .col2 img{margin-right: 25px;}
+.booklet .container{display: flex;}
 
 .location{width: 100%; background: #eff6ff; padding: 64px 0px;}
 .location .container{display: flex; gap: 50px; align-items: center;}
@@ -260,10 +261,26 @@ font-weight: 500;}
 .testimonials .title h4{font-size: 16px; color:#47b5b7; font-weight: 500; margin-bottom: 10px;}
 .testimonials .title h3{font-size: 36px; line-height: 42px;  font-weight: normal; margin-bottom: 20px;}
 .testimonials .column{width: 100%; display: flex; gap: 25px;}
-.testimonials .column .col{padding: 25px; border: 1px solid #ebf4f6; border-radius: 15px;width:33.33%;}
+.testimonials .column .col{padding: 25px; border: 1px solid #ebf4f6; border-radius: 15px;width:100%;}
 .testimonials .column .col .user{width: 48px;}
 .testimonials .column .col h4{font-size: 16px; margin: 15px 0px;}
 .testimonials .column .col p{font-size: 16px; color: #71717a; line-height: 27px;}
+
+/*========= owl-carousel ============*/
+.testimonials-slide.column,.testimonials.column .owl-item {-webkit-tap-highlight-color: transparent;position: relative;padding:0px;}
+.testimonials-slide.column{display: block;width: 100%;z-index: 1;position: relative;}
+.testimonials-slide.column .owl-stage {position: relative;-ms-touch-action: pan-Y;touch-action: manipulation;moz-backface-visibility: hidden;}
+.testimonials-slide.column .owl-stage:after {content: ".";display: block;clear: both;visibility: hidden;line-height: 0;height: 0;}
+.testimonials-slide.column .owl-stage-outer {position: relative;overflow: hidden;}
+.testimonials-slide.column .owl-item {min-height: 1px;float: left;-webkit-backface-visibility: hidden;-webkit-touch-callout: none;padding: 0 12px;}
+.testimonials-slide.column .owl-nav{position: absolute; right: 32px; top:-60px;}
+.testimonials-slide.column .owl-nav button{text-align: center; font-size:24px; color: #09090b;  border: none; cursor: pointer; font-size: 14px;border:1px solid #cbd5e1;background:none;padding:14px 15px 9px 15px;border-radius:7px; }
+.testimonials-slide.column .owl-nav button i{color: #3795ae;font-size:13px;}
+.testimonials-slide.column .owl-nav button span{position: relative; top:-1px}
+.testimonials-slide.column .owl-nav .owl-next{margin-left: 12px;}
+.testimonials-slide.column .owl-nav button:hover{background: #f4f4f5; }
+.testimonials-slide.column .owl-nav button:before{content: "";}
+/*========= owl-carousel ============*/
 
 .footer{width: 100%; font-size: 14px; background: rgba(239,246,255,.5); padding:40px 0px;color:#71717a;}
 .footer .container{display: flex;}
@@ -635,7 +652,7 @@ input[type=number] {-moz-appearance: textfield;}
     .healthcare .textb h1{font-size: 36px;line-height:42px; }
     .healthcare .container{padding-right: 0px;}
     .healthcare .imgb{width: 45%;}
-    .healthcare .textb p{width: 100%;}
+    .healthcare .textb p{max-width: 100%;}
     .who-we-are .textb{width: 55%;}
     .who-we-are .imgb{width: 35%;}
     .who-we-are .container{align-items: center;}
@@ -648,10 +665,72 @@ input[type=number] {-moz-appearance: textfield;}
     .our-client .tab-box .tab-content li{width: calc(18% - 15px);}
 }
 @media only screen and (max-width:1199px){/*1024 */
+    .container,.header-btm .container{max-width:984px;}
+    .healthcare .textb h1{line-height: 40px;}
+    .who-we-are .textb{width: 60%;}
+    .portfolio .title h3{margin-bottom: 30px;}
+    .booklet .col{padding: 18px;}
+    .our-client .tab-box .client-tabnav ul{gap: 14px;}
 }
 @media only screen and (max-width:1023px){/*768*/
+    .container,.header-btm .container{max-width:728px;}
+    .who-we-are .imgb{display: none;}
+    .who-we-are .textb{width: 100%;}
+    .booklet{flex-flow: column;}
+    .booklet .col{width: 100%;}
+    .booklet .col2{width: 100%;}
+    .location .container{flex-flow: column;}
+    .location .map,.location .textb{width: 100%;}
+    .our-client .textb{width: 100%;}
+    .our-client .container{flex-flow: column;}
+    .our-client .tab-box{width: 100%;}
+    .our-client .textb{padding-top: 0px;}
+    .news-event .column .imgb{display: none;}
+    .news-event .column .news-list li .textb{width: 100%;}
+    .news-event .column .news-list li .imgb{display: block;}
+    .news-event .column .news-list{width: 100%; margin: 0px;}
+    .news-event .container{padding: 0 15px;}
+    .footer .container{flex-wrap: wrap;}
+    .footer .col{width: 33.33%;margin-bottom: 30px;}
 }
 @media only screen and (max-width:767px){
+    .header-top{display: none;}
+    .healthcare .container{flex-flow: column; justify-content: center;}
+    .healthcare .textb{width: 100%;}
+    .healthcare .imgb{width: 80%;}
+    .portfolio ul{flex-flow: column; gap: 25px;}
+    .portfolio li{width: 100%;}
+    .our-client .tab-box .client-tabnav ul{flex-flow: wrap;gap:0px;}
+    .footer .col{width: 100%; margin-bottom: 15px;}
+    .container,.healthcare .container{padding: 0 20px;}
+    .who-we-are .textb ul{gap: 15px;}
+    .who-we-are .textb li{width: 100%;padding-left:30px}
+    .who-we-are .textb li:before{width: 18px;height: 18px;top: 3px;}
+    .portfolio li img{margin-bottom: 10px;}
+    .booklet .col{flex-flow: column;gap:12px;}
+    .booklet .col2{flex-flow: column;}
+    .booklet .col2 img{margin-bottom: 15px;}
+    .booklet .col2 .c-btn{width: 100%; margin-top: 5px;}
+    .booklet .col2 .input{text-align: center;}
+    .location .textb h3,.our-client .textb h3{margin-bottom: 20px;}
+    .our-client{padding-bottom: 0px;}
+    .our-client .container{gap: 10px;}
+    .our-client .tab-box .client-tabnav ul li{width: 33.33%; text-align: center;margin-bottom:15px;}
+    .our-client .tab-box .tab-content ul{gap: 10px;}
+    .our-client .tab-box .tab-content li{ width: calc(25% - 8px);}
+    .testimonials-slide.column .owl-nav{top:auto;margin-top:20px; right: auto;}
+    .testimonials-slide.column .owl-item{padding: 0px;}
+    .footer .col h5{margin-bottom: 5px;}
+    .testimonials .column .col p{font-size: 14px; line-height: 22px;}
+
+
+    .healthcare .textb h1,.who-we-are .textb h3,
+    .portfolio .title h3,.location .textb h3,.our-client .textb h3,
+    .news-event .title h3,.testimonials .title h3{font-size: 26px;line-height:30px;}
+    .healthcare .textb p,.who-we-are .textb p{font-size: 16px; line-height: 24px;}
+    .who-we-are .textb h3 br{display: none;}
+    .news-event .column .news-list li .textb h3{font-size: 14px; line-height: 20px;}
+    
 }
 @media only screen and (max-width:374px){
 }

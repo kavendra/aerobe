@@ -4,7 +4,7 @@
         <h4>CUSTOMER TESTIMONIALS</h4>
         <h3>What our customers say</h3>
      </div>
-     <div class="column">
+     <div class="column testimonials-slide">
         @foreach($testimonials as $testimonial)
         <div class="col">
            <div class="user">
