@@ -124,6 +124,7 @@
                   </li>
                   @endforeach
                </ul>
+               <a href="#" class="c-btn">View All</a>
             </div>
          </div>
       </div>
