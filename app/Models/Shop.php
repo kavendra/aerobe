@@ -24,4 +24,9 @@ class Shop extends Model
     protected $casts = [
         'country_id' => 'array', // Automatically converts JSON to array when retrieved
     ];
+
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class, 'tag_id');
+    }
 }
