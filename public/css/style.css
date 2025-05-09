@@ -335,12 +335,12 @@ font-weight: 500;}
 .about p{font-size: 14px; line-height: 20px; color: #403f3f;padding-bottom:20px;font-weight:400;}
 .about p strong{font-size: 17px;}
 
-.contact-banner{background: url(img/contact.png) left top no-repeat; min-height:30px;display: flex;flex-flow: column;justify-content: center; padding-left: 20px; position: relative;}
+.contact-banner{background: url(../img/contact.png) left top no-repeat; min-height:30px;display: flex;flex-flow: column;justify-content: center; padding-left: 20px; position: relative;}
 .contact-banner h1{font-size: 36px;font-weight:700;color:#fff;margin-bottom:15px; position: relative; z-index: 100;}
 .contact-banner p{font-size: 24px; color:#fff;position: relative; z-index: 100;}
 .contact-banner:before{content: "";width: 100%;height: 100%;background: rgb(0, 0, 0, 0.2);position: absolute;left: 0px;top: 0px;z-index: 99;}
 
-.contact-info{width: 100%; padding-right: 17%; padding: 60px 0px; background: #eff6ff url(img/bg-contact.jpg) left bottom no-repeat;background-size:100% 100%;}
+.contact-info{width: 100%; padding-right: 17%; padding: 60px 0px; background: #eff6ff url(../img/bg-contact.jpg) left bottom no-repeat;background-size:100% 100%;}
 .contact-info .container{display: flex; }
 .contact-info .address{width: 50%; padding:0 5% 0 15%;}
 .contact-info .address ul{display: flex; flex-flow: wrap;}
@@ -385,7 +385,7 @@ align-items: center;justify-content: center;border-radius: 100%;}
 .nav-menu .dd-menu .right-content .col .textb h3{font-size: 16px; margin: 10px 0px;}
 .nav-menu .dd-menu .right-content .col .textb p{font-size: 14px; line-height: 22px; padding-bottom: 20px;}
 
-.csr-banner{background: url(img/hero-work.jpg) left top no-repeat;min-height:400px; background-size: 100% 400px;}
+.csr-banner{background: url(../img/hero-work.jpg) left top no-repeat;min-height:400px; background-size: 100% 400px;}
 .csr-banner .textb2{width: 50%; height: 100%; display: flex; flex-flow: column; align-items: start; justify-content: center; padding-left: 30px;}
 .csr-banner .textb2 h2{font-size: 36px; line-height: 42px; color: #fff; font-weight: 400;margin-bottom:30px}
 .csr-banner .textb2 p{font-size: 20px; line-height:30px; color: #d7d8cc;font-weight:300; }
@@ -506,7 +506,7 @@ align-items: center;justify-content: center;border-radius: 100%;}
 .our-team .formb .row-f .col-f-w{width: 100%;}
 .our-team .formb .input{border: 1px solid #e4e4e7; border-radius: 6px;height:43px;line-height: 33px;}
 .our-team .formb label{display: block; font-size: 14px; color: #09090b; padding-bottom: 10px; font-weight: 500;}
-.our-team .formb .select{appearance: none;-webkit-appearance: none;-moz-appearance: none; background: url(img/bg-select.jpg) right center no-repeat; padding-right: 40px;}
+.our-team .formb .select{appearance: none;-webkit-appearance: none;-moz-appearance: none; background: url(../img/bg-select.jpg) right center no-repeat; padding-right: 40px;}
 .our-team .current-employee{width: 100%;}
 .our-team h4{font-size:18px; font-weight: 500; margin-bottom: 20px;color: #111827;}
 .our-team .formb .textarea{min-height: 113px;}
@@ -525,7 +525,7 @@ align-items: center;justify-content: center;border-radius: 100%;}
 .our-team .formb .c-btn:hover{background:#3fa6c3;}
 
 
-.news{background: url(img/hero-news.jpg) left top no-repeat;min-height:300px; background-size: 100% 300px;}
+.news{background: url(../img/hero-news.jpg) left top no-repeat;min-height:300px; background-size: 100% 300px;}
 .news .textb2{width: 50%; height: 100%; display: flex; flex-flow: column; align-items: start; justify-content: center; padding-left: 30px;}
 .news .textb2 h2{font-size: 38px; line-height: 42px; color: #fff; font-weight: 700;letter-spacing: 0.5px;margin-bottom:10px;}
 .news .textb2 p{font-size: 24px; line-height:30px; color: #fff;font-weight:300; }
@@ -545,7 +545,7 @@ align-items: center;justify-content: center;border-radius: 100%;}
 .shoplist .item .textb .btm-row{width: 100%; text-align: center;}
 
 
-.csr-banner.hub {background: url(img/hero-knowledge.jpg) left top no-repeat;min-height: 400px;background-size: 100% 400px;}
+.csr-banner.hub {background: url(../img/hero-knowledge.jpg) left top no-repeat;min-height: 400px;background-size: 100% 400px;}
 .csr-banner.hub .container{display: flex; align-items: center;}
 .csr-banner.hub .textb2{padding-left: 0px;}
 .csr-banner.hub .textb2 h2{margin-bottom: 10px;}
@@ -555,7 +555,7 @@ align-items: center;justify-content: center;border-radius: 100%;}
 .csr-banner.hub .rightb .whiteb .tag-text {background: #3795ae;font-size: 13px;padding: 0px 6px;color: #ffffff;border-radius: 4px;font-weight: 500;display: inline-block;} 
 .csr-banner.hub .rightb .whiteb h3{font-size: 24px; line-height: 32px; color: #111827; margin-top: 10px; font-weight: 600;}
 
-.news-slider{background: url(img/news-slider-bg.jpg) left top no-repeat;min-height:385px;background-size: 100% 385px;border-radius:10px;padding:20px 45px;}
+.news-slider{background: url(../img/news-slider-bg.jpg) left top no-repeat;min-height:385px;background-size: 100% 385px;border-radius:10px;padding:20px 45px;}
 .news-slider .col{padding: 20px;background:#fff;border-radius:10px;box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1); border:1px solid #ddd;}
 .news-slider .col .tag{display: flex; gap: 5px;}
 .news-slider .col .tag .tag-text {background: #3795ae;font-size: 13px;padding: 0px 13px;color: #fff;border-radius: 4px;font-weight: 500;display: inline-block;}
