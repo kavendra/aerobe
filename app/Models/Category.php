@@ -35,4 +35,14 @@ class Category extends Model
     {
         return $this->hasMany(AerobeAcademy::class);
     }
+
+    public function knowledgeHubs()
+    {
+        return $this->hasMany(KnowledgeHub::class);
+    }
+
+    public function newsAndEvents()
+    {
+        return $this->hasMany(NewsAndEvent::class);
+    }
 }

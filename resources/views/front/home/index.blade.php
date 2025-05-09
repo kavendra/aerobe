@@ -99,7 +99,7 @@
                   <li>
                      <div class="textb">
                         @if($newsAndEvent->tag)
-                        <div class="tag-box red">{{ $newsAndEvent->tag->label }}</div>
+                        <div class="tag-box red">{{ $newsAndEvent->tag->label ?? '' }}</div>
                         @endif
                         <h3><a href="#"> {{ $newsAndEvent->title ?? '' }}</a></h3>
                         <p><strong>4.83k</strong> views <strong>3.27k</strong> likes</p>
