@@ -227,7 +227,7 @@ body{color: #09090b;}
 .news-event .column .imgb{width: 58%; position: relative; overflow: hidden; border-radius: 10px;}
 .news-event .column .imgb:before{content:""; width:100%;height:100%;background:rgb(0,0,0,0.5);position:absolute;left:0px;top:0px;z-index:99;}
 .news-event .column .imgb .caption{position: absolute; left: 20px; bottom: 30px; z-index: 10;padding:10px; z-index: 100;}
-.news-event .column .imgb .tag-box{background: #10b981;color: #fff;display: inline-block;font-size: 12px;padding: 2px 13px;border-radius: 15px;line-height: 20px;
+.news-event .column .imgb .tag-box{color: #fff;display: inline-block;font-size: 12px;padding: 2px 13px;border-radius: 15px;line-height: 20px;
 font-weight: 500;}
 .news-event .column .imgb .caption h3{font-size: 24px;color:#fff;line-height:32px;margin:10px 0 15px 0;}
 .news-event .column .imgb .caption .user .icon-img{width: 32px;}
