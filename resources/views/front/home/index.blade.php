@@ -124,7 +124,9 @@
                   </li>
                   @endforeach
                </ul>
-               <a href="#" class="c-btn">View All</a>
+               @if($newsAndEvents->count() > 3)
+               <a href="{{ route('news-event.index') }}" class="c-btn">View All</a>
+               @endif
             </div>
          </div>
       </div>

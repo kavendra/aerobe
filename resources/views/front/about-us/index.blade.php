@@ -3,10 +3,8 @@
   <div class="top-banner">
     <div class="imgb">
         @if ($aboutUs->header_image && file_exists(public_path('assets/uploads/about-us/' . $aboutUs->header_image)))
-        <img src="{{ asset('assets/uploads/about-us/'.$aboutUs->header_image) }}" />
-        @else
-           <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="20"  data-holder-rendered="true" />
-       @endif
+            <img src="{{ asset('assets/uploads/about-us/'.$aboutUs->header_image) }}" />
+        @endif
     </div>
     <div class="textb">
         <h1>{!! $aboutUs->header_heading !!}</h1>
@@ -16,8 +14,8 @@
 <div class="mid-section">
     <div class="about">
         <div class="container">
-        {!! $aboutUs->about_desc !!}
-    </div>
+            {!! $aboutUs->about_desc !!}
+        </div>
     </div>
 
     @include('front.elements.newsletter')

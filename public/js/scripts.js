@@ -213,6 +213,18 @@ $("#categoryone").addClass("active");
       .addClass('list-view');
   });
 
+  	$(".dsk-arrow a").on("click", function(){
+		$(this).siblings(".dd-menu").slideToggle();
+	});
+
+	$(".menu-icon").on("click", function(){
+		$(".header-left .m-div").toggleClass("active");
+	});
+
+	$(".header-left .m-div .close-btn").on("click", function(){
+		$(".header-left .m-div").toggleClass("active");
+	});
+
   /*function showFileName(input) {
 	const fileName = input.files.length ? input.files[0].name : "No file selected";
 	document.getElementById("file-name").textContent = fileName;
