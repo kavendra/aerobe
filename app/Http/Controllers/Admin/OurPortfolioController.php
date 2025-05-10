@@ -57,7 +57,7 @@ class OurPortfolioController extends Controller
      */
     public function store(Request $request)
     {
-       $request->validate([
+        $request->validate([
             'title' => 'required|string',
             'category_id' => 'required',
             'country_id' => 'required',

@@ -40,7 +40,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="label">Country</label>
-                                        <select id="input9" class="form-select" name="country_id">
+                                        <select id="input9" class="form-select" name="country_id" required>
                                             <option value="">Select Country</option>
                                             @if($countries->count() > 0)
                                                 @foreach($countries as $country)
@@ -48,6 +48,7 @@
                                                 @endforeach
                                             @endif
                                         </select>
+                                        @error('country_id') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
 
@@ -55,13 +56,14 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="label">Name</label>
                                         <input id="label" name="label" placeholder="Enter Name" type="text" class="form-control" value="" required>
+                                        @error('label') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="link">Link</label>
-                                        <input id="link" name="link" placeholder="Enter Url" type="text" class="form-control" value="" required>
+                                        <input id="link" name="link" placeholder="Enter Url" type="text" class="form-control" value="">
                                     </div>
                                 </div>
 
@@ -72,7 +74,8 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="logo" class="form-label">Image</label>
-                                        <input class="form-control" type="file" name="logo" id="logo">
+                                        <input class="form-control" type="file" name="logo" id="logo" required>
+                                        @error('logo') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
 

@@ -61,18 +61,28 @@ class NewsAndEventController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string',
             'category_id' => 'required',
+            'country_id' => 'required',
             'short_description' => 'required',
-            'long_description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             'author_name' => 'required',
             'event_date' => 'required',
             'tag_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'author_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+        ], [
+            'title.required' => 'The title field is required.',
+            'category_id.required' => 'Please select a category.',
+            'country_id.required' => 'Please select at least one country.',
+            'short_description.required' => 'Short description is required.',
+            'image.required' => 'An image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'image.max' => 'Image size must not exceed 5MB.',
+            'author_name.required' => 'The author name field is required.',
+            'event_date.required' => 'The event date field is required.',
+            'tag_id.required' => 'Please select anyone tag.',
         ]);
-
+        $imageName = "";
         if ($request->hasFile('image')) {
 
             // Upload new file
@@ -80,7 +90,7 @@ class NewsAndEventController extends Controller
             $imageName = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('assets/uploads/news-events/'), $imageName);
         }
-
+        $authorImage = "";
         if ($request->hasFile('author_image')) {
 
             // Upload new file
@@ -95,6 +105,7 @@ class NewsAndEventController extends Controller
             'tag_id' => $request->tag_id,
             'event_date' => $request->event_date,
             'image' => $imageName,
+            'country_id' => $request->country_id,
             'author_name' => $request->author_name,
             'author_image' => $authorImage,
             'short_description' => $request->short_description,
@@ -129,19 +140,36 @@ class NewsAndEventController extends Controller
      */
     public function update(Request $request, NewsAndEvent $newsAndEvent)
     {
-        //dd($request->all());
-        $request->validate([
-            'title' => 'required|string|max:255',
+       $request->validate([
+            'title' => 'required|string',
             'category_id' => 'required',
+            'country_id' => 'required',
             'short_description' => 'required',
-            'long_description' => 'required',
             'author_name' => 'required',
             'event_date' => 'required',
             'tag_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'author_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+        ], [
+            'title.required' => 'The title field is required.',
+            'category_id.required' => 'Please select a category.',
+            'country_id.required' => 'Please select at least one country.',
+            'short_description.required' => 'Short description is required.',
+            'author_name.required' => 'The author name field is required.',
+            'event_date.required' => 'The event date field is required.',
+            'tag_id.required' => 'Please select anyone tag.',
         ]);
+
+        if(empty($newsAndEvent->image))
+        {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            ], [
+                'image.required' => 'An image is required.',
+                'image.image' => 'The file must be an image.',
+                'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+                'image.max' => 'Image size must not exceed 5MB.',
+            ]);
+        }
+
 
         if ($request->hasFile('image')) {
             // Delete old file
@@ -173,6 +201,7 @@ class NewsAndEventController extends Controller
         $newsAndEvent->category_id = $request->category_id;
         $newsAndEvent->tag_id = $request->tag_id;
         $newsAndEvent->event_date = $request->event_date;
+        $newsAndEvent->country_id = $request->country_id;
         $newsAndEvent->author_name = $request->author_name;
         $newsAndEvent->short_description = $request->short_description;
         $newsAndEvent->long_description = $request->long_description;
