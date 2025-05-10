@@ -52,8 +52,8 @@
                                 <div class="col-lg-6">
                                     <label for="banner_image" class="form-label">Banner Preview Image</label>
                                     <div class="mb-3">
-                                        @if ($csrPage->banner_image && file_exists(public_path('assets/uploads/csr-page/' . $csrPage->banner_image)))
-                                            <img src="{{ asset('assets/uploads/csr-page/' . $csrPage->banner_image) }}" class="rounded me-2" title="Site Logo" width="150" height="120" data-holder-rendered="true" />
+                                        @if ($csrPage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $csrPage->banner_image)))
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $csrPage->banner_image) }}" class="rounded me-2" title="Site Logo" width="150" height="120" data-holder-rendered="true" />
                                         @else
                                             <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
                                         @endif

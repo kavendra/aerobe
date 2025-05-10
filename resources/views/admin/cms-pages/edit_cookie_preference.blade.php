@@ -53,8 +53,8 @@
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        @if ($cookiePreferencePage->header_image && file_exists(public_path('assets/uploads/cookie-preference-page/' . $cookiePreferencePage->header_image)))
-                                            <img src="{{ asset('assets/uploads/cookie-preference-page/' . $cookiePreferencePage->header_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
+                                        @if ($cookiePreferencePage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $cookiePreferencePage->header_image)))
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $cookiePreferencePage->header_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
                                         @else
                                             <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
                                         @endif

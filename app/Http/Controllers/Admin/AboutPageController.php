@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AboutPage;
-use App\Models\Websetting;
  
 class AboutPageController extends Controller
 {
@@ -99,27 +98,27 @@ class AboutPageController extends Controller
 
         if ($request->hasFile('header_image')) {
             // Delete old file
-            if ($webSetting->header_image && file_exists(public_path('assets/uploads/about-page/' . $webSetting->header_image))) {
-                unlink(public_path('assets/uploads/about-page/' . $webSetting->header_image));
+            if ($webSetting->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $webSetting->header_image))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $webSetting->header_image));
             }
 
             // Upload new file
             $file = $request->file('header_image');
             $header_image = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/uploads/about-page/'), $header_image);
+            $file->move(public_path('assets/uploads/cms-pages/'), $header_image);
             $webSetting->header_image = $header_image;
         }
 
         if ($request->hasFile('about_image')) {
             // Delete old file
-            if ($webSetting->about_image && file_exists(public_path('assets/uploads/about-page/' . $webSetting->about_image))) {
-                unlink(public_path('assets/uploads/about-page/' . $webSetting->about_image));
+            if ($webSetting->about_image && file_exists(public_path('assets/uploads/cms-pages/' . $webSetting->about_image))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $webSetting->about_image));
             }
 
             // Upload new file
             $file = $request->file('about_image');
             $about_image = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/uploads/about-page/'), $about_image);
+            $file->move(public_path('assets/uploads/cms-pages/'), $about_image);
             $webSetting->about_image = $about_image;
         }
 

@@ -68,13 +68,13 @@ class WorkAerobePageController extends Controller
 
         $bannerImage = $workAerobePage->banner_image;
         if ($request->hasFile('banner_image')) {
-            if ($workAerobePage->banner_image && file_exists(public_path('assets/uploads/work-aerobe-page/' . $workAerobePage->banner_image))) {
-                unlink(public_path('assets/uploads/work-aerobe-page/' . $workAerobePage->banner_image));
+            if ($workAerobePage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $workAerobePage->banner_image))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $workAerobePage->banner_image));
             }
 
             $file = $request->file('banner_image');
             $bannerImage = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
-            $file->move(public_path('assets/uploads/work-aerobe-page/'), $bannerImage);
+            $file->move(public_path('assets/uploads/cms-pages/'), $bannerImage);
         }
 
         $workAerobePage->banner_title = $request->banner_title;

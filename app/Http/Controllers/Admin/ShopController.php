@@ -78,7 +78,7 @@ class ShopController extends Controller
         $shop = Shop::create([
             'title' => $request->title,
             'category_id' => $request->category_id,
-            'country_id' => json_encode($request->country_id),
+            'country_id' => $request->country_id ?? null,
             'image' => $imageName,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,

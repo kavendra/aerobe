@@ -435,7 +435,7 @@ align-items: center;justify-content: center;border-radius: 100%;}
 .items-container .item .imgb{width: 100%; position: relative; border-radius: 12px 12px 0px 0px;}
 .items-container .item .imgb .img-tag{background: #f9740f; font-size:13px; padding: 0px 15px; display: inline-block; color: #fff; position: absolute; left: 0px; top:16px}
 .items-container .item .imgb img{display: block;border-radius: 12px 12px 0px 0px;}
-.items-container .item .tag-text{background: #dbe7f3; font-size: 13px; padding: 0px 6px; color: #51a6cb; border-radius: 4px; font-weight: 500;display:inline-block;}
+.items-container .item .tag-text{font-size: 13px; padding: 0px 6px; color: #FFF; border-radius: 4px; font-weight: 500;display:inline-block;}
 .items-container .item h3{font-size: 18px; font-weight: 700; margin: 12px 0px;}
 .items-container .item .user-info .icon{width: 24px;}
 .items-container .item .user-info{display: flex; width: 100%; align-items: center;gap:10px;font-size:13px;}

@@ -62,7 +62,7 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             @if(!empty($csr->image))
-                                                <img src="{{ asset('/uploads/news-events/'.$csr->image) }}" class="rounded" height="100" width="100" />
+                                                <img src="{{ asset('assets/uploads/csrs/'.$csr->image) }}" class="rounded" height="100" width="100" />
                                             @endif
                                         </div>
                                     </div>
@@ -98,7 +98,7 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             @if(!empty($csr->author_image))
-                                                <img src="{{ asset('/uploads/news-events/'.$csr->author_image) }}" class="rounded" height="100" width="100" />
+                                                <img src="{{ asset('assets/uploads/csrs/'.$csr->author_image) }}" class="rounded" height="100" width="100" />
                                             @endif
                                         </div>
                                     </div>
@@ -107,26 +107,6 @@
                                         <div class="mb-3">
                                             <label for="long_description" class="form-label">Long Description</label>
                                             <textarea type="text" class="form-control" name="long_description" placeholder="Enter Description" id="long_description">{{ $csr->long_description }}</textarea>
-                                        </div>
-                                    </div>
-
-                                   <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="long_description" class="form-label">Select Tags</label>
-                                            <div class="row">
-                                                @if($tags->count() > 0)
-                                                    @foreach($tags as $tag)
-                                                        <div class="col-lg-2 col-md-4 col-sm-6">
-                                                            <div class="form-check form-check-right mb-3">
-                                                                <input class="form-check-input" type="checkbox" name="tag_id[]" id="tag-{{ $tag->id }}" value="{{ $tag->id }}" @if(in_array($tag->id, $csr->tag_id))checked @endif >
-                                                                <label class="form-check-label" for="formCheckRight1">
-                                                                    {{ $tag->label }}
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
-                                            </div>
                                         </div>
                                     </div>
 

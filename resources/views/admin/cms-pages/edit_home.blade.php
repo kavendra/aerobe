@@ -52,8 +52,8 @@
                                 <div class="col-lg-6">
                                     <label for="banner_image" class="form-label">Banner Preview Image</label>
                                     <div class="mb-3">
-                                        @if ($homePage->banner_image && file_exists(public_path('assets/uploads/home-page/' . $homePage->banner_image)))
-                                            <img src="{{ asset('assets/uploads/home-page/' . $homePage->banner_image) }}" class="rounded me-2" title="Site Logo" width="150" height="120" data-holder-rendered="true" />
+                                        @if ($homePage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->banner_image)))
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $homePage->banner_image) }}" class="rounded me-2" title="Site Logo" width="150" height="120" data-holder-rendered="true" />
                                         @else
                                             <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
                                         @endif
@@ -113,8 +113,8 @@
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        @if ($homePage->section_image1 && file_exists(public_path('assets/uploads/home-page/' . $homePage->section_image1)))
-                                            <img src="{{ asset('assets/uploads/home-page/' . $homePage->section_image1) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+                                        @if ($homePage->section_image1 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image1)))
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $homePage->section_image1) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
                                         @else
                                             <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
                                         @endif
@@ -130,8 +130,8 @@
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        @if ($homePage->section_image2 && file_exists(public_path('assets/uploads/home-page/' . $homePage->section_image2)))
-                                            <img src="{{ asset('assets/uploads/home-page/' . $homePage->section_image2) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+                                        @if ($homePage->section_image2 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image2)))
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $homePage->section_image2) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
                                         @else
                                             <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
                                         @endif
@@ -147,8 +147,8 @@
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        @if ($homePage->section_image3 && file_exists(public_path('assets/uploads/home-page/' . $homePage->section_image3)))
-                                            <img src="{{ asset('assets/uploads/home-page/' . $homePage->section_image3) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+                                        @if ($homePage->section_image3 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image3)))
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $homePage->section_image3) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
                                         @else
                                             <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
                                         @endif
@@ -164,8 +164,8 @@
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        @if ($homePage->section_image4 && file_exists(public_path('assets/uploads/home-page/' . $homePage->section_image4)))
-                                            <img src="{{ asset('assets/uploads/home-page/' . $homePage->section_image4) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+                                        @if ($homePage->section_image4 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image4)))
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $homePage->section_image4) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
                                         @else
                                             <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
                                         @endif

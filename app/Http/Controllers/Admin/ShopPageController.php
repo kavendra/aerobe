@@ -68,13 +68,13 @@ class ShopPageController extends Controller
 
         $bannerImage = $shopPage->banner_image;
         if ($request->hasFile('banner_image')) {
-            if ($shopPage->banner_image && file_exists(public_path('assets/uploads/shop-page/' . $shopPage->banner_image))) {
-                unlink(public_path('assets/uploads/shop-page/' . $shopPage->banner_image));
+            if ($shopPage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $shopPage->banner_image))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $shopPage->banner_image));
             }
 
             $file = $request->file('banner_image');
             $bannerImage = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
-            $file->move(public_path('assets/uploads/shop-page/'), $bannerImage);
+            $file->move(public_path('assets/uploads/cms-pages/'), $bannerImage);
         }
 
         $shopPage->banner_title = $request->banner_title;

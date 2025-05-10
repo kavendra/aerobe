@@ -68,13 +68,13 @@ class CsrPageController extends Controller
 
         $bannerImage = $csrPage->banner_image;
         if ($request->hasFile('banner_image')) {
-            if ($csrPage->banner_image && file_exists(public_path('assets/uploads/csr-page/' . $csrPage->banner_image))) {
-                unlink(public_path('assets/uploads/csr-page/' . $csrPage->banner_image));
+            if ($csrPage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $csrPage->banner_image))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $csrPage->banner_image));
             }
 
             $file = $request->file('banner_image');
             $bannerImage = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
-            $file->move(public_path('assets/uploads/csr-page/'), $bannerImage);
+            $file->move(public_path('assets/uploads/cms-pages/'), $bannerImage);
         }
 
         $csrPage->banner_title = $request->banner_title;
