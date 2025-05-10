@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="top-banner contact-banner">
+    <img src="{{ asset('img/hero-contact.jpg') }}" alt=""/>
     <h1>Contact Us</h1>
     <p>Be in touch</p>
 </div>
