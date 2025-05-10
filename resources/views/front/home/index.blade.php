@@ -99,7 +99,7 @@
                   <li>
                      <div class="textb">
                         @if($newsAndEvent->tag)
-                        <div class="tag-box red">{{ $newsAndEvent->tag->label ?? '' }}</div>
+                        <div class="tag-box">{{ $newsAndEvent->tag->label ?? '' }}</div>
                         @endif
                         <h3><a href="#"> {{ $newsAndEvent->title ?? '' }}</a></h3>
                         <p><strong>4.83k</strong> views <strong>3.27k</strong> likes</p>
@@ -124,7 +124,9 @@
                   </li>
                   @endforeach
                </ul>
-               <a href="#" class="c-btn">View All</a>
+               @if($newsAndEvents->count() > 3)
+               <a href="{{ route('news-event.index') }}" class="c-btn">View All</a>
+               @endif
             </div>
          </div>
       </div>

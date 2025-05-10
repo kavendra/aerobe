@@ -9,9 +9,9 @@
         <div class="col">
            <div class="user">
               @if ($testimonial->image && file_exists(public_path('assets/uploads/testimonials/' . $testimonial->image)))
-              <img src="{{ asset('assets/uploads/testimonials/'.$testimonial->image) }}" />
+                  <img src="{{ asset('assets/uploads/testimonials/'.$testimonial->image) }}" />
                @else
-                   <img src="{{ asset('assets/images/no-image.png') }}" class="w-full h-full object-cover" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+                  <img src="{{ asset('assets/images/no-image.png') }}" class="w-full h-full object-cover" width="150" height="120"  data-holder-rendered="true" />
                @endif
            </div>
            <h4>{{ $testimonial->label }}</h4>
