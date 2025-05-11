@@ -13,125 +13,194 @@
 @endsection
 
     @section('content')
-        <form method="post" class="needs-validation" novalidate action="{{ route('admin.csr.update', $csr->id) }}" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="row">
-                <div class="col-lg-12">
-                    <div id="addproduct-accordion" class="custom-accordion">
-                        <div class="card">
-                            <div class="p-4">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="font-size-16 mb-1">Edit CSR Information  <a href="{{ route('admin.csr.index') }}" style="float:right"><button type="button" class="btn btn-outline-primary waves-effect waves-light" fdprocessedid="ub8ltb">CSR Listing</button></a></h5>
-                                        <p class="text-muted text-truncate mb-0">Fill all information below</p>
+     <form method="post" class="needs-validation" novalidate action="{{ route('admin.csr.update', $csr->id) }}" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-4 border-top">
-                                <div class="row col-lg-8">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="title">Select Category</label>
-                                            <select id="input9" class="form-select" name="category_id">
-                                                <option value="">Select Category</option>
-                                                @if($categories->count() > 0)
-                                                    @foreach($categories as $category)
-                                                        <option value="{{ $category->id }}" @if($csr->category_id == $category->id) selected @endif>{{ $category->label }}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="title">Title</label>
-                                            <input id="title" name="title" placeholder="Enter Title" type="text" class="form-control" value="{{ $csr->title }}" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="image" class="form-label">Image</label>
-                                            <input class="form-control" type="file" name="image" id="image">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            @if(!empty($csr->image))
-                                                <img src="{{ asset('assets/uploads/csrs/'.$csr->image) }}" class="rounded" height="100" width="100" />
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="short_description" class="form-label">Short Description</label>
-                                            <textarea type="text" class="form-control" name="short_description" placeholder="Enter Short Description" id="short_description">{{ $csr->short_description }}</textarea>
-                                        </div>
-                                    </div>  
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="author_name">Author Name</label>
-                                            <input id="author_name" name="author_name" placeholder="Enter Author Name" type="text" class="form-control" value="{{ $csr->author_name }}" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="event_date" class="form-label">Event Date</label>
-                                            <input type="date" id="datepicker" name="event_date" value="{{ $csr->event_date }}" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="author_image" class="form-label">Author Image</label>
-                                            <input class="form-control" type="file" name="author_image" id="author_image">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            @if(!empty($csr->author_image))
-                                                <img src="{{ asset('assets/uploads/csrs/'.$csr->author_image) }}" class="rounded" height="100" width="100" />
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="long_description" class="form-label">Long Description</label>
-                                            <textarea type="text" class="form-control" name="long_description" placeholder="Enter Description" id="long_description">{{ $csr->long_description }}</textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="input9" class="form-label">Status</label>
-                                        <select id="input9" class="form-select" name="status">
-                                            <option value="1" @if($csr->status == 1) selected @endif>Active</option>
-                                            <option value="0" @if($csr->status == 0) selected @endif>Inactive</option>
-                                        </select>
-                                    </div>
-                             
-                                </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="addproduct-accordion" class="custom-accordion">
+                <div class="card">
+                    <div class="p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <h5 class="font-size-16 mb-1">
+                                    Edit CSR Information  
+                                    <a href="{{ route('admin.csr.index') }}" style="float:right">
+                                        <button type="button" class="btn btn-outline-primary waves-effect waves-light">CSR Listing</button>
+                                    </a>
+                                </h5>
+                                <p class="text-muted text-truncate mb-0">Fill all information below</p>
                             </div>
                         </div>
                     </div>
+
+                    <div class="p-4 border-top">
+                        <div class="row col-lg-8">
+
+                            {{-- Category --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="category_id">Select Category</label>
+                                    <select id="category_id" class="form-select" name="category_id" required>
+                                        <option value="">Select Category</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}" {{ old('category_id', $csr->category_id) == $category->id ? 'selected' : '' }}>
+                                                {{ $category->label }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('category_id') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Title --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="title">Title</label>
+                                    <input id="title" name="title" placeholder="Enter Title" type="text" class="form-control" value="{{ old('title', $csr->title) }}" required>
+                                    @error('title') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Image --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Image</label>
+                                    <input class="form-control" type="file" name="image" id="image" @if(empty($csr->image)) required @endif>
+                                    @error('image') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    @if(!empty($csr->image))
+                                        <img src="{{ asset('assets/uploads/csrs/'.$csr->image) }}" class="rounded" height="100" width="100" />
+                                    @endif
+                                </div>
+                            </div>
+
+                            {{-- Short Description --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="short_description" class="form-label">Short Description</label>
+                                    <textarea class="form-control" name="short_description" placeholder="Enter Short Description" id="short_description" required>{{ old('short_description', $csr->short_description) }}</textarea>
+                                    @error('short_description') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Author Name --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="author_name">Author Name</label>
+                                    <input id="author_name" name="author_name" placeholder="Enter Author Name" type="text" class="form-control" value="{{ old('author_name', $csr->author_name) }}" required>
+                                    @error('author_name') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Event Date --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="event_date" class="form-label">Event Date</label>
+                                    <input type="date" id="datepicker" name="event_date" class="form-control" value="{{ old('event_date', \Carbon\Carbon::parse($csr->event_date)->format('Y-m-d')) }}" required>
+                                    @error('event_date') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Author Image --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="author_image" class="form-label">Author Image</label>
+                                    <input class="form-control" type="file" name="author_image" id="author_image">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    @if(!empty($csr->author_image))
+                                        <img src="{{ asset('assets/uploads/csrs/'.$csr->author_image) }}" class="rounded" height="100" width="100" />
+                                    @endif
+                                </div>
+                            </div>
+
+                            {{-- Long Description --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="long_description" class="form-label">Long Description</label>
+                                    <textarea class="form-control" name="long_description" placeholder="Enter Description" id="long_description">{{ old('long_description', $csr->long_description) }}</textarea>
+                                </div>
+                            </div>
+
+                              {{-- Tags --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="tag_id" class="form-label">Select Tags</label>
+                                    <div class="row">
+                                        @php
+                                            $selectedTags = old('tag_id', []);
+                                        @endphp
+                                        @foreach($tags as $tag)
+                                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                                <div required class="form-check form-check-right mb-3">
+                                                    <input class="form-check-input" type="checkbox" name="tag_id[]" id="tag-{{ $tag->id }}" value="{{ $tag->id }}"
+                                                        {{ is_array($selectedTags) && in_array($tag->id, $selectedTags) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="tag-{{ $tag->id }}">
+                                                        {{ $tag->label }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    @error('tag_id') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                             {{-- Country Selection --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Select Countries</label>
+                                    <div class="row">
+                                        @php($selectedCountries = old('country_id', is_array($newsAndEvent->country_id) ? $newsAndEvent->country_id : json_decode($newsAndEvent->country_id, true))
+                                        )
+                                        @foreach($countries as $country)
+                                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                                <div class="form-check form-check-right mb-3">
+                                                    <input class="form-check-input" type="checkbox" name="country_id[]" id="country-{{ $country->id }}" value="{{ $country->id }}"
+                                                        {{ is_array($selectedCountries) && in_array($country->id, $selectedCountries) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="country-{{ $country->id }}">
+                                                        {{ $country->label }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    @error('country_id') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Status --}}
+                            <div class="col-lg-6 mb-3">
+                                <label for="status" class="form-label">Status</label>
+                                <select id="status" class="form-select" name="status">
+                                    <option value="1" {{ old('status', $csr->status) == 1 ? 'selected' : '' }}>Active</option>
+                                    <option value="0" {{ old('status', $csr->status) == 0 ? 'selected' : '' }}>Inactive</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <!-- end row -->
+        </div>
+    </div>
 
-            <div class="row mb-4">
-                <div class="col text-end">
-                    <button class="btn btn-primary" type="submit">Update</button>
-                </div> <!-- end col -->
-            </div> <!-- end row-->
-        </form>
+    {{-- Submit Button --}}
+    <div class="row mb-4">
+        <div class="col text-end">
+            <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+    </div>
+</form>
+
     @endsection
 
     @section('scripts')

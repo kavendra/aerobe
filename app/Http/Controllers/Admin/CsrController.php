@@ -51,18 +51,27 @@ class CsrController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string',
             'category_id' => 'required',
+            'country_id' => 'required',
             'short_description' => 'required',
-            'long_description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             'author_name' => 'required',
             'event_date' => 'required',
-            //'tag_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'author_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'tag_id' => 'required',
+        ], [
+            'title.required' => 'The title field is required.',
+            'category_id.required' => 'Please select a category.',
+            'country_id.required' => 'Please select at least one country.',
+            'short_description.required' => 'Short description is required.',
+            'image.required' => 'An image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'image.max' => 'Image size must not exceed 5MB.',
+            'author_name.required' => 'The author name field is required.',
+            'event_date.required' => 'The event date field is required.',
+            'tag_id.required' => 'Please select anyone tag.',
         ]);
-
         if ($request->hasFile('image')) {
 
             // Upload new file
@@ -119,19 +128,37 @@ class CsrController extends Controller
      */
     public function update(Request $request, Csr $csr)
     {
-        //dd($request->all());
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string',
             'category_id' => 'required',
+            'country_id' => 'required',
             'short_description' => 'required',
-            'long_description' => 'required',
             'author_name' => 'required',
             'event_date' => 'required',
-            //'tag_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'author_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'tag_id' => 'required',
+        ], [
+            'title.required' => 'The title field is required.',
+            'category_id.required' => 'Please select a category.',
+            'country_id.required' => 'Please select at least one country.',
+            'short_description.required' => 'Short description is required.',
+            'author_name.required' => 'The author name field is required.',
+            'event_date.required' => 'The event date field is required.',
+            'tag_id.required' => 'Please select anyone tag.',
         ]);
+
+        if(empty($csr->image))
+        {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            ], [
+                'image.required' => 'An image is required.',
+                'image.image' => 'The file must be an image.',
+                'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+                'image.max' => 'Image size must not exceed 5MB.',
+            ]);
+        }
+
+
 
         if ($request->hasFile('image')) {
             // Delete old file
