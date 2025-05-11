@@ -158,7 +158,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Select Countries</label>
                                     <div class="row">
-                                        @php($selectedCountries = old('country_id', is_array($newsAndEvent->country_id) ? $newsAndEvent->country_id : json_decode($newsAndEvent->country_id, true))
+                                        @php($selectedCountries = old('country_id', is_array($csr->country_id) ? $csr->country_id : json_decode($csr->country_id, true))
                                         )
                                         @foreach($countries as $country)
                                             <div class="col-lg-2 col-md-4 col-sm-6">
