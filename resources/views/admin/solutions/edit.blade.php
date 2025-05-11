@@ -29,89 +29,104 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="p-4 border-top">
-                                <div class="row col-lg-12">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="title">Select Category</label>
-                                            <select id="input9" class="form-select" name="category_id">
-                                                <option value="">Select Category</option>
-                                                @if($categories->count() > 0)
-                                                    @foreach($categories as $category)
-                                                        <option value="{{ $category->id }}" @if($solution->category_id == $category->id) selected @endif>{{ $category->label }}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
+                              <div class="p-4 border-top">
+                        <div class="row col-lg-12">
 
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="title">Title</label>
-                                            <input id="title" name="title" placeholder="Enter Title" type="text" class="form-control" value="{{ $solution->title }}" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="image" class="form-label">Image</label>
-                                            <input class="form-control" type="file" name="image" id="image">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            @if(!empty($solution->image))
-                                                <img src="{{ asset('assets/uploads/solutions/'.$solution->image) }}" class="rounded" height="150" width="120" />
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="short_description" class="form-label">Short Description</label>
-                                            <textarea type="text" class="form-control" name="short_description" placeholder="Enter Short Description" id="short_description">{{ $solution->short_description }}</textarea>
-                                        </div>
-                                    </div>  
-
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="long_description" class="form-label">Long Description</label>
-                                            <textarea type="text" class="form-control" name="long_description" placeholder="Enter Description" id="long_description">{{ $solution->long_description }}</textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="long_description" class="form-label">Select Countries</label>
-                                            <div class="row">
-                                                @if($countries->count() > 0)
-                                                    @foreach($countries as $country)
-
-                                                        <div class="col-lg-2 col-md-4 col-sm-6">
-                                                            <div class="form-check form-check-right mb-3">
-                                                                <input class="form-check-input" type="checkbox" name="country_id[]" id="country-{{ $country->id }}" value="{{ $country->id }}" @if(is_array($solution->country_id) && in_array($country->id,  $solution->country_id ?? [] ))checked @endif >
-                                                                <label class="form-check-label" for="formCheckRight1">
-                                                                    {{ $country->label }}
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="input9" class="form-label">Status</label>
-                                        <select id="input9" class="form-select" name="status">
-                                            <option value="1" @if($solution->status == 1) selected @endif>Active</option>
-                                            <option value="0" @if($solution->status == 0) selected @endif>Inactive</option>
-                                        </select>
-                                    </div>
-                             
+                            {{-- Category --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="category_id">Select Category</label>
+                                    <select id="category_id" class="form-select" name="category_id">
+                                        <option value="">Select Category</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}" 
+                                                {{ old('category_id', $solution->category_id) == $category->id ? 'selected' : '' }}>
+                                                {{ $category->label }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                     @error('category_id') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
+
+                            {{-- Title --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="title">Title</label>
+                                    <input id="title" name="title" type="text" class="form-control" placeholder="Enter Title" value="{{ old('title', $solution->title) }}" required>
+                                    @error('title') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Image --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="image">Image</label>
+                                    <input class="form-control" type="file" name="image" id="image">
+                                    @error('image') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Preview --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    @if(!empty($solution->image))
+                                        <img src="{{ asset('assets/uploads/our-portfolios/'.$solution->image) }}" class="rounded" height="150" width="120" />
+                                    @endif
+                                </div>
+                            </div>
+
+                            {{-- Short Description --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="short_description">Short Description</label>
+                                    <textarea class="form-control" name="short_description" id="short_description" required>{{ old('short_description', $solution->short_description) }}</textarea>
+                                    @error('short_description') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Long Description --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="long_description">Long Description</label>
+                                    <textarea class="form-control" name="long_description" id="long_description">{{ old('long_description', $solution->long_description) }}</textarea>
+                                </div>
+                            </div>
+
+                            {{-- Country Selection --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Select Countries</label>
+                                    <div class="row">
+                                        @php
+                                            $selectedCountries = old('country_id', is_array($solution->country_id) ? $solution->country_id : json_decode($solution->country_id, true));
+                                        @endphp
+                                        @foreach($countries as $country)
+                                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                                <div class="form-check form-check-right mb-3">
+                                                    <input class="form-check-input" type="checkbox" name="country_id[]" id="country-{{ $country->id }}" value="{{ $country->id }}"
+                                                        {{ is_array($selectedCountries) && in_array($country->id, $selectedCountries) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="country-{{ $country->id }}">
+                                                        {{ $country->label }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    @error('country_id') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Status --}}
+                            <div class="col-lg-6 mb-3">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" name="status">
+                                    <option value="1" {{ old('status', $solution->status) == 1 ? 'selected' : '' }}>Active</option>
+                                    <option value="0" {{ old('status', $solution->status) == 0 ? 'selected' : '' }}>Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                         </div>
                     </div>
                 </div>

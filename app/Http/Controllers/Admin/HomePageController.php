@@ -78,68 +78,68 @@ class HomePageController extends Controller
 
         $bannerImage = $homePage->banner_image;
         if ($request->hasFile('banner_image')) {
-            if ($homePage->banner_image && file_exists(public_path('assets/uploads/home-page/' . $homePage->banner_image))) {
-                unlink(public_path('assets/uploads/home-page/' . $homePage->banner_image));
+            if ($homePage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->banner_image))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $homePage->banner_image));
             }
 
             $file = $request->file('banner_image');
             $bannerImage = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
-            $file->move(public_path('assets/uploads/home-page/'), $bannerImage);
+            $file->move(public_path('assets/uploads/cms-pages/'), $bannerImage);
         }
 
         $sectionImage1 = $homePage->section_image1;
         if ($request->hasFile('section_image1')) {
             // Delete old file
-            if ($homePage->section_image1 && file_exists(public_path('assets/uploads/home-page/' . $homePage->section_image1))) {
-                unlink(public_path('assets/uploads/home-page/' . $homePage->section_image1));
+            if ($homePage->section_image1 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image1))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $homePage->section_image1));
             }
 
             // Upload new file
             $file = $request->file('section_image1');
             $sectionImage1 = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/uploads/home-page/'), $sectionImage1);
+            $file->move(public_path('assets/uploads/cms-pages/'), $sectionImage1);
             $homePage->section_image1 = $sectionImage1;
         }
 
         $sectionImage2 = $homePage->section_image2;
         if ($request->hasFile('section_image2')) {
             // Delete old file
-            if ($homePage->section_image2 && file_exists(public_path('assets/uploads/home-page/' . $homePage->section_image2))) {
-                unlink(public_path('assets/uploads/home-page/' . $homePage->section_image2));
+            if ($homePage->section_image2 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image2))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $homePage->section_image2));
             }
 
             // Upload new file
             $file = $request->file('section_image2');
             $sectionImage2 = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/uploads/home-page/'), $sectionImage2);
+            $file->move(public_path('assets/uploads/cms-pages/'), $sectionImage2);
             $homePage->section_image2 = $sectionImage2;
         }
 
         $sectionImage3 = $homePage->section_image3;
         if ($request->hasFile('section_image3')) {
             // Delete old file
-            if ($homePage->section_image3 && file_exists(public_path('assets/uploads/home-page/' . $homePage->section_image3))) {
-                unlink(public_path('assets/uploads/home-page/' . $homePage->section_image3));
+            if ($homePage->section_image3 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image3))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $homePage->section_image3));
             }
 
             // Upload new file
             $file = $request->file('section_image3');
             $sectionImage3 = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/uploads/home-page/'), $sectionImage3);
+            $file->move(public_path('assets/uploads/cms-pages/'), $sectionImage3);
             $homePage->section_image3 = $sectionImage3;
         }
 
         $sectionImage4 = $homePage->section_image4;
         if ($request->hasFile('section_image4')) {
             // Delete old file
-            if ($homePage->section_image4 && file_exists(public_path('assets/uploads/home-page/' . $homePage->section_image4))) {
-                unlink(public_path('assets/uploads/home-page/' . $homePage->section_image4));
+            if ($homePage->section_image4 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image4))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $homePage->section_image4));
             }
 
             // Upload new file
             $file = $request->file('section_image3');
             $sectionImage4 = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/uploads/home-page/'), $sectionImage4);
+            $file->move(public_path('assets/uploads/cms-pages/'), $sectionImage4);
             $homePage->section_image4 = $sectionImage4;
         }
 

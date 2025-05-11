@@ -13,117 +13,140 @@
 @endsection
 
     @section('content')
-        <form method="post" class="needs-validation" novalidate action="{{ route('admin.our-portfolio.update', $ourPortfolio->id) }}" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="row">
-                <div class="col-lg-12">
-                    <div id="addproduct-accordion" class="custom-accordion">
-                        <div class="card">
-                            <div class="p-4">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="font-size-16 mb-1">Edit Portfolio Information  <a href="{{ route('admin.our-portfolio.index') }}" style="float:right"><button type="button" class="btn btn-outline-primary waves-effect waves-light" fdprocessedid="ub8ltb">Our Portfolio Listing</button></a></h5>
-                                        <p class="text-muted text-truncate mb-0">Fill all information below</p>
+      <form method="POST" class="needs-validation" novalidate action="{{ route('admin.our-portfolio.update', $ourPortfolio->id) }}" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-4 border-top">
-                                <div class="row col-lg-12">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="title">Select Category</label>
-                                            <select id="input9" class="form-select" name="category_id">
-                                                <option value="">Select Category</option>
-                                                @if($categories->count() > 0)
-                                                    @foreach($categories as $category)
-                                                        <option value="{{ $category->id }}" @if($ourPortfolio->category_id == $category->id) selected @endif>{{ $category->label }}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="title">Title</label>
-                                            <input id="title" name="title" placeholder="Enter Title" type="text" class="form-control" value="{{ $ourPortfolio->title }}" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="image" class="form-label">Image</label>
-                                            <input class="form-control" type="file" name="image" id="image">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            @if(!empty($ourPortfolio->image))
-                                                <img src="{{ asset('assets/uploads/our-portfolios/'.$ourPortfolio->image) }}" class="rounded" height="150" width="120" />
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="short_description" class="form-label">Short Description</label>
-                                            <textarea type="text" class="form-control" name="short_description" placeholder="Enter Short Description" id="short_description">{{ $ourPortfolio->short_description }}</textarea>
-                                        </div>
-                                    </div>  
-
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="long_description" class="form-label">Long Description</label>
-                                            <textarea type="text" class="form-control" name="long_description" placeholder="Enter Description" id="long_description">{{ $ourPortfolio->long_description }}</textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="long_description" class="form-label">Select Countries</label>
-                                            <div class="row">
-                                                @if($countries->count() > 0)
-                                                    @foreach($countries as $country)
-
-                                                        <div class="col-lg-2 col-md-4 col-sm-6">
-                                                            <div class="form-check form-check-right mb-3">
-                                                                <input class="form-check-input" type="checkbox" name="country_id[]" id="country-{{ $country->id }}" value="{{ $country->id }}" @if(is_array($ourPortfolio->country_id) && in_array($country->id,  $ourPortfolio->country_id ?? [] ))checked @endif >
-                                                                <label class="form-check-label" for="formCheckRight1">
-                                                                    {{ $country->label }}
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="input9" class="form-label">Status</label>
-                                        <select id="input9" class="form-select" name="status">
-                                            <option value="1" @if($ourPortfolio->status == 1) selected @endif>Active</option>
-                                            <option value="0" @if($ourPortfolio->status == 0) selected @endif>Inactive</option>
-                                        </select>
-                                    </div>
-                             
-                                </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="addproduct-accordion" class="custom-accordion">
+                <div class="card">
+                    <div class="p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <h5 class="font-size-16 mb-1">
+                                    Edit Portfolio Information  
+                                    <a href="{{ route('admin.our-portfolio.index') }}" style="float:right">
+                                        <button type="button" class="btn btn-outline-primary">Our Portfolio Listing</button>
+                                    </a>
+                                </h5>
+                                <p class="text-muted text-truncate mb-0">Fill all information below</p>
                             </div>
                         </div>
                     </div>
+
+                    <div class="p-4 border-top">
+                        <div class="row col-lg-12">
+
+                            {{-- Category --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="category_id">Select Category</label>
+                                    <select id="category_id" class="form-select" name="category_id">
+                                        <option value="">Select Category</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}" 
+                                                {{ old('category_id', $ourPortfolio->category_id) == $category->id ? 'selected' : '' }}>
+                                                {{ $category->label }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                     @error('category_id') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Title --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="title">Title</label>
+                                    <input id="title" name="title" type="text" class="form-control" placeholder="Enter Title" value="{{ old('title', $ourPortfolio->title) }}" required>
+                                    @error('title') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Image --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="image">Image</label>
+                                    <input class="form-control" type="file" name="image" id="image">
+                                    @error('image') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Preview --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    @if(!empty($ourPortfolio->image))
+                                        <img src="{{ asset('assets/uploads/our-portfolios/'.$ourPortfolio->image) }}" class="rounded" height="150" width="120" />
+                                    @endif
+                                </div>
+                            </div>
+
+                            {{-- Short Description --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="short_description">Short Description</label>
+                                    <textarea class="form-control" name="short_description" id="short_description" required>{{ old('short_description', $ourPortfolio->short_description) }}</textarea>
+                                    @error('short_description') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Long Description --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="long_description">Long Description</label>
+                                    <textarea class="form-control" name="long_description" id="long_description">{{ old('long_description', $ourPortfolio->long_description) }}</textarea>
+                                </div>
+                            </div>
+
+                            {{-- Country Selection --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Select Countries</label>
+                                    <div class="row">
+                                        @php
+                                            $selectedCountries = old('country_id', is_array($ourPortfolio->country_id) ? $ourPortfolio->country_id : json_decode($ourPortfolio->country_id, true));
+                                        @endphp
+                                        @foreach($countries as $country)
+                                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                                <div class="form-check form-check-right mb-3">
+                                                    <input class="form-check-input" type="checkbox" name="country_id[]" id="country-{{ $country->id }}" value="{{ $country->id }}"
+                                                        {{ is_array($selectedCountries) && in_array($country->id, $selectedCountries) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="country-{{ $country->id }}">
+                                                        {{ $country->label }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    @error('country_id') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Status --}}
+                            <div class="col-lg-6 mb-3">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" name="status">
+                                    <option value="1" {{ old('status', $ourPortfolio->status) == 1 ? 'selected' : '' }}>Active</option>
+                                    <option value="0" {{ old('status', $ourPortfolio->status) == 0 ? 'selected' : '' }}>Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <!-- end row -->
+        </div>
+    </div>
 
-            <div class="row mb-4">
-                <div class="col text-end">
-                    <button class="btn btn-primary" type="submit">Update</button>
-                </div> <!-- end col -->
-            </div> <!-- end row-->
-        </form>
+    {{-- Submit --}}
+    <div class="row mb-4">
+        <div class="col text-end">
+            <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+    </div>
+</form>
+
     @endsection
 
     @section('scripts')

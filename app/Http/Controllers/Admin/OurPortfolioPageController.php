@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\ShopPage; 
+use App\Models\OurPortfolioPage; 
 
-class ShopPageController extends Controller
+class OurPortfolioPageController extends Controller
 {
     public function __construct()
     {
@@ -47,12 +47,12 @@ class ShopPageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ShopPage $shopPage)
+    public function edit(OurPortfolioPage $ourPortfolioPage)
     { 
-        return view('admin.cms-pages.edit_shop',compact('shopPage'));
+        return view('admin.cms-pages.edit_our_portfolio_page',compact('ourPortfolioPage'));
     }
 
-    public function update(Request $request, ShopPage $shopPage)
+    public function update(Request $request, OurPortfolioPage $ourPortfolioPage)
     {
         $request->validate([
             'banner_title' => 'required|string|max:255',
@@ -66,10 +66,10 @@ class ShopPageController extends Controller
         ]);
 
 
-        $bannerImage = $shopPage->banner_image;
+        $bannerImage = $ourPortfolioPage->banner_image;
         if ($request->hasFile('banner_image')) {
-            if ($shopPage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $shopPage->banner_image))) {
-                unlink(public_path('assets/uploads/cms-pages/' . $shopPage->banner_image));
+            if ($ourPortfolioPage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $ourPortfolioPage->banner_image))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $ourPortfolioPage->banner_image));
             }
 
             $file = $request->file('banner_image');
@@ -77,16 +77,16 @@ class ShopPageController extends Controller
             $file->move(public_path('assets/uploads/cms-pages/'), $bannerImage);
         }
 
-        $shopPage->banner_title = $request->banner_title;
-        $shopPage->banner_desc = $request->banner_desc;
-        $shopPage->banner_image = $bannerImage;
+        $ourPortfolioPage->banner_title = $request->banner_title;
+        $ourPortfolioPage->banner_desc = $request->banner_desc;
+        $ourPortfolioPage->banner_image = $bannerImage;
        
-        $shopPage->meta_title = $request->meta_title;
-        $shopPage->meta_description = $request->meta_description;
-        $shopPage->meta_keywords = $request->meta_keywords;
+        $ourPortfolioPage->meta_title = $request->meta_title;
+        $ourPortfolioPage->meta_description = $request->meta_description;
+        $ourPortfolioPage->meta_keywords = $request->meta_keywords;
       
-        $shopPage->save();
-        return redirect()->route('admin.shop-page.edit', $shopPage->id)->with('success', 'Shop Page updated successfully!');
+        $ourPortfolioPage->save();
+        return redirect()->route('admin.our-portfolio-page.edit', $ourPortfolioPage->id)->with('success', 'Our Portfolio Page updated successfully!');
     }
 
 

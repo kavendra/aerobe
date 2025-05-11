@@ -58,13 +58,20 @@ class SolutionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string',
             'category_id' => 'required',
             'country_id' => 'required',
             'short_description' => 'required',
-            'long_description' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+        ], [
+            'title.required' => 'The title field is required.',
+            'category_id.required' => 'Please select a category.',
+            'country_id.required' => 'Please select at least one country.',
+            'short_description.required' => 'Short description is required.',
+            'image.required' => 'An image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'image.max' => 'Image size must not exceed 5MB.',
         ]);
 
         if ($request->hasFile('image')) {
@@ -111,16 +118,28 @@ class SolutionController extends Controller
      */
     public function update(Request $request, Solution $solution)
     {
-        //dd($request->all());
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string',
             'category_id' => 'required',
-            'short_description' => 'required',
-            'long_description' => 'required',
             'country_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'short_description' => 'required',
+        ], [
+            'title.required' => 'The title field is required.',
+            'category_id.required' => 'Please select a category.',
+            'country_id.required' => 'Please select at least one country.',
+            'short_description.required' => 'Short description is required.',
         ]);
+        if(empty($solution->image))
+        {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            ], [
+                'image.required' => 'An image is required.',
+                'image.image' => 'The file must be an image.',
+                'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+                'image.max' => 'Image size must not exceed 5MB.',
+            ]);
+        }
 
         if ($request->hasFile('image')) {
             // Delete old file

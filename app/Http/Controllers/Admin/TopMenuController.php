@@ -50,11 +50,13 @@ class TopMenuController extends Controller
     {
         $request->validate([
             'label' => 'required|string|max:255',
+            'link' => 'required',
             'status' => 'required',
         ]);
 
         $topMenu = TopMenu::create([
             'label' => $request->label,
+            'link' => $request->link,
             'status' => $request->status
         ]);
 
@@ -84,10 +86,12 @@ class TopMenuController extends Controller
     {
         $request->validate([
             'label' => 'required|string|max:255',
+            'link' => 'required',
             'status' => 'required',
         ]);
 
         $topMenu->label = $request->label;
+        $topMenu->link = $request->link;
         $topMenu->status = $request->status;
         $topMenu->save();
 

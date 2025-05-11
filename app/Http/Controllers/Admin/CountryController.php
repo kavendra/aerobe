@@ -21,6 +21,7 @@ class CountryController extends Controller
 
             // Handle AJAX Request (For Grid.js, DataTables, etc.)
             $countries = Country::select('countries.id', 'countries.label', 'countries.code', 'countries.image', 'countries.status')
+                        ->orderBy('order', 'ASC')
                         ->get();
 
             return response()->json($countries, 200, [

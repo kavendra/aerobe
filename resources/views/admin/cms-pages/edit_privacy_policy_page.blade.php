@@ -1,11 +1,11 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    Cookie Preferences Page
+    Privacy & Policy Page
 @endsection
 
 @section('page-title')
-    Cookie Preferences Page
+    Privacy & Policy Page
 @endsection
 
 @section('body')
@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    <form method="post" class="needs-validation" novalidate action="{{ route('admin.cookie-preference-page.update', $cookiePreferencePage->id) }}" enctype="multipart/form-data">
+    <form method="post" class="needs-validation" novalidate action="{{ route('admin.privacy-policy-page.update', $privacyPolicyPage->id) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
@@ -23,7 +23,7 @@
                         <div class="p-4">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1 overflow-hidden">
-                                    <h5 class="font-size-16 mb-1">Cookie Preferences Information</h5>
+                                    <h5 class="font-size-16 mb-1">Privacy & Policy Information</h5>
                                     <p class="text-muted text-truncate mb-0">Fill all information below</p>
                                 </div>
                             </div>
@@ -33,14 +33,14 @@
                                 <div class="row col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="header_heading">Header Heading</label>
-                                        <input id="header_heading" name="header_heading" placeholder="Enter Header Heading" type="text" class="form-control" value="{{ $cookiePreferencePage->header_heading }}" required>
+                                        <input id="header_heading" name="header_heading" placeholder="Enter Header Heading" type="text" class="form-control" value="{{ $privacyPolicyPage->header_heading }}" required>
                                     </div>
                                 </div>
                             
                                 <div class="row col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="header_title">Header Title</label>
-                                        <input id="header_title" name="header_title" placeholder="Enter Header Title" type="text" class="form-control" value="{{ $cookiePreferencePage->header_title }}" required>
+                                        <input id="header_title" name="header_title" placeholder="Enter Header Title" type="text" class="form-control" value="{{ $privacyPolicyPage->header_title }}" required>
                                     </div>
                                 </div>
                                
@@ -53,8 +53,8 @@
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        @if ($cookiePreferencePage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $cookiePreferencePage->header_image)))
-                                            <img src="{{ asset('assets/uploads/cms-pages/' . $cookiePreferencePage->header_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
+                                        @if ($privacyPolicyPage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $privacyPolicyPage->header_image)))
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $privacyPolicyPage->header_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
                                         @else
                                             <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
                                         @endif
@@ -64,7 +64,7 @@
                                 <div class="row col-lg-12">
                                     <div class="mb-3">
                                         <label for="header_desc" class="form-label">Header Description <span class="text-danger">*</span></label>
-                                        <textarea type="text" class="form-control" name="header_desc" placeholder="Enter Header Description" id="header_desc">{{ $cookiePreferencePage->header_desc }}</textarea>
+                                        <textarea type="text" class="form-control" name="header_desc" placeholder="Enter Header Description" id="header_desc">{{ $privacyPolicyPage->header_desc }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                             <div class="row col-sm-12">
                                 <div class="mb-3">
                                     <label class="form-label" for="cookie_preference_desc">Cookie Preferences Page Description</label>
-                                    <textarea class="form-control" id="cookie_preference_desc" placeholder="Enter Cookie Preferences Page Description" name="cookie_preference_desc" rows="4">{{ $cookiePreferencePage->cookie_preference_desc }}</textarea>
+                                    <textarea class="form-control" id="cookie_preference_desc" placeholder="Enter Cookie Preferences Page Description" name="cookie_preference_desc" rows="4">{{ $privacyPolicyPage->cookie_preference_desc }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="meta_title">Meta Title</label>
-                                            <input id="meta_title" name="meta_title" placeholder="Enter Meta Title" type="text" class="form-control" value="{{ $cookiePreferencePage->meta_title }}">
+                                            <input id="meta_title" name="meta_title" placeholder="Enter Meta Title" type="text" class="form-control" value="{{ $privacyPolicyPage->meta_title }}">
                                         </div>
 
                                     </div>
@@ -114,7 +114,7 @@
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="meta_keywords">Meta Keywords</label>
-                                            <input id="meta_keywords" name="meta_keywords" placeholder="Enter Meta Keywords" value="{{ $cookiePreferencePage->meta_keywords }}" type="text" class="form-control">
+                                            <input id="meta_keywords" name="meta_keywords" placeholder="Enter Meta Keywords" value="{{ $privacyPolicyPage->meta_keywords }}" type="text" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -122,7 +122,7 @@
                                 <div class="row col-sm-8">
                                     <div class="mb-3">
                                         <label class="form-label" for="meta_description">Meta Description</label>
-                                        <textarea class="form-control" id="meta_description" placeholder="Enter Meta Description" name="meta_description" rows="4">{{ $cookiePreferencePage->meta_description }}</textarea>
+                                        <textarea class="form-control" id="meta_description" placeholder="Enter Meta Description" name="meta_description" rows="4">{{ $privacyPolicyPage->meta_description }}</textarea>
                                     </div>
                                 </div>
                           

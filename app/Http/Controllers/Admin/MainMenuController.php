@@ -49,11 +49,13 @@ class MainMenuController extends Controller
     {
         $request->validate([
             'label' => 'required|string|max:255',
+            'link' => 'required',
             'status' => 'required',
         ]);
 
         $mainMenu = MainMenu::create([
             'label' => $request->label,
+            'link' => $request->link,
             'status' => $request->status
         ]);
 
@@ -83,10 +85,12 @@ class MainMenuController extends Controller
     {
         $request->validate([
             'label' => 'required|string|max:255',
+            'link' => 'required',
             'status' => 'required',
         ]);
 
         $mainMenu->label = $request->label;
+        $mainMenu->link = $request->link;
         $mainMenu->status = $request->status;
         $mainMenu->save();
 

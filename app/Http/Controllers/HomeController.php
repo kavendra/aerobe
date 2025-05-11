@@ -37,7 +37,7 @@ class HomeController extends Controller
                                 if($country) {
                                     $query->where('country_id', $country->id);
                                 }
-                            })->limit(3)->latest()->get();
+                            })->limit(4)->latest()->get();
         $businessVerticals = BusinessVertical::latest()->get();
         
         return view('front.home.index', compact('homePage', 'newsAndEvents', 'businessVerticals'));

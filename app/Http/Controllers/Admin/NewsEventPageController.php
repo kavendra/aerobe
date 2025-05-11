@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\ShopPage; 
+use App\Models\NewsEventPage; 
 
-class ShopPageController extends Controller
+class NewsEventPageController extends Controller
 {
     public function __construct()
     {
@@ -47,12 +47,12 @@ class ShopPageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ShopPage $shopPage)
+    public function edit(NewsEventPage $newsEventPage)
     { 
-        return view('admin.cms-pages.edit_shop',compact('shopPage'));
+        return view('admin.cms-pages.edit_news_event_page',compact('newsEventPage'));
     }
 
-    public function update(Request $request, ShopPage $shopPage)
+    public function update(Request $request, NewsEventPage $newsEventPage)
     {
         $request->validate([
             'banner_title' => 'required|string|max:255',
@@ -66,10 +66,10 @@ class ShopPageController extends Controller
         ]);
 
 
-        $bannerImage = $shopPage->banner_image;
+        $bannerImage = $newsEventPage->banner_image;
         if ($request->hasFile('banner_image')) {
-            if ($shopPage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $shopPage->banner_image))) {
-                unlink(public_path('assets/uploads/cms-pages/' . $shopPage->banner_image));
+            if ($newsEventPage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $newsEventPage->banner_image))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $newsEventPage->banner_image));
             }
 
             $file = $request->file('banner_image');
@@ -77,16 +77,16 @@ class ShopPageController extends Controller
             $file->move(public_path('assets/uploads/cms-pages/'), $bannerImage);
         }
 
-        $shopPage->banner_title = $request->banner_title;
-        $shopPage->banner_desc = $request->banner_desc;
-        $shopPage->banner_image = $bannerImage;
+        $newsEventPage->banner_title = $request->banner_title;
+        $newsEventPage->banner_desc = $request->banner_desc;
+        $newsEventPage->banner_image = $bannerImage;
        
-        $shopPage->meta_title = $request->meta_title;
-        $shopPage->meta_description = $request->meta_description;
-        $shopPage->meta_keywords = $request->meta_keywords;
+        $newsEventPage->meta_title = $request->meta_title;
+        $newsEventPage->meta_description = $request->meta_description;
+        $newsEventPage->meta_keywords = $request->meta_keywords;
       
-        $shopPage->save();
-        return redirect()->route('admin.shop-page.edit', $shopPage->id)->with('success', 'Shop Page updated successfully!');
+        $newsEventPage->save();
+        return redirect()->route('admin.news-event-page.edit', $newsEventPage->id)->with('success', 'News Event Page updated successfully!');
     }
 
 

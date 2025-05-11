@@ -40,7 +40,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="label">Country</label>
-                                        <select id="input9" class="form-select" name="country_id">
+                                        <select id="input9" class="form-select" name="country_id" required>
                                             <option value="">Select Country</option>
                                             @if($countries->count() > 0)
                                                 @foreach($countries as $country)
@@ -48,6 +48,7 @@
                                                 @endforeach
                                             @endif
                                         </select>
+                                        @error('country_id') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
 
@@ -55,13 +56,14 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="label">Name</label>
                                         <input id="label" name="label" placeholder="Enter Name" type="text" class="form-control" value="{{ $prominent->label }}" required>
+                                        @error('label') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="link">Link</label>
-                                        <input id="link" name="link" placeholder="Enter Url" type="text" class="form-control" value="{{ $prominent->link }}" required>
+                                        <input id="link" name="link" placeholder="Enter Url" type="text" class="form-control" value="{{ $prominent->link }}">
                                     </div>
                                 </div>
 
@@ -71,13 +73,14 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="logo" class="form-label">Image</label>
-                                        <input class="form-control" type="file" name="logo" id="logo">
+                                        <input class="form-control" type="file" name="logo" id="logo" @if(empty($prominent->logo)) required @endif>
                                     </div>
+                                    @error('logo') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        @if ($prominent->image && file_exists(public_path('assets/uploads/prominents/' . $prominent->logo)))
+                                        @if ($prominent->logo && file_exists(public_path('assets/uploads/prominents/' . $prominent->logo)))
                                             <img src="{{ asset('assets/uploads/prominents/' . $prominent->logo) }}" class="rounded me-2" title="Logo" width="150" height="120" data-holder-rendered="true" />
                                         @else
                                             <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Logo" width="150" height="120" data-holder-rendered="true" />

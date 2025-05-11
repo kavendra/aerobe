@@ -39,9 +39,17 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="label">Name</label>
-                                        <input id="label" name="label" placeholder="Enter Connect With Us Menu" type="text" class="form-control" value="" required>
+                                        <input id="label" name="label" placeholder="Enter Name" type="text" class="form-control" value="" required>
                                     </div>
                                 </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="label">Link</label>
+                                        <input id="link" name="link" placeholder="Enter Link" type="text" class="form-control" value="" required>
+                                    </div>
+                                </div>
+                         
                          
                                 <div class="col-lg-6 mb-3">
                                     <label for="input9" class="form-label">Status</label>

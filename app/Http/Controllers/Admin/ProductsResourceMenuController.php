@@ -49,11 +49,13 @@ class ProductsResourceMenuController extends Controller
     {
         $request->validate([
             'label' => 'required|string|max:255',
+            'link' => 'required',
             'status' => 'required',
         ]);
 
         $productsResourceMenu = ProductsResourceMenu::create([
             'label' => $request->label,
+            'link' => $request->link,
             'status' => $request->status
         ]);
 
@@ -83,10 +85,12 @@ class ProductsResourceMenuController extends Controller
     {
         $request->validate([
             'label' => 'required|string|max:255',
+            'link' => 'required',
             'status' => 'required',
         ]);
 
         $productsResourceMenu->label = $request->label;
+        $productsResourceMenu->link = $request->link;
         $productsResourceMenu->status = $request->status;
         $productsResourceMenu->save();
 

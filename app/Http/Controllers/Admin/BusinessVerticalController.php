@@ -47,10 +47,16 @@ class BusinessVerticalController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'label' => 'required|string|max:255',
-            'link' => 'nullable|url',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'label' => 'required|string',
+            'link' => 'required',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+        ], [
+            'label.required' => 'The title field is required.',
+            'link.required' => 'The link field is required.',
+            'logo.required' => 'An image is required.',
+            'logo.image' => 'The file must be an image.',
+            'logo.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'logo.max' => 'Image size must not exceed 5MB.',
         ]);
 
         if ($request->hasFile('logo')) {
@@ -93,11 +99,26 @@ class BusinessVerticalController extends Controller
     public function update(Request $request, BusinessVertical $businessVertical)
     {
         $request->validate([
-            'label' => 'required|string|max:255',
-            'link' => 'nullable|url',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'label' => 'required|string',
+            'link' => 'required',
+        ], [
+            'label.required' => 'The title field is required.',
+            'link.required' => 'The link field is required.',
         ]);
+
+        if(empty($businessVertical->logo))
+        {
+            $request->validate([
+                'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            ], [
+                'logo.required' => 'An image is required.',
+                'logo.image' => 'The file must be an image.',
+                'logo.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+                'logo.max' => 'Image size must not exceed 5MB.',
+            ]);
+        }
+
+
 
         if ($request->hasFile('logo')) {
             // Delete old file
