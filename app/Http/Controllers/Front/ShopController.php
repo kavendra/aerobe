@@ -12,13 +12,36 @@ class ShopController extends Controller
 {
 	public function index(Request $request)
 	{
+		$perPage = 10;
 		$countryName = strtoUpper(session('country'));
 		$country = Country::where('is_main', 1)->where('label', $countryName)->first();
-		$shops = Shop::where(function($query)use($country){
-                        if($country) {
-                            $query->whereJsonContains('country_id', (string)$country->id);
-                        }
-                        })->get();
-	    return view('front.shop.index', compact('shops'));
+		if($request->ajax()) {
+			$page = $request->get('page', 1);
+		    $shops = Shop::where(function($query)use($country){
+	                        if($country) {
+	                            $query->whereJsonContains('country_id', (string)$country->id);
+	                        }
+	                        })
+							->skip(($page - 1) * $perPage)
+		                	->take($perPage)
+							->get();
+
+		    $html = view('front.shop.item', compact('shops'))->render();
+
+		    return response()->json([
+		        'html' => $html,
+		        'next_page' => $shops->count() < $perPage ? null : $page + 1
+		    ]);
+		}
+		$query = Shop::where(function($query) use ($country) {
+		    if ($country) {
+		        $query->whereJsonContains('country_id', (string) $country->id);
+		    }
+		});
+
+		$total = $query->count(); // Get total matching records
+		$shops = $query->limit($perPage)->get(); // Get paginated/limited results
+
+		return view('front.shop.index', compact('shops', 'total', 'perPage'));
 	}
 }
