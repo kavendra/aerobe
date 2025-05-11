@@ -35,11 +35,12 @@
                             </div>
                         </div>
                         <div class="p-4 border-top">
-                            <div class="row col-lg-8">
+                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="label">Name</label>
                                         <input id="label" name="label" placeholder="Enter Name" type="text" class="form-control" value="{{ $businessVertical->label }}" required>
+                                        @error('label') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
 
@@ -47,17 +48,19 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="link">Link</label>
                                         <input id="link" name="link" placeholder="Enter Url" type="text" class="form-control" value="{{ $businessVertical->link }}" required>
+                                        @error('link') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="logo" class="form-label">Image</label>
-                                        <input class="form-control" type="file" name="logo" id="logo">
+                                        <input class="form-control" type="file" name="logo" id="logo" @if(empty($businessVertical->logo)) required @endif>
+                                        @error('logo') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
 
-                                <div class="col-lg-2">
+                                <div class="col-lg-6">
                                     <div class="mb-3">
                                         @if ($businessVertical->logo && file_exists(public_path('assets/uploads/business-verticals/' . $businessVertical->logo)))
                                             <img src="{{ asset('assets/uploads/business-verticals/' . $businessVertical->logo) }}" class="rounded me-2" title="Logo" width="80" data-holder-rendered="true" />
@@ -102,5 +105,34 @@
                 $('.alert-success').fadeOut('slow');
             }, 3000);
         </script>
+
+        <script type="text/javascript">
+
+        setTimeout(function() {
+            $('.alert-success').fadeOut('slow');
+        }, 3000);
+   
+        $(document).ready(function () {
+            $('input[type=file]').on('change', function (event) {
+                let tmppath = URL.createObjectURL(event.target.files[0]);
+
+                // Find the next `.col-lg-2` div and place the image inside it
+                let previewContainer = $(this).closest('.col-lg-6').next('.col-lg-6').find('.mb-3');
+
+                // Check if an image preview already exists
+                let previewImage = previewContainer.find('img');
+                if (previewImage.length === 0) {
+                    previewImage = $('<img/>', {
+                        width: 150,
+                        height: 120,
+                        class: 'rounded',
+                        src: tmppath
+                    }).appendTo(previewContainer); // Append inside .mb-3 div
+                } else {
+                    previewImage.attr('src', tmppath); // Update existing preview
+                }
+            });
+        });
+    </script>
 
 @endsection

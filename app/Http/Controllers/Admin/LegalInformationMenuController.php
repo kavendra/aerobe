@@ -46,11 +46,13 @@ class LegalInformationMenuController extends Controller
     {
         $request->validate([
             'label' => 'required|string|max:255',
+            'link' => 'required',
             'status' => 'required',
         ]);
 
         $legalInformationMenu = LegalInformationMenu::create([
             'label' => $request->label,
+            'link' => $request->link,
             'status' => $request->status
         ]);
 
@@ -80,10 +82,12 @@ class LegalInformationMenuController extends Controller
     {
         $request->validate([
             'label' => 'required|string|max:255',
+            'link' => 'required',
             'status' => 'required',
         ]);
 
         $legalInformationMenu->label = $request->label;
+        $legalInformationMenu->link = $request->link;
         $legalInformationMenu->status = $request->status;
         $legalInformationMenu->save();
 

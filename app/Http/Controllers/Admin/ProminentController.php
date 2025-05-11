@@ -51,10 +51,16 @@ class ProminentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'label' => 'required|string|max:255',
-            'link' => 'nullable|url',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'label' => 'required|string',
+            'country_id' => 'required',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+        ], [
+            'label.required' => 'The title field is required.',
+            'country_id.required' => 'Please select anyone country.',
+            'image.required' => 'An image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'image.max' => 'Image size must not exceed 5MB.',
         ]);
 
         if ($request->hasFile('logo')) {
@@ -99,11 +105,24 @@ class ProminentController extends Controller
     public function update(Request $request, Prominent $prominent)
     {
         $request->validate([
-            'label' => 'required|string|max:255',
-            'link' => 'nullable|url',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'label' => 'required|string',
+            'country_id' => 'required',
+        ], [
+            'label.required' => 'The title field is required.',
+            'country_id.required' => 'Please select anyone country.',
         ]);
+
+        if(empty($prominent->logo))
+        {
+            $request->validate([
+                'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            ], [
+                'logo.required' => 'An image is required.',
+                'logo.image' => 'The file must be an image.',
+                'logo.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+                'logo.max' => 'Image size must not exceed 5MB.',
+            ]);
+        }
 
         if ($request->hasFile('logo')) {
             // Delete old file

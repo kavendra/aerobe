@@ -41,7 +41,7 @@
             @if ($aerobeAcademy->image && file_exists(public_path('assets/uploads/aerobe-academies/' . $aerobeAcademy->image)))
                <img src="{{ asset('assets/uploads/aerobe-academies/'.$aerobeAcademy->image) }}" />
             @else
-               <img src="{{ asset('img/img-dummy.jpg') }}" />
+               <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
             @endif
             <div class="img-tag">Latest</div></div>
           <div class="textb">

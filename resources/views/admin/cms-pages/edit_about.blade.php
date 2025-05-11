@@ -58,8 +58,8 @@
 
                                 <div class="col-lg-2">
                                     <div class="mb-3">
-                                        @if ($aboutPage->header_image && file_exists(public_path('assets/uploads/about-page/' . $aboutPage->header_image)))
-                                            <img src="{{ asset('assets/uploads/about-page/' . $aboutPage->header_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
+                                        @if ($aboutPage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $aboutPage->header_image)))
+                                            <img src="{{ asset('assets/cms-pagess/cms-pages/' . $aboutPage->header_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
                                         @else
                                             <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
                                         @endif
@@ -83,8 +83,8 @@
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        @if ($aboutPage->about_image && file_exists(public_path('assets/uploads/about-page/' . $aboutPage->about_image)))
-                                            <img src="{{ asset('assets/uploads/about-page/' . $aboutPage->about_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
+                                        @if ($aboutPage->about_image && file_exists(public_path('assets/uploads/cms-pages/' . $aboutPage->about_image)))
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $aboutPage->about_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
                                         @else
                                             <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
                                         @endif

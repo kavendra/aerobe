@@ -35,11 +35,12 @@
                             </div>
                         </div>
                         <div class="p-4 border-top">
-                            <div class="row col-lg-8">
+                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="label">Name</label>
+                                        <label class="form-label" for="label">Title</label>
                                         <input id="label" name="label" placeholder="Enter Name" type="text" class="form-control" value="" required>
+                                        @error('label') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
 
@@ -47,14 +48,21 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="link">Link</label>
                                         <input id="link" name="link" placeholder="Enter Url" type="text" class="form-control" value="" required>
+                                        @error('link') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="logo" class="form-label">Image</label>
-                                        <input class="form-control" type="file" name="logo" id="logo">
+                                        <input class="form-control" type="file" name="logo" id="logo" required>
+                                        @error('logo') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
+                                </div>
+
+                                {{-- Empty Column --}}
+                                <div class="col-lg-6">
+                                    <div class="mb-3"></div>
                                 </div>
                          
                                 <div class="col-lg-6 mb-3">
@@ -92,5 +100,34 @@
                 $('.alert-success').fadeOut('slow');
             }, 3000);
         </script>
+
+        <script type="text/javascript">
+
+        setTimeout(function() {
+            $('.alert-success').fadeOut('slow');
+        }, 3000);
+   
+        $(document).ready(function () {
+            $('input[type=file]').on('change', function (event) {
+                let tmppath = URL.createObjectURL(event.target.files[0]);
+
+                // Find the next `.col-lg-2` div and place the image inside it
+                let previewContainer = $(this).closest('.col-lg-6').next('.col-lg-6').find('.mb-3');
+
+                // Check if an image preview already exists
+                let previewImage = previewContainer.find('img');
+                if (previewImage.length === 0) {
+                    previewImage = $('<img/>', {
+                        width: 150,
+                        height: 120,
+                        class: 'rounded',
+                        src: tmppath
+                    }).appendTo(previewContainer); // Append inside .mb-3 div
+                } else {
+                    previewImage.attr('src', tmppath); // Update existing preview
+                }
+            });
+        });
+    </script>
 
 @endsection

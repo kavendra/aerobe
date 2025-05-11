@@ -50,11 +50,13 @@ class ConnectWithUsMenuController extends Controller
     {
         $request->validate([
             'label' => 'required|string|max:255',
+            'link' => 'required',
             'status' => 'required',
         ]);
 
         $connectWithUsMenu = ConnectWithUsMenu::create([
             'label' => $request->label,
+            'link' => $request->link,
             'status' => $request->status
         ]);
 
@@ -84,10 +86,12 @@ class ConnectWithUsMenuController extends Controller
     {
         $request->validate([
             'label' => 'required|string|max:255',
+            'link' => 'required',
             'status' => 'required',
         ]);
 
         $connectWithUsMenu->label = $request->label;
+        $connectWithUsMenu->link = $request->link;
         $connectWithUsMenu->status = $request->status;
         $connectWithUsMenu->save();
 

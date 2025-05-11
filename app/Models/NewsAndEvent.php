@@ -29,6 +29,7 @@ class NewsAndEvent extends Model
 
     protected $casts = [
         'tag_id' => 'array', // Automatically converts JSON to array when retrieved
+        'country_id' => 'array',
     ];
 
     public function getEventDateAttribute($value)

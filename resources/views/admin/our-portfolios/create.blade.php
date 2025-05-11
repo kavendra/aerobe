@@ -12,113 +12,129 @@
     <body>
 @endsection
     @section('content')
-        <form method="post" class="needs-validation" novalidate action="{{ route('admin.our-portfolio.store') }}" enctype="multipart/form-data">
-            @csrf
-            @method('post')
-            <div class="row">
-                <div class="col-lg-12">
-                    <div id="addproduct-accordion" class="custom-accordion">
-                        <div class="card">
-                            <div class="p-4">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="font-size-16 mb-1">Create Portfolio Information  <a href="{{ route('admin.our-portfolio.index') }}" style="float:right"><button type="button" class="btn btn-outline-primary waves-effect waves-light" fdprocessedid="ub8ltb">Our Portfolio Listing</button></a></h5>
-                                        <p class="text-muted text-truncate mb-0">Fill all information below</p>
+      <form method="POST" class="needs-validation" novalidate action="{{ route('admin.our-portfolio.store') }}" enctype="multipart/form-data">
+    @csrf
 
-                                    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="addproduct-accordion" class="custom-accordion">
+                <div class="card">
+                    <div class="p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <h5 class="font-size-16 mb-1">
+                                    Create Portfolio Information  
+                                    <a href="{{ route('admin.our-portfolio.index') }}" style="float:right">
+                                        <button type="button" class="btn btn-outline-primary waves-effect waves-light">Our Portfolio Listing</button>
+                                    </a>
+                                </h5>
+                                <p class="text-muted text-truncate mb-0">Fill all information below</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 border-top">
+                        <div class="row col-lg-12">
+
+                            {{-- Category --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="category_id">Select Category</label>
+                                    <select id="category_id" class="form-select" name="category_id" required>
+                                        <option value="">Select Category</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                                {{ $category->label }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('category_id') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
-                            <div class="p-4 border-top">
-                                <div class="row col-lg-12">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="title">Select Category</label>
-                                            <select id="input9" class="form-select" name="category_id">
-                                                <option value="">Select Category</option>
-                                                @if($categories->count() > 0)
-                                                    @foreach($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->label }}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="title">Title</label>
-                                            <input id="title" name="title" placeholder="Enter Title" type="text" class="form-control" value="" required>
-                                        </div>
-                                    </div>
+                            {{-- Title --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="title">Title</label>
+                                    <input id="title" name="title" placeholder="Enter Title" type="text" class="form-control" value="{{ old('title') }}" required>
+                                    @error('title') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
 
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="image" class="form-label">Image</label>
-                                            <input class="form-control" type="file" name="image" id="image">
-                                        </div>
-                                    </div>
+                            {{-- Image --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Image</label>
+                                    <input class="form-control" type="file" name="image" id="image" required>
+                                    @error('image') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
 
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                           
-                                        </div>
-                                    </div>
+                            <div class="col-lg-6"><div class="mb-3"></div></div>
 
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="short_description" class="form-label">Short Description</label>
-                                            <textarea type="text" class="form-control" name="short_description" placeholder="Enter Short Description" id="short_description"></textarea>
-                                        </div>
-                                    </div>  
+                            {{-- Short Description --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="short_description" class="form-label">Short Description</label>
+                                    <textarea class="form-control" name="short_description" placeholder="Enter Short Description" id="short_description" required>{{ old('short_description') }}</textarea>
+                                    @error('short_description') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
 
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="long_description" class="form-label">Long Description</label>
-                                            <textarea type="text" class="form-control" name="long_description" placeholder="Enter Description" id="long_description"></textarea>
-                                        </div>
-                                    </div>
+                            {{-- Long Description --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="long_description" class="form-label">Long Description</label>
+                                    <textarea class="form-control" name="long_description" placeholder="Enter Description" id="long_description">{{ old('long_description') }}</textarea>
+                                </div>
+                            </div>
 
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="long_description" class="form-label">Select Country</label>
-                                            <div class="row">
-                                                @if($countries->count() > 0)
-                                                    @foreach($countries as $country)
-                                                        <div class="col-lg-2 col-md-4 col-sm-6">
-                                                            <div class="form-check form-check-right mb-3">
-                                                                <input class="form-check-input" type="checkbox" name="country_id[]" id="country-{{ $country->id }}" value="{{ $country->id }}">
-                                                                <label class="form-check-label" for="formCheckRight1">
-                                                                    {{ $country->label }}
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
+                            {{-- Countries --}}
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Select Country</label>
+                                    <div class="row">
+                                        @php $oldCountries = old('country_id', []); @endphp
+                                        @foreach($countries as $country)
+                                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                                <div class="form-check form-check-right mb-3">
+                                                    <input class="form-check-input" type="checkbox" name="country_id[]" id="country-{{ $country->id }}" @if(count($oldCountries) <= 0) checked @endif value="{{ $country->id }}"
+                                                        {{ in_array($country->id, $oldCountries) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="country-{{ $country->id }}">
+                                                        {{ $country->label }}
+                                                    </label>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endforeach
                                     </div>
-
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="input9" class="form-label">Status</label>
-                                        <select id="input9" class="form-select" name="status">
-                                            <option value="1">Active</option>
-                                            <option value="0">Inactive</option>
-                                        </select>
-                                    </div>
-                             
+                                    @error('country_id') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
+
+                            {{-- Status --}}
+                            <div class="col-lg-6 mb-3">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" name="status">
+                                    <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Active</option>
+                                    <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Inactive</option>
+                                </select>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="row mb-4">
-                <div class="col text-end">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </div>
-            </div>
-        </form>
+    {{-- Submit --}}
+    <div class="row mb-4">
+        <div class="col text-end">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </div>
+</form>
+
     @endsection
 
     @section('scripts')
