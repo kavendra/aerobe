@@ -30,4 +30,9 @@ class AerobeAcademy extends Model
     {
         return $value ? Carbon::parse($value)->format('M d, Y'):'';
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

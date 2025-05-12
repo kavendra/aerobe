@@ -20,8 +20,10 @@
         <div class="left-tab">
           <ul>
             <li><button type="button" class="btn active" data-target="viewall"><div id="total-academy"></div></button></li>
-            @foreach($categories as $category)
-               <li><button type="button" class="btn academy-count" data-count="{{ $category->aerobeAcademy->count() }}" data-target="cate-{{ $category->label }}">{{ $category->label }} ({{ $category->aerobeAcademy->count() }})</button></li>
+            @foreach($aerobeAcademics as $aerobeAcademic)
+              @if($aerobeAcademic->first() && $aerobeAcademic->first()->category)
+               <li><button type="button" class="btn academy-count" data-count="{{ $aerobeAcademic->count() }}" data-target="cate-{{ $aerobeAcademic->first()->category->label }}">{{ $aerobeAcademic->first()->category->label }} ({{ $aerobeAcademic->count() }})</button></li>
+              @endif
             @endforeach
           </ul>
         </div>
@@ -35,7 +37,8 @@
 
       @foreach($categories as $category)  
       <div class="items-container grid-view active" id="cate-{{ $category->label }}">
-         @foreach($category->aerobeAcademy as $aerobeAcademy)
+        @if(isset($aerobeAcademics[$category->id]))
+         @foreach($aerobeAcademics[$category->id] as $aerobeAcademy)
          <div class="item">
           <div class="imgb">
             @if ($aerobeAcademy->image && file_exists(public_path('assets/uploads/aerobe-academies/' . $aerobeAcademy->image)))
@@ -58,6 +61,7 @@
           </div>
         </div>
         @endforeach
+        @endif
         </div>
       @endforeach
 
@@ -75,7 +79,7 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/>Etiam dignissim, sem non convallis molestie.</p>
       </div>
       <ul>
-         @foreach($newsAndEvents as $newsAndEvent)
+         @foreach($upcomingNewsAndEvents as $newsAndEvent)
          <li>
           <div class="imgb">
             @if ($newsAndEvent->image && file_exists(public_path('assets/uploads/news-events/' . $newsAndEvent->image)))
@@ -94,9 +98,9 @@
         </li>
          @endforeach
       </ul>
-      @if($newsAndEvents->count() > 4)
+      @if($upcomingNewsAndEvents->count() > 4)
       <div class="btn-row">
-        <a href="#">See All</a>
+        <a href="{{ route('news-events.index') }}" target="_blank">See All</a>
       </div>
       @endif
     </div>
