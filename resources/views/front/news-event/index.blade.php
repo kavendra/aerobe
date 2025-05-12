@@ -47,54 +47,15 @@
 					<div class="post-count">
 						<ul>
 							@foreach($categories as $category)
-							<li><input type="checkbox" id="" name="" value="" class="checkbox"> {{ $category->label }} <span> ({{ $category->newsAndEvents->count() }})</span></li>
+							<li><input type="checkbox" value="{{ $category->id }}" class="checkbox category-checkbox"> {{ $category->label }} <span> ({{ $category->newsAndEvents->count() }})</span></li>
 							@endforeach
 						</ul>
 					</div>
 				</div>
 				<div class="rightcol">
-					<div class="items-container list-view">
-						@foreach($newsAndEvents as $newsAndEvent)
-						<div class="item">
-							<div class="imgb">
-								@if ($newsAndEvent->author_image && file_exists(public_path('assets/uploads/news-events/' . $newsAndEvent->author_image)))
-	                                <img src="{{ asset('assets/uploads/news-events/'.$newsAndEvent->author_image) }}" />
-	                            @else
-	                                <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
-	                            @endif
-								<div class="img-tag">Latest</div></div>
-							<div class="textb">
-								@if($newsAndEvent->tag)
-		                        <span class="tag-text">{{ $newsAndEvent->tag->label ?? '' }}</span>
-		                        @endif
-								<h3><a href="#">{{ $newsAndEvent->title ?? '' }}</a></h3>
-								<p>{{ $newsAndEvent->short_description ?? '' }}</p>
-								<div class="review">
-									<p style="display: block;"><span>1,234</span> views <img src="{{ asset('img/dot.jpg') }}" /> <span>56</span> likes</p>
-									<a  href="#">Read More</a>
-								</div>
-								<div class="user-info">
-									<div class="icon">
-										@if ($newsAndEvent->author_image && file_exists(public_path('assets/uploads/news-events/' . $newsAndEvent->author_image)))
-			                                 <img src="{{ asset('assets/uploads/news-events/'.$newsAndEvent->author_image) }}" />
-			                            @else
-			                                 <img src="{{ asset('assets/images/no-image.png') }}" />
-			                            @endif
-									</div>
-									<p><span> {{ $newsAndEvent->author_name ?? '' }} </span><img src="{{ asset('img/dot.jpg') }}" /> {{ $newsAndEvent->event_date }}</p>
-								</div>
-							</div>
-						</div>
-						@endforeach
-					  </div>
-					  <div class="pagination">
-						<ul>
-							<li class="active">1</li>
-							<li>2</li>
-							<li>3</li>
-							<li>4</li>
-						</ul>
-					  </div>
+					<div class="items-container list-view" id="news-container" data-route="{{ route('news-event.index') }}">
+						@include('front.news-event.item')
+					</div>
 				</div>
 			</div>
 		</div>

@@ -11,28 +11,40 @@
 	<div class="latest-post">
 		<div class="container">
 			<h2>Shop</h2>
-			<div class="shoplist">
+			<div class="shoplist" id="post-container">
 				@foreach($shops as $shop)
-				<div class="item">
-					<div class="imgb">
-						@if ($shop->image && file_exists(public_path('assets/uploads/shop/' . $shop->image)))
-				            <img src="{{ asset('assets/uploads/shop/'.$shop->image) }}" />
-				        @else
-				            <img src="{{ asset('img/img-dummy.jpg') }}" />
-				        @endif
-					</div>
-					<div class="textb">
-						@if($shop->tag)
-						<span class="tag-text">{{ $shop->tag->label }}</span>
-						@endif
-						<h3><a href="#">{{ $shop->title }}</a></h3>
-						<p>{{ $shop->short_description }}</p>
-						<div class="btm-row"><a href="#" class="c-btn">Request for quotes</a></div>
-					</div>
-				</div>
+				@include('front.shop.item', ['shops' => [$shop]])
 				@endforeach
-			  </div>
+			</div>
+			@if($total > $perPage)
+			<div class="btn-row" style="padding-top: 38px;">
+				<button id="load-more" data-page="{{$perPage}}" class="c-btn">Load More</button>
+			</div>
+			@endif
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#load-more').click(function() {
+	        var button = $(this);
+	        var page = button.data('page');
+
+	        $.ajax({
+	            url: '{{ route("shop.index") }}',
+	            type: 'GET',
+	            data: { page: page },
+	            success: function(response) {
+	                $('#post-container').append(response.html);
+
+	                if (response.next_page) {
+	                    button.data('page', response.next_page);
+	                } else {
+	                    button.remove(); // No more pages
+	                }
+	            }
+	        });
+	    });
+	});
+</script>
 @endsection
