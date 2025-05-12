@@ -22,8 +22,6 @@
     
     @include('front.elements.location')
 
-    @include('front.elements.prominent-customer')
-
     @include('front.elements.testimonial')
 </div>
 @endsection

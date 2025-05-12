@@ -12,7 +12,7 @@ class ShopController extends Controller
 {
 	public function index(Request $request)
 	{
-		$perPage = 10;
+		$perPage = 6;
 		$countryName = strtoUpper(session('country'));
 		$country = Country::where('is_main', 1)->where('label', $countryName)->first();
 		if($request->ajax()) {
@@ -40,7 +40,7 @@ class ShopController extends Controller
 		});
 
 		$total = $query->count(); // Get total matching records
-		$shops = $query->limit($perPage)->get(); // Get paginated/limited results
+		$shops = $query->limit(3)->get(); // Get paginated/limited results
 
 		return view('front.shop.index', compact('shops', 'total', 'perPage'));
 	}
