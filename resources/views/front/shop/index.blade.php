@@ -18,7 +18,7 @@
 			</div>
 			@if($total > $perPage)
 			<div class="btn-row" style="padding-top: 38px;">
-				<button id="load-more" data-page="{{$perPage}}" class="c-btn">Load More</button>
+				<button id="load-more" data-page="3" class="c-btn">Load More</button>
 			</div>
 			@endif
 		</div>
