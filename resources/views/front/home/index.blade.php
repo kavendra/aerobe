@@ -10,8 +10,8 @@
          <a href="#" class="c-btn">{{ $homePage->banner_button_text }}</a>
       </div>
       <div class="imgb">
-         @if ($homePage->banner_image && file_exists(public_path('assets/uploads/home-page/' . $homePage->banner_image)))
-            <img src="{{ asset('assets/uploads/home-page/' . $homePage->banner_image) }}" />
+         @if ($homePage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->banner_image)))
+            <img src="{{ asset('assets/uploads/cms-pages/' . $homePage->banner_image) }}" />
           @else
               <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
           @endif
