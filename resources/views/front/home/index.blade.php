@@ -21,8 +21,8 @@
    <div class="who-we-are">
       <div class="container">
          <div class="imgb">
-            @if ($homePage->section_image1 && file_exists(public_path('assets/uploads/home-page/' . $homePage->section_image1)))
-              <img src="{{ asset('assets/uploads/home-page/'.$homePage->section_image1) }}" />
+            @if ($homePage->section_image1 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image1)))
+              <img src="{{ asset('assets/uploads/cms-pages/'.$homePage->section_image1) }}" />
             @else
                 <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
             @endif

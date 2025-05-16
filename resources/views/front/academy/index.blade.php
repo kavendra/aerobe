@@ -46,17 +46,13 @@
             @else
                <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
             @endif
-            <div class="img-tag">Latest</div></div>
+          </div>
           <div class="textb">
             <span class="tag-text">{{ $category->label }}</span>
             <h3><a href="#"> {{ $aerobeAcademy->short_description }}</a></h3>
             <div class="review">
               <p style="display: block;"><span>1,234</span> views <img src="{{ asset('img/dot.jpg') }}" /> <span>56</span> likes</p>
               <a  href="#">Read More</a>
-            </div>
-            <div class="user-info">
-              <div class="icon"><img src="{{ asset('img/icon-dummy.png') }}" /></div>
-              <p><span> {{ $aerobeAcademy->author_name }} </span><img src="{{ asset('img/dot.jpg') }}" /> {{ $aerobeAcademy->event_date }}</p>
             </div>
           </div>
         </div>
@@ -68,41 +64,6 @@
       <div class="btn-row">
         <a href="#">View All Post</a>
       </div>
-    </div>
-  </div>
-
-  <div class="upcoming-event">
-    <div class="container">
-      <div class="top-text">
-        <h4>Available for you</h4>
-        <h3>Upcoming Events</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/>Etiam dignissim, sem non convallis molestie.</p>
-      </div>
-      <ul>
-         @foreach($upcomingNewsAndEvents as $newsAndEvent)
-         <li>
-          <div class="imgb">
-            @if ($newsAndEvent->image && file_exists(public_path('assets/uploads/news-events/' . $newsAndEvent->image)))
-             <img src="{{ asset('assets/uploads/news-events/'.$newsAndEvent->image) }}" />
-            @else
-               <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
-            @endif
-            <div class="img-tag">Best Course</div></div>
-          <div class="textb">
-            <div class="top-title">
-              <h5>{{ $newsAndEvent->title ?? '' }}</h5>
-              <a href="#">More Details</a>
-            </div>
-            <p>{{ $newsAndEvent->short_description ?? '' }}</p>
-          </div>
-        </li>
-         @endforeach
-      </ul>
-      @if($upcomingNewsAndEvents->count() > 4)
-      <div class="btn-row">
-        <a href="{{ route('news-events.index') }}" target="_blank">See All</a>
-      </div>
-      @endif
     </div>
   </div>
 </div>

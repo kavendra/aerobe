@@ -6,7 +6,7 @@
             @else
                 <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
             @endif
-			<div class="img-tag">Latest2</div></div>
+		</div>
 		<div class="textb">
 			@if($newsAndEvent->tag)
             <span class="tag-text">{{ $newsAndEvent->tag->label ?? '' }}</span>
@@ -14,18 +14,10 @@
 			<h3><a href="#">{{ $newsAndEvent->title ?? '' }}</a></h3>
 			<p>{{ $newsAndEvent->short_description ?? '' }}</p>
 			<div class="review">
-				<p style="display: block;"><span>1,234</span> views <img src="{{ asset('img/dot.jpg') }}" /> <span>56</span> likes</p>
 				<a  href="#">Read More</a>
 			</div>
 			<div class="user-info">
-				<div class="icon">
-					@if ($newsAndEvent->author_image && file_exists(public_path('assets/uploads/news-events/' . $newsAndEvent->author_image)))
-                         <img src="{{ asset('assets/uploads/news-events/'.$newsAndEvent->author_image) }}" />
-                    @else
-                         <img src="{{ asset('assets/images/no-image.png') }}" />
-                    @endif
-				</div>
-				<p><span> {{ $newsAndEvent->author_name ?? '' }} </span><img src="{{ asset('img/dot.jpg') }}" /> {{ $newsAndEvent->event_date }}</p>
+				<p>{{ $newsAndEvent->event_date }}</p>
 			</div>
 		</div>
 	</div>

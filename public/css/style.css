@@ -341,7 +341,7 @@ font-weight: 500;}
 .contact-banner:before{content: "";width: 100%;height: 100%;background: rgb(0, 0, 0, 0.2);position: absolute;left: 0px;top: 0px;z-index: 99;}
 .contact-banner img{display: none;}
 
-.contact-info{width: 100%; padding-right: 17%; padding: 60px 0px; background: #eff6ff url(../img/bg-contact.jpg) left bottom no-repeat;background-size:100% 100%;}
+.contact-info{width: 100%; padding-right: 17%; padding: 40px 0px; background: #eff6ff url(../img/bg-contact.jpg) left bottom no-repeat;background-size:100% 100%;}
 .contact-info .container{display: flex; }
 .contact-info .address{width: 50%; padding:0 5% 0 15%;}
 .contact-info .address ul{display: flex; flex-flow: wrap;}
@@ -370,7 +370,7 @@ align-items: center;justify-content: center;border-radius: 100%;}
 .get-in-touch-c h3 span{color: #3795ae;}
 .get-in-touch-c p{font-size: 13px; line-height: 20px; padding: 0px 0px 15px 0px;color:#52525b;}
 
-.address-column{width: 100%; padding: 60px 0px;background: #eff6ff;}
+.address-column{width: 100%; padding: 0px 0px;background: #eff6ff;}
 .address-column .inner-box{background-color: #fff;padding:60px 15% 60px 35px; display: flex; align-items: center;justify-content: space-between;position:relative;}
 .address-column .inner-box .textb{width: 40%;}
 .address-column .inner-box .textb h3{font-size: 48px; font-weight: normal; line-height:60px; margin-bottom: 15px;}
