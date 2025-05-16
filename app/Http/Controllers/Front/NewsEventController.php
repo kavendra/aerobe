@@ -14,6 +14,8 @@ class NewsEventController extends Controller
 		$countryName = strtoUpper(session('country'));
 		$country = Country::where('is_main', 1)->where('label', $countryName)->first();
 		
+		$featuredNewsAndEvents = NewsAndEvent::where('is_featured', 1)->limit(20)->get();
+
 		$query = NewsAndEvent::query();
 	    if ($country) {
 	        $query->whereJsonContains('country_id', (string) $country->id);
@@ -30,6 +32,6 @@ class NewsEventController extends Controller
 		$aerobeAcademies = $parents->flatMap(function ($parent) {
 		    return $parent->aerobeAcademy;
 		});
-	    return view('front.news-event.index', compact('newsAndEvents', 'aerobeAcademies'));
+	    return view('front.news-event.index', compact('featuredNewsAndEvents', 'newsAndEvents', 'aerobeAcademies'));
 	}
 }

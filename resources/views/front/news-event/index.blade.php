@@ -16,20 +16,20 @@
 				<span>Ideas for better days</span>
 			</div>
 			<div class="news-slider">
-				@foreach($newsAndEvents as $newsAndEvent)
+				@foreach($featuredNewsAndEvents as $featuredNewsAndEvent)
 				<div class="col">
-					@if($newsAndEvent->tag)
+					@if($featuredNewsAndEvent->tag)
                     <div class="tag">
-						<span class="tag-text">{{ $newsAndEvent->tag->label ?? '' }}</span>
+						<span class="tag-text">{{ $featuredNewsAndEvent->tag->label ?? '' }}</span>
 					</div>
                     @endif
-					<h3>{{ $newsAndEvent->title ?? '' }}</h3>
+					<h3>{{ $featuredNewsAndEvent->title ?? '' }}</h3>
 					<div class="view">
 						<span><img src="{{ asset('assets/images/icon-view.jpg') }}" alt="" /> 9,156</span>
 						<img src="{{ asset('assets/images/dot2.jpg') }}" alt="" />
 						<span><img src="{{ asset('assets/images/icon-watch.jpg') }}" alt="" /> 6.45 min</span>
 					</div>
-					<div class="date">{{ $newsAndEvent->event_date }}</div>
+					<div class="date">{{ $featuredNewsAndEvent->event_date }}</div>
 				</div>
 				@endforeach
 			</div>
