@@ -31,4 +31,19 @@ $(function() {
 	    let route = $(this).attr('href')+"&category_ids="+selectedCategories;
 	    fetchNews(route);
 	});
+
+	$(document).on('click', '#our-portfolio', function (e) {
+	    e.preventDefault();
+	    //$("#dd-portofolio").slideToggle();
+	    var $target = $('#dd-portofolio');
+
+		  if ($target.is(':visible')) {
+		    $target.slideUp();
+		  } else {
+		    $target
+		      .css('display', 'flex')
+		      .hide()
+		      .slideDown();
+		  }
+	});
 });

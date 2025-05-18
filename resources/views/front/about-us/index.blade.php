@@ -25,7 +25,7 @@
           <div class="col">
              <img src="{{ asset('img/home/folder.svg') }}" />
              <p>Download our corporate profile</p>
-             <a href="#" class="c-btn">Download Now</a>
+             <a href="{{ asset('assets/dummy.pdf') }}" download="Corporate Profile {{ date('Y-m-d') }}.pdf" class="c-btn">Download Now</a>
           </div>
           <div class="col2">
              <img src="{{ asset('img/home/email.svg') }}" />

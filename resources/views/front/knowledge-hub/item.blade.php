@@ -1,0 +1,23 @@
+@if(isset($academics))
+   @foreach($academics as $aerobeAcademy)
+   <div class="item">
+    <div class="imgb">
+      <a href="{{ route('knowledge-hub.show', $aerobeAcademy) }}" target="_blank">
+         @if ($aerobeAcademy->image && file_exists(public_path('assets/uploads/knowledge-hubs/' . $aerobeAcademy->image)))
+            <img src="{{ asset('assets/uploads/knowledge-hubs/'.$aerobeAcademy->image) }}" />
+         @else
+            <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+         @endif
+      </a>
+    </div>
+    <div class="textb">
+      <span class="tag-text">{{ $aerobeAcademy->category->label }}</span>
+      <h3><a href="{{ route('knowledge-hub.show', $aerobeAcademy) }}" target="_blank">{{ $aerobeAcademy->title }}</a></h3>
+      <p style="display: block;"> {{ $aerobeAcademy->short_description }}</p>
+      <div class="review">
+        <a  href="{{ route('knowledge-hub.show', $aerobeAcademy) }}">Read More</a>
+      </div>
+    </div>
+  </div>
+  @endforeach
+@endif

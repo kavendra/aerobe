@@ -10,17 +10,26 @@
 <div class="mid-section">
 	<div class="latest-post">
 		<div class="container">
-			<h2>Shop</h2>
+			<h2>Shop Detail</h2>
 			<div class="shoplist" id="post-container">
-				@foreach($shops as $shop)
-				@include('front.shop.item', ['shops' => [$shop]])
-				@endforeach
+				<div class="item">
+					<div class="imgb">
+						@if ($shop->image && file_exists(public_path('assets/uploads/shop/' . $shop->image)))
+					        <img src="{{ asset('assets/uploads/shop/'.$shop->image) }}" />
+					    @else
+					        <img src="{{ asset('img/img-dummy.jpg') }}" />
+					    @endif
+					</div>
+					<div class="textb">
+						@if($shop->tag)
+						<span class="tag-text">{{ $shop->tag->label }}</span>
+						@endif
+						<h3><a href="{{ route('shop.show', $shop) }}" target="_blank">{{ $shop->title }}</a></h3>
+						<p>{{ $shop->short_description }}</p>
+						<div class="btm-row"><a href="#" class="c-btn">Request for quotes</a></div>
+					</div>
+				</div>
 			</div>
-			@if($total > 6)
-			<div class="btn-row" style="padding-top: 38px;">
-				<button id="load-more" data-page="2" class="c-btn">Load More</button>
-			</div>
-			@endif
 		</div>
 	</div>
 </div>
@@ -28,7 +37,7 @@
 	$(document).ready(function() {
 	    $('#load-more').click(function() {
 	        var button = $(this);
-	        let page = button.data('page');
+	        var page = button.data('page');
 
 	        $.ajax({
 	            url: '{{ route("shop.index") }}',
@@ -37,8 +46,8 @@
 	            success: function(response) {
 	                $('#post-container').append(response.html);
 
-	                if (response.hasMorePages) {
-                    	button.data('page', response.nextPage).text('Load More');
+	                if (response.next_page) {
+	                    button.data('page', response.next_page);
 	                } else {
 	                    button.remove(); // No more pages
 	                }

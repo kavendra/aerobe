@@ -35,7 +35,7 @@ class HomeController extends Controller
         $country = Country::where('is_main', 1)->where('label', $countryName)->first();
         $newsAndEvents = NewsAndEvent::where(function($query)use($country){
                                 if($country) {
-                                    $query->where('country_id', $country->id);
+                                    $query->whereJsonContains('country_id', (string) $country->id);
                                 }
                             })->limit(4)->latest()->get();
         $businessVerticals = BusinessVertical::latest()->get();
