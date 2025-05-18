@@ -19,10 +19,10 @@
       <div class="top-row">
         <div class="left-tab">
           <ul>
-            <li><button type="button" class="btn active" data-target="viewall"><div id="total-academy"></div></button></li>
-            @foreach($aerobeAcademics as $aerobeAcademic)
-              @if($aerobeAcademic->first() && $aerobeAcademic->first()->category)
-               <li><button type="button" class="btn academy-count" data-count="{{ $aerobeAcademic->count() }}" data-target="cate-{{ $aerobeAcademic->first()->category->label }}">{{ $aerobeAcademic->first()->category->label }} ({{ $aerobeAcademic->count() }})</button></li>
+            <li><button type="button" class="btn academy-list active" data-target="viewall">All ({{ $total }})</button></li>
+            @foreach($categories as $category)
+              @if($category->aerobeAcademy->count())
+               <li><button type="button" class="btn academy-list" data-category="{{ $category->id }}">{{ $category->label }} ({{ $category->aerobeAcademy->count() }})</button></li>
               @endif
             @endforeach
           </ul>
@@ -35,43 +35,48 @@
         </div>
       </div>
 
-      @foreach($categories as $category)  
-      <div class="items-container grid-view active" id="cate-{{ $category->label }}">
-        @if(isset($aerobeAcademics[$category->id]))
-         @foreach($aerobeAcademics[$category->id] as $aerobeAcademy)
-         <div class="item">
-          <div class="imgb">
-            @if ($aerobeAcademy->image && file_exists(public_path('assets/uploads/aerobe-academies/' . $aerobeAcademy->image)))
-               <img src="{{ asset('assets/uploads/aerobe-academies/'.$aerobeAcademy->image) }}" />
-            @else
-               <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
-            @endif
-          </div>
-          <div class="textb">
-            <span class="tag-text">{{ $category->label }}</span>
-            <h3><a href="#"> {{ $aerobeAcademy->short_description }}</a></h3>
-            <div class="review">
-              <p style="display: block;"><span>1,234</span> views <img src="{{ asset('img/dot.jpg') }}" /> <span>56</span> likes</p>
-              <a  href="#">Read More</a>
-            </div>
-          </div>
-        </div>
-        @endforeach
-        @endif
-        </div>
-      @endforeach
-
-      <div class="btn-row">
-        <a href="#">View All Post</a>
+      <div class="items-container grid-view active" id="post-container">
+         @foreach($aerobeAcademics as $aerobeAcademy)
+            @include('front.academy.item', ['academics' => [$aerobeAcademy]])
+         @endforeach
+      </div>
+      <div class="btn-row" style="padding-top: 38px;">
+         <button id="load-more" data-page="2" class="c-btn" data-load="1" @if($total < 7) style="display: none;" @endif>Load More</button>
       </div>
     </div>
   </div>
 </div>
 <script type="text/javascript">
-var sum = 0;
-$('.academy-count').each(function(){
-    sum += parseFloat($(this).data('count'));  // Or this.innerHTML, this.innerText
-});
-$('#total-academy').html('All ('+sum+ ')');
+$(document).ready(function() {
+   var sum = 0;
+   $('.academy-count').each(function(){
+       sum += parseFloat($(this).data('count'));  // Or this.innerHTML, this.innerText
+   });
+      $('#total-academy').html('All ('+sum+ ')');
+
+   $('#load-more, .academy-list').click(function() {
+       var button = $(this);
+       let page = button.data('page') ?? 0;
+       let activeCategory = $('.academy-list.active').data('category');
+       $('#load-more').show(); 
+       $.ajax({
+           url: '{{ route("academy.index") }}',
+           type: 'GET',
+           data: { page: page, category_id:activeCategory },
+           success: function(response) {
+               if(!button.data('load')) {
+                  $('#post-container').html(response.html);
+               }else{
+                  $('#post-container').append(response.html);
+                  if (response.hasMorePages) {
+                      button.data('page', response.nextPage).text('Load More');
+                  } else {
+                      $('#load-more').hide(); // No more pages
+                  }
+               }
+           }
+       });
+   });
+  });
 </script>
 @endsection

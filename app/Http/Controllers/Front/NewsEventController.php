@@ -34,4 +34,9 @@ class NewsEventController extends Controller
 		});
 	    return view('front.news-event.index', compact('featuredNewsAndEvents', 'newsAndEvents', 'aerobeAcademies'));
 	}
+
+	public function show(NewsAndEvent $newsEvent)
+	{
+	    return view('front.news-event.show', compact('newsEvent'));
+	}
 }

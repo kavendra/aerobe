@@ -69,7 +69,7 @@
              @foreach($mainMenus as $mainMenu)
              @if($mainMenu->id === 1)
              <li><a href="javascript:void(0)">{{ $mainMenu->label }}</a>
-             <div class="dd-menu">
+             <div class="dd-menu" id="dd-portofolio">
               <div class="left-menu">
                 <ul>
                    @foreach($categories as $category)

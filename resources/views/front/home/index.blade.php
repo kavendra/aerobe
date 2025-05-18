@@ -7,7 +7,7 @@
       <div class="textb">
          <h1>{!! $homePage->banner_title !!}</h1>
          <p>{{ $homePage->banner_desc }}</p>
-         <a href="#" class="c-btn">{{ $homePage->banner_button_text }}</a>
+         <a href="javascript:;" class="c-btn" id="our-portfolio">{{ $homePage->banner_button_text }}</a>
       </div>
       <div class="imgb">
          @if ($homePage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->banner_image)))
@@ -31,7 +31,7 @@
             <h4>{!! $homePage->section_heading !!}</h4>
             <h3>{!! $homePage->section_title !!}</h3>
             <p>{!! $homePage->section_desc !!}.</p>
-            <a href="#" class="c-btn">Explore More</a>
+            <a href="{{ url('about-us') }}" class="c-btn">Explore More</a>
          </div>
       </div>
    </div>
@@ -81,14 +81,7 @@
                   @endif
                   <h3>{{ $featuredNewsAndEvent->short_description }}</h3>
                   <div class="user">
-                     <div class="icon-img">
-                        @if ($featuredNewsAndEvent->image && file_exists(public_path('assets/uploads/news-events/' . $featuredNewsAndEvent->image)))
-                         <img src="{{ asset('assets/uploads/news-events/'.$featuredNewsAndEvent->image) }}" />
-                       @else
-                           <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
-                       @endif
-                     </div>
-                     <p>{{ $featuredNewsAndEvent->author_name ?? '' }} {{ $featuredNewsAndEvent->event_date }}</p>
+                     <p>{{ $featuredNewsAndEvent->event_date }}</p>
                   </div>
                </div>
             </div>
@@ -102,16 +95,8 @@
                         <div class="tag-box">{{ $newsAndEvent->tag->label ?? '' }}</div>
                         @endif
                         <h3><a href="#"> {{ $newsAndEvent->title ?? '' }}</a></h3>
-                        <p><strong>4.83k</strong> views <strong>3.27k</strong> likes</p>
                         <div class="user">
-                           <div class="icon-img">
-                              @if ($newsAndEvent->author_image && file_exists(public_path('assets/uploads/news-events/' . $newsAndEvent->author_image)))
-                                 <img src="{{ asset('assets/uploads/news-events/'.$newsAndEvent->author_image) }}" />
-                              @else
-                                 <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
-                              @endif
-                           </div>
-                           <p>BY <strong>{{ $newsAndEvent->author_name ?? '' }}</strong> <span>·</span> {{ $newsAndEvent->event_date }}</p>
+                           <p>{{ $newsAndEvent->event_date }}</p>
                         </div>
                      </div>
                      <div class="imgb">

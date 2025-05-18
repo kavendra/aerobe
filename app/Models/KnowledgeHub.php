@@ -16,6 +16,7 @@ class KnowledgeHub extends Model
         'image',
         'tag_id',
         'category_id',
+        'country_id',
         'short_description',
         'long_description',
         'author_name',
@@ -26,5 +27,11 @@ class KnowledgeHub extends Model
 
      protected $casts = [
         'tag_id' => 'array', // Automatically converts JSON to array when retrieved
+        'country_id' => 'array',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

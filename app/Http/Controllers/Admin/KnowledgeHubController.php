@@ -85,11 +85,12 @@ class KnowledgeHubController extends Controller
         $knowledge_hubs = KnowledgeHub::create([
             'title' => $request->title,
             'category_id' => $request->category_id,
+            'country_id' => $request->country_id,
             'tag_id' => json_encode($request->tag_id),
             'event_date' => $request->event_date,
             'image' => $imageName,
             'author_name' => $request->author_name,
-            'author_image' => $authorImage,
+            # 'author_image' => $authorImage,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
             'status' => $request->status
