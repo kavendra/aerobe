@@ -120,6 +120,6 @@
         </div>
         </div>
     </div>
-    @include('front.elements.location')
+    @include('front.elements.location', ['cls'=>'bg-white'])
 </div>
 @endsection

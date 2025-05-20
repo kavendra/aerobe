@@ -84,7 +84,7 @@ body{background-color:#fff; font-size:17px; line-height:24px; color:#282828; fon
 
 .global .g-btn svg{position: relative; top:3px;}
 .global{position: relative;}
-.global-menu{background: #fff;position:absolute;right:0px;width:180px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);z-index:99;display:none; z-index:999;}
+.global-menu{background: #fff;position:absolute;right:0px;width:180px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);z-index:99;display:none; z-index:99999;}
 .global-menu li a{padding: 6px 15px ; display: block; text-align: left;font-size:14px;}
 .global-menu li a:hover{background: #f3f4f6;}
 .global .g-btn.active i{ transform: rotate(-182deg);}

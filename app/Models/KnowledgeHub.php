@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,5 +34,10 @@ class KnowledgeHub extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getEventDateAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format('M d, Y'):'';
     }
 }
