@@ -77,6 +77,20 @@
                 }
             });
         });
+
+        $('.term-content .rightcol .tab-nav li').click(function () {
+            var target = $(this).data('target');
+            var top = $(target).offset().top;
+
+            // Scroll to the target section
+            $('html, body').animate({
+              scrollTop: top
+            }, 500);
+
+            // Add 'active' class to clicked tab, remove from others
+            $('.term-content .rightcol .tab-nav li').removeClass('active');
+            $(this).addClass('active');
+        });
     });
   </script>
 
