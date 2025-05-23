@@ -36,19 +36,19 @@
 								<span class="cate-tag">{{ $category->label }}</span>
 								<h3><a href="{{ route('csr.show', $csr) }}" target="_blank">{{ $csr->title }}</a></h3>
 								<p>{{ $csr->short_description }}</p>
-								<div class="admin-info">
-									<div class="admin-icon">
-										@if($csr->author_image && file_exists(public_path('assets/uploads/csrs/' . $csr->author_image)))
-								            <img src="{{ asset('assets/uploads/csrs/'.$csr->author_image) }}" />
-								        @else
-								            <img src="{{ asset('img/img-user.jpg') }}" alt="" />
-								        @endif
-									</div>
-									<div class="admin-text">
-										<p><strong>{{ $csr->author_name }}</strong></p>
-										<p>{{ $csr->event_date }}<img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>
-									</div>
-								</div>
+								<!--<div class="admin-info">-->
+								<!--	<div class="admin-icon">-->
+								<!--		@if($csr->author_image && file_exists(public_path('assets/uploads/csrs/' . $csr->author_image)))-->
+								<!--            <img src="{{ asset('assets/uploads/csrs/'.$csr->author_image) }}" />-->
+								<!--        @else-->
+								<!--            <img src="{{ asset('img/img-user.jpg') }}" alt="" />-->
+								<!--        @endif-->
+								<!--	</div>-->
+								<!--	<div class="admin-text">-->
+								<!--		<p><strong>{{ $csr->author_name }}</strong></p>-->
+								<!--		<p>{{ $csr->event_date }}<img src="{{ asset('img/dot.jpg') }}" alt="" /> 5 min read</p>-->
+								<!--	</div>-->
+								<!--</div>-->
 							</div>
 						</li>
 						@endforeach

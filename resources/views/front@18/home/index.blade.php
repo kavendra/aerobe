@@ -79,7 +79,7 @@
                   @if($featuredNewsAndEvent->tag)
                   <div class="tag-box">{{ $featuredNewsAndEvent->tag->label }}</div>
                   @endif
-                  <h3>{{ $featuredNewsAndEvent->title }}</h3>
+                  <h3>{{ $featuredNewsAndEvent->short_description }}</h3>
                   <div class="user">
                      <p>{{ $featuredNewsAndEvent->event_date }}</p>
                   </div>

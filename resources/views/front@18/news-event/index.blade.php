@@ -24,11 +24,11 @@
 					</div>
                     @endif
 					<h3>{{ $featuredNewsAndEvent->title ?? '' }}</h3>
-					<!--<div class="view">-->
-					<!--	<span><img src="{{ asset('assets/images/icon-view.jpg') }}" alt="" /> 9,156</span>-->
-					<!--	<img src="{{ asset('assets/images/dot2.jpg') }}" alt="" />-->
-					<!--	<span><img src="{{ asset('assets/images/icon-watch.jpg') }}" alt="" /> 6.45 min</span>-->
-					<!--</div>-->
+					<div class="view">
+						<span><img src="{{ asset('assets/images/icon-view.jpg') }}" alt="" /> 9,156</span>
+						<img src="{{ asset('assets/images/dot2.jpg') }}" alt="" />
+						<span><img src="{{ asset('assets/images/icon-watch.jpg') }}" alt="" /> 6.45 min</span>
+					</div>
 					<div class="date">{{ $featuredNewsAndEvent->event_date }}</div>
 				</div>
 				@endforeach

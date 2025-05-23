@@ -2,8 +2,8 @@
    <div class="container">
       <div class="map"><img src="{{ asset('img/home/map/map.svg') }}" /></div>
       <div class="textb">
-         <h4>OUR PRESENCE</h4>
-         <!--<h3>Our Location</h3>-->
+         <h4>WHERE WE LOCATED?</h4>
+         <h3>Our Location</h3>
          <div class="box-row">
             <div class="col">
                <p>Presence in</p>

@@ -27,11 +27,11 @@
              <p>Download our corporate profile</p>
              <a href="{{ asset('assets/dummy.pdf') }}" download="Corporate Profile {{ date('Y-m-d') }}.pdf" class="c-btn">Download Now</a>
           </div>
-          <!--<div class="col2">-->
-          <!--   <img src="{{ asset('img/home/email.svg') }}" />-->
-          <!--   <input type="text" class="input" placeholder="Subscribe to our newsletter" />-->
-          <!--   <button class="c-btn">Subscribe</button>-->
-          <!--</div>-->
+          <div class="col2">
+             <img src="{{ asset('img/home/email.svg') }}" />
+             <input type="text" class="input" placeholder="Subscribe to our newsletter" />
+             <button class="c-btn">Subscribe</button>
+          </div>
        </div>
     </div>
     </form>
