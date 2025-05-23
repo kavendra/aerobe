@@ -1,4 +1,4 @@
-<div class="location">
+<div class="location {{ $cls ?? ''}}">
    <div class="container">
       <div class="map"><img src="{{ asset('img/home/map/map.svg') }}" /></div>
       <div class="textb">

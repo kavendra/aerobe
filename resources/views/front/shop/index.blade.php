@@ -24,6 +24,49 @@
 		</div>
 	</div>
 </div>
+
+<div class="request-quotes request-p">
+	<div class="innerb">
+		<div class="close-btn">
+			<img src="{{ asset('img/close-btn.svg') }}" />
+		</div>
+		<div class="col-f">
+			<label>Full Name</label>
+			<input type="text" class="input" placeholder="John Doe">
+		</div>
+		<div class="col-f">
+			<label>Email Address</label>
+			<input type="text" class="input" placeholder="example@company.com">
+		</div>
+		<div class="col-f">
+			<label>Country </label>
+			<select id="country" name="country" class="select">
+				<option value="">-- Please choose an option --</option>
+				<option value="us">United States</option>
+				<option value="in">India</option>
+				<option value="uk">United Kingdom</option>
+				<option value="ca">Canada</option>
+				<option value="au">Australia</option>
+				<option value="de">Germany</option>
+				<option value="fr">France</option>
+				<option value="jp">Japan</option>
+				<option value="cn">China</option>
+			</select>
+		</div>
+		<div class="col-f">
+			<label>Mobile Number</label>
+			<input type="text" class="input" placeholder="+91 9876543210">
+		</div>
+		<div class="col-f">
+			<label>Current Job Description</label>
+			<textarea class="textarea" placeholder="Brief description of your current role and responsibilities"></textarea>
+		</div>
+		<div class="col-f">
+			<button class="c-btn" type="submit">Submit Application</button>
+		</div>
+	</div>
+</div>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 	    $('#load-more').click(function() {
@@ -45,6 +88,15 @@
 	            }
 	        });
 	    });
+
+	    $('.pop-o').click(function () {
+		   var curdata = "."+$(this).attr("data-type");
+		   $(curdata).addClass("active");
+		  });
+
+		  $('.request-quotes .innerb .close-btn').click(function () {
+		   $(".request-quotes").removeClass("active");
+		});
 	});
 </script>
 @endsection

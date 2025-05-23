@@ -15,7 +15,7 @@
 		@endif
 		<h3><a href="{{ route('shop.show', $shop) }}" target="_blank">{{ $shop->title }}</a></h3>
 		<p>{{ $shop->short_description }}</p>
-		<div class="btm-row"><a href="#" class="c-btn">Request for quotes</a></div>
+		<div class="btm-row"><a href="javascript:void(0)" class="c-btn pop-o" data-type="request-p">Request for quotes</a></div>
 	</div>
 </div>
 @endforeach
