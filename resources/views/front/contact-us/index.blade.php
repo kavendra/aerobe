@@ -82,12 +82,13 @@
                 @php($lat = $prefix.'latitude')
                 @php($long = $prefix.'longitude')
                 <h3>{{ $contactPage->$company_name }}</h3>
-                <p>Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu leo molestie vel, ornare non id blandit netus.</p>
+                <!--<p>Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu leo molestie vel, ornare non id blandit netus.</p>-->
                 
                 <div class="address">
                     <h5>ADDRESS</h5>
                     @php($company_address = $prefix.'company_address')
                     <p>{!! $contactPage->$company_address !!}</p>
+                  
                 </div>
             </div>
             <div class="map">
@@ -120,6 +121,6 @@
         </div>
         </div>
     </div>
-    @include('front.elements.location', ['cls'=>'bg-white'])
+    
 </div>
 @endsection

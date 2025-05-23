@@ -37,7 +37,7 @@ class HomeController extends Controller
                                 if($country) {
                                     $query->whereJsonContains('country_id', (string) $country->id);
                                 }
-                            })->limit(4)->latest()->get();
+                            })->limit(5)->latest()->get();
         $businessVerticals = BusinessVertical::latest()->get();
         
         return view('front.home.index', compact('homePage', 'newsAndEvents', 'businessVerticals'));

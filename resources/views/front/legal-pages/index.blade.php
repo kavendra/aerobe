@@ -31,7 +31,7 @@
 @endif	
 
 <div class="mid-section">
-    <div class="container">
+    <div class="container3">
         {!! $desc !!}
     </div>
 </div>

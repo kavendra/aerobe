@@ -77,50 +77,52 @@ class ContactPageController extends Controller
      */
     public function update(Request $request, ContactPage $contactPage)
     {
-        $request->validate([
-            'glb_call_us_today' => 'required|digits_between:10,15|regex:/^[0-9]+$/',
-            'glb_tech_support_email' => 'required|email',
-            'glb_chat_with_us_email' => 'required|email',
-            'glb_enquiry_email' => 'required|email',
-            'glb_company_name' => 'required|string|max:255',
-            'glb_company_address' => 'nullable|string|max:1000',
+        // $request->validate([
+        //     'glb_call_us_today' => 'required|digits_between:10,15|regex:/^[0-9]+$/',
+        //     'glb_tech_support_email' => 'required|email',
+        //     'glb_chat_with_us_email' => 'required|email',
+        //     'glb_enquiry_email' => 'required|email',
+        //     'glb_company_name' => 'required|string|max:255',
+        //     'glb_company_address' => 'nullable|string|max:1000',
 
-            'sg_call_us_today' => 'required|digits_between:10,15|regex:/^[0-9]+$/',
-            'sg_tech_support_email' => 'required|email',
-            'sg_chat_with_us_email' => 'required|email',
-            'sg_enquiry_email' => 'required|email',
-            'sg_company_name' => 'required|string|max:255',
-            'sg_company_address' => 'nullable|string|max:1000',
-
-
-            'au_call_us_today' => 'required|digits_between:10,15|regex:/^[0-9]+$/',
-            'au_tech_support_email' => 'required|email',
-            'au_chat_with_us_email' => 'required|email',
-            'au_enquiry_email' => 'required|email',
-            'au_company_name' => 'required|string|max:255',
-            'au_company_address' => 'nullable|string|max:1000',
+        //     'sg_call_us_today' => 'required|digits_between:10,15|regex:/^[0-9]+$/',
+        //     'sg_tech_support_email' => 'required|email',
+        //     'sg_chat_with_us_email' => 'required|email',
+        //     'sg_enquiry_email' => 'required|email',
+        //     'sg_company_name' => 'required|string|max:255',
+        //     'sg_company_address' => 'nullable|string|max:1000',
 
 
-            'in_call_us_today' => 'required|digits_between:10,15|regex:/^[0-9]+$/',
-            'in_tech_support_email' => 'required|email',
-            'in_chat_with_us_email' => 'required|email',
-            'in_enquiry_email' => 'required|email',
-            'in_company_name' => 'required|string|max:255',
-            'in_company_address' => 'nullable|string|max:1000',
+        //     'au_call_us_today' => 'required|digits_between:10,15|regex:/^[0-9]+$/',
+        //     'au_tech_support_email' => 'required|email',
+        //     'au_chat_with_us_email' => 'required|email',
+        //     'au_enquiry_email' => 'required|email',
+        //     'au_company_name' => 'required|string|max:255',
+        //     'au_company_address' => 'nullable|string|max:1000',
 
 
-            'my_call_us_today' => 'required|digits_between:10,15|regex:/^[0-9]+$/',
-            'my_tech_support_email' => 'required|email',
-            'my_chat_with_us_email' => 'required|email',
-            'my_enquiry_email' => 'required|email',
-            'my_company_name' => 'required|string|max:255',
-            'my_company_address' => 'nullable|string|max:1000',
+        //     'in_call_us_today' => 'required|digits_between:10,15|regex:/^[0-9]+$/',
+        //     'in_tech_support_email' => 'required|email',
+        //     'in_chat_with_us_email' => 'required|email',
+        //     'in_enquiry_email' => 'required|email',
+        //     'in_company_name' => 'required|string|max:255',
+        //     'in_company_address' => 'nullable|string|max:1000',
 
-            'meta_title' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string|max:1000',
-            'meta_keywords' => 'nullable|string|max:500',
-            // Add other fields as per your form...
-        ]);
+
+        //     'my_call_us_today' => 'required|digits_between:10,15|regex:/^[0-9]+$/',
+        //     'my_tech_support_email' => 'required|email',
+        //     'my_chat_with_us_email' => 'required|email',
+        //     'my_enquiry_email' => 'required|email',
+        //     'my_company_name' => 'required|string|max:255',
+        //     'my_company_address' => 'nullable|string|max:1000',
+
+        //     'meta_title' => 'nullable|string|max:255',
+        //     'meta_description' => 'nullable|string|max:1000',
+        //     'meta_keywords' => 'nullable|string|max:500',
+        //     // Add other fields as per your form...
+        // ]);
+        
+        
 
         $contactPage->glb_call_us_today = $request->glb_call_us_today;
         $contactPage->glb_tech_support_email = $request->glb_tech_support_email;
@@ -160,9 +162,11 @@ class ContactPageController extends Controller
         $contactPage->meta_title = $request->meta_title;
         $contactPage->meta_description = $request->meta_description;
         $contactPage->meta_keywords = $request->meta_keywords;
+        
+       
       
         $contactPage->save();
-        return redirect()->route('admin.edit_contact.edit', $contactPage->id)->with('success', 'Contact Us Page updated successfully!');
+        return redirect()->route('admin.contact-page.edit', $contactPage->id)->with('success', 'Contact Us Page updated successfully!');
     }
 
 

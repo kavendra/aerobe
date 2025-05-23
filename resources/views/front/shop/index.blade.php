@@ -58,11 +58,11 @@
 			<input type="text" class="input" placeholder="+91 9876543210">
 		</div>
 		<div class="col-f">
-			<label>Current Job Description</label>
+			<label>Description</label>
 			<textarea class="textarea" placeholder="Brief description of your current role and responsibilities"></textarea>
 		</div>
 		<div class="col-f">
-			<button class="c-btn" type="submit">Submit Application</button>
+			<button class="c-btn" type="submit">Submit Request</button>
 		</div>
 	</div>
 </div>

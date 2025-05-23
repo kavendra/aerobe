@@ -13,7 +13,7 @@
     <div class="textb">
       <span class="tag-text">{{ $aerobeAcademy->category->label }}</span>
       <h3><a href="{{ route('knowledge-hub.show', $aerobeAcademy) }}" target="_blank">{{ $aerobeAcademy->title }}</a></h3>
-      <p style="display: block;"> {{ $aerobeAcademy->short_description }}</p>
+      <!--<p style="display: block;"> {{ $aerobeAcademy->short_description }}</p>-->
       <div class="review">
         <a  href="{{ route('knowledge-hub.show', $aerobeAcademy) }}">Read More</a>
       </div>
