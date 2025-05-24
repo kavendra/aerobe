@@ -97,16 +97,16 @@
                         {{ $portfolio->title }}
                       </a>
                       <span class="icon"> 
-                        @if($portfolio->country_id && in_array(3, $portfolio->country_id))
+                        @if(!empty($portfolio->country_id) && in_array(3, $portfolio->country_id))
                         <img src="{{ asset('img/india-flag.jpg') }}"> 
                         @endif
-                        @if($portfolio->country_id && in_array(2, $portfolio->country_id))
+                        @if(!empty($portfolio->country_id) && in_array(2, $portfolio->country_id))
                         <img src="{{ asset('img/australia-flag.jpg') }}">
                         @endif
-                        @if($portfolio->country_id && in_array(1, $portfolio->country_id))
+                        @if(!empty($portfolio->country_id) && in_array(1, $portfolio->country_id))
                         <img src="{{ asset('img/singapore-flag.jpg') }}">
                         @endif
-                        @if($portfolio->country_id && in_array(4, $portfolio->country_id))
+                        @if(!empty($portfolio->country_id) && in_array(4, $portfolio->country_id))
                         <img src="{{ asset('img/malaysia-flag.jpg') }}">
                         @endif
                       </span>
@@ -163,19 +163,21 @@
                     <li>
                       <a href="javascript:void(0)" data-cat="{{ $category->label }}" data-heading="{{ $solution->title }}" data-paragraph="{{ $solution->short_description }}" data-type="solution">
                         {{ $solution->title }}
-                        @if($solution->country_id && in_array(3, $solution->country_id))
+                        </a>
+                        <span class="icon"> 
+                        @if(!empty($solution->country_id) && in_array(3, $solution->country_id))
                         <img src="{{ asset('img/india-flag.jpg') }}"> 
                         @endif
-                        @if($solution->country_id && in_array(2, $solution->country_id))
+                        @if(!empty($solution->country_id) && in_array(2, $solution->country_id))
                         <img src="{{ asset('img/australia-flag.jpg') }}">
                         @endif
-                        @if($solution->country_id && in_array(1, $solution->country_id))
+                        @if(!empty($solution->country_id) && in_array(1, $solution->country_id))
                         <img src="{{ asset('img/singapore-flag.jpg') }}">
                         @endif
-                        @if($solution->country_id && in_array(4, $solution->country_id))
+                        @if(!empty($solution->country_id) && in_array(4, $solution->country_id))
                         <img src="{{ asset('img/malaysia-flag.jpg') }}">
                         @endif
-                      </a>
+                      </span>
                     </li>
                     <div class="sol-img" style="display: none">
                        @if ($solution->image && file_exists(public_path('assets/uploads/solutions/' . $solution->image)))
