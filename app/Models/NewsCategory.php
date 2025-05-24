@@ -15,4 +15,9 @@ class NewsCategory extends Model
         'label',
         'status'
     ];
+
+    public function newsAndEvents()
+    {
+        return $this->hasMany(NewsAndEvent::class, 'category_id');
+    }
 }

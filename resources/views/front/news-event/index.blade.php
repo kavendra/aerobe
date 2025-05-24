@@ -46,8 +46,8 @@
 				<div class="leftcol">
 					<div class="post-count">
 						<ul>
-							@foreach($categories as $category)
-							<li><input type="checkbox" value="{{ $category->id }}" class="checkbox category-checkbox"> {{ $category->label }} <span> ({{ $category->newsAndEvents->count() }})</span></li>
+							@foreach($newsCategories as $newsCategory)
+							<li><input type="checkbox" value="{{ $newsCategory->id }}" class="checkbox category-checkbox"> {{ $newsCategory->label }} <span> ({{ $newsCategory->newsAndEvents->count() }})</span></li>
 							@endforeach
 						</ul>
 					</div>
