@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
-use App\Models\Request;
+use App\Models\ShopRequest;
 use App\Models\Country;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewsletterSubscribed;
@@ -64,7 +64,7 @@ class ShopController extends Controller
             'description' => $validated['description'],
         ];
         
-        Request::create($data);
+        ShopRequest::create($data);
         
         /*Mail::send('emails.contact', $data, function($message) use ($data) {
             $message->to('your-email@example.com')
