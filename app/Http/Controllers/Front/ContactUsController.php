@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Models\ContactPage;
 use App\Models\Country;
+use App\Models\CountryLocation;
 use App\Models\ContactUs;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
@@ -15,9 +16,17 @@ class ContactUsController extends Controller
 		$countryName = strtoUpper(session('country'));
 		$country = Country::where('is_main', 1)->where('label', $countryName)->first();
 		$prefix = $country->prefix ?? 'glb_';
+
+        $locations = $country->locations->map(function ($loc) {
+            return [
+                'lat' => $loc->lat,
+                'lng' => $loc->long,
+                'title' => $loc->name . ' (' . $loc->country->label . ')'
+            ];
+        });
 		$contactPage = ContactPage::first();
 		
-	    return view('front.contact-us.index', compact('contactPage', 'prefix'));
+	    return view('front.contact-us.index', compact('contactPage', 'prefix', 'locations'));
 	}
 
 	/**

@@ -23,6 +23,9 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 
