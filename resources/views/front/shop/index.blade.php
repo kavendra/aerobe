@@ -35,6 +35,7 @@
 			<div class="close-btn">
 				<img src="{{ asset('img/close-btn.svg') }}" />
 			</div>
+			<p style="padding-bottom:2px; color: green;" id="request-successs"></p>
 			<div class="col-f">
 				<label>Full Name</label>
 				<input type="text" name="name" class="input" placeholder="John Doe" required>
@@ -113,11 +114,14 @@
                 data: $(this).serialize(),
                 success: function(response) {
                     $('#send-us').removeClass('disabled');
-                    $('#success-msg').text(response.message).fadeIn();
+                    $('#request-successs').text(response.message).fadeIn();
                     $('.clear-form').val('');
                     setTimeout(function() {
-                        $('#success-msg').fadeOut();
+                        $('#request-successs').fadeOut();
                     }, 3000); // 3 seconds
+                    setTimeout(function() {
+                        $('.request-p').removeClass('active');
+                    }, 4000); // 4 seconds
                 },
                 error: function(xhr) {
                     let errors = xhr.responseJSON.errors;

@@ -73,7 +73,6 @@ class ShopController extends Controller
         if($request->ajax()) {
             return response()->json(['success' => true, 'message' => 'Message sent successfully!']);
         }
-        return redirect()->back()->with('success', 'Submitted successfully');
     }
 
 	public function show(Shop $shop)
