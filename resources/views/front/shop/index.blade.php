@@ -1,10 +1,13 @@
 @extends('layouts.app')
 @section('content')
-<div class="top-banner csr-banner">
+<div class="top-banner csr-banner shop-b">
+	<img src="{{ asset('img/hero-work.jpg') }}" />
 	<div class="textb2">
-	<h2>Shop</h2>
-	<p>Be part of a team that's revolutionizing rural healthcare through innovative telemedicine solutions.</p>
-</div>
+		<div class="container">
+			<h2>Shop</h2>
+			<p>Be part of a team that's revolutionizing rural healthcare through innovative telemedicine solutions.</p>
+		</div>
+	</div>
 </div>
 
 <div class="mid-section">
