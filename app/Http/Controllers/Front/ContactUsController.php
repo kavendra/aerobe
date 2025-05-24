@@ -15,12 +15,15 @@ class ContactUsController extends Controller
 	{
 		$countryName = strtoUpper(session('country'));
 		$country = Country::where('is_main', 1)->where('label', $countryName)->first();
+        if(empty($country)) {
+            $country = Country::where('is_main', 1)->where('is_default', 1)->first();
+        }
 		$prefix = $country->prefix ?? 'glb_';
 
         $locations = $country->locations->map(function ($loc) {
             return [
-                'lat' => $loc->lat,
-                'lng' => $loc->long,
+                'lat' => (float)$loc->lat,
+                'lng' => (float)$loc->long,
                 'title' => $loc->name . ' (' . $loc->country->label . ')'
             ];
         });

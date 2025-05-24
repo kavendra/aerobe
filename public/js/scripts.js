@@ -213,13 +213,15 @@ $("#categoryone").addClass("active");
       .addClass('list-view');
   });
 
-  	$(".dsk-arrow a").on("click", function(){
-		$(this).siblings(".dd-menu").slideToggle();
-	});
+  	if (window.innerWidth <= 1280) {
+		$(".dsk-arrow a").on("click", function(){
+			$(this).siblings(".dd-menu").slideToggle();
+		});
 
-	$(".menu-icon").on("click", function(){
-		$(".header-left .m-div").toggleClass("active");
-	});
+		$(".menu-icon").on("click", function(){
+			$(".header-left .m-div").toggleClass("active");
+		});
+	 }
 
 	$(".header-left .m-div .close-btn").on("click", function(){
 		$(".header-left .m-div").toggleClass("active");
