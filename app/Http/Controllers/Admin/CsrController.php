@@ -52,15 +52,14 @@ class CsrController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
+            'slug' => 'required|string',
             'category_id' => 'required',
             'country_id' => 'required',
             'short_description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
-            'author_name' => 'required',
-            'event_date' => 'required',
-            'tag_id' => 'required',
         ], [
             'title.required' => 'The title field is required.',
+            'slug.required' => 'The slug field is required.',
             'category_id.required' => 'Please select a category.',
             'country_id.required' => 'Please select at least one country.',
             'short_description.required' => 'Short description is required.',
@@ -68,9 +67,6 @@ class CsrController extends Controller
             'image.image' => 'The file must be an image.',
             'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
             'image.max' => 'Image size must not exceed 5MB.',
-            'author_name.required' => 'The author name field is required.',
-            'event_date.required' => 'The event date field is required.',
-            'tag_id.required' => 'Please select anyone tag.',
         ]);
         if ($request->hasFile('image')) {
 
@@ -80,23 +76,11 @@ class CsrController extends Controller
             $file->move(public_path('assets/uploads/csrs/'), $imageName);
         }
 
-        if ($request->hasFile('author_image')) {
-
-            // Upload new file
-            $file = $request->file('author_image');
-            $authorImage = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/uploads/csrs/'), $authorImage);
-        }
-
-
         $csrs = Csr::create([
             'title' => $request->title,
+            'slug' => $request->slug,
             'category_id' => $request->category_id,
-            'tag_id' => json_encode($request->tag_id),
-            'event_date' => $request->event_date,
             'image' => $imageName,
-            'author_name' => $request->author_name,
-            'author_image' => $authorImage,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
             'status' => $request->status
@@ -130,6 +114,7 @@ class CsrController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
+            'slug' => 'required|string',
             'category_id' => 'required',
             'country_id' => 'required',
             'short_description' => 'required',
@@ -138,6 +123,7 @@ class CsrController extends Controller
             'tag_id' => 'required',
         ], [
             'title.required' => 'The title field is required.',
+            'slug.required' => 'The slug field is required.',
             'category_id.required' => 'Please select a category.',
             'country_id.required' => 'Please select at least one country.',
             'short_description.required' => 'Short description is required.',
@@ -158,8 +144,6 @@ class CsrController extends Controller
             ]);
         }
 
-
-
         if ($request->hasFile('image')) {
             // Delete old file
             if ($csr->image && file_exists(public_path('assets/uploads/csrs/' . $csr->image))) {
@@ -173,24 +157,9 @@ class CsrController extends Controller
             $csr->image = $imageName;
         }
 
-        if ($request->hasFile('author_image')) {
-            // Delete old file
-            if ($csr->author_image && file_exists(public_path('assets/uploads/csrs/' . $csr->author_image))) {
-                unlink(public_path('assets/uploads/csrs/' . $csr->author_image));
-            }
-
-            // Upload new file
-            $file = $request->file('author_image');
-            $authorImage = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/uploads/csrs/'), $authorImage);
-            $csr->author_image = $authorImage;
-        }
-
         $csr->title = $request->title;
+        $csr->slug = $request->slug;
         $csr->category_id = $request->category_id;
-        $csr->tag_id = json_encode($request->tag_id);
-        $csr->event_date = $request->event_date;
-        $csr->author_name = $request->author_name;
         $csr->short_description = $request->short_description;
         $csr->long_description = $request->long_description;
         $csr->status = $request->status;

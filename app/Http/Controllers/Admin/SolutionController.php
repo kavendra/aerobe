@@ -59,12 +59,14 @@ class SolutionController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
+            'slug' => 'required|string',
             'category_id' => 'required',
             'country_id' => 'required',
             'short_description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         ], [
             'title.required' => 'The title field is required.',
+            'slug.required' => 'The slug field is required.',
             'category_id.required' => 'Please select a category.',
             'country_id.required' => 'Please select at least one country.',
             'short_description.required' => 'Short description is required.',
@@ -84,6 +86,7 @@ class SolutionController extends Controller
 
         $our_portfolios = Solution::create([
             'title' => $request->title,
+            'slug' => $request->slug,
             'category_id' => $request->category_id,
             'country_id' => json_encode($request->country_id),
             'image' => $imageName,
@@ -120,11 +123,13 @@ class SolutionController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
+            'slug' => 'required|string',
             'category_id' => 'required',
             'country_id' => 'required',
             'short_description' => 'required',
         ], [
             'title.required' => 'The title field is required.',
+            'slug.required' => 'The slug field is required.',
             'category_id.required' => 'Please select a category.',
             'country_id.required' => 'Please select at least one country.',
             'short_description.required' => 'Short description is required.',
@@ -156,6 +161,7 @@ class SolutionController extends Controller
 
 
         $solution->title = $request->title;
+        $solution->slug = $request->slug;
         $solution->category_id = $request->category_id;
         $solution->country_id = $request->country_id;
         $solution->short_description = $request->short_description;

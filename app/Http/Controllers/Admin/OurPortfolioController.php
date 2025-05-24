@@ -59,12 +59,14 @@ class OurPortfolioController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
+            'slug' => 'required|string',
             'category_id' => 'required',
             'country_id' => 'required',
             'short_description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         ], [
             'title.required' => 'The title field is required.',
+            'slug.required' => 'The slug field is required.',
             'category_id.required' => 'Please select a category.',
             'country_id.required' => 'Please select at least one country.',
             'short_description.required' => 'Short description is required.',
@@ -83,6 +85,7 @@ class OurPortfolioController extends Controller
 
         $our_portfolios = OurPortfolio::create([
             'title' => $request->title,
+            'slug' => $request->slug,
             'category_id' => $request->category_id,
             'country_id' => json_encode($request->country_id),
             'image' => $imageName,
@@ -119,11 +122,13 @@ class OurPortfolioController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
+            'slug' => 'required|string',
             'category_id' => 'required',
             'country_id' => 'required',
             'short_description' => 'required',
         ], [
             'title.required' => 'The title field is required.',
+            'slug.required' => 'The slug field is required.',
             'category_id.required' => 'Please select a category.',
             'country_id.required' => 'Please select at least one country.',
             'short_description.required' => 'Short description is required.',
@@ -153,8 +158,8 @@ class OurPortfolioController extends Controller
             $ourPortfolio->image = $imageName;
         }
 
-
         $ourPortfolio->title = $request->title;
+        $ourPortfolio->slug = $request->slug;
         $ourPortfolio->category_id = $request->category_id;
         $ourPortfolio->country_id = $request->country_id;
         $ourPortfolio->short_description = $request->short_description;
