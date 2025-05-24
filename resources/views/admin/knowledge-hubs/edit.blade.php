@@ -51,6 +51,13 @@
                                             <input id="title" name="title" placeholder="Enter Title" type="text" class="form-control" value="{{ $knowledgeHub->title }}" required>
                                         </div>
                                     </div>
+                                    
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="title">Slug</label>
+                                            <input id="slug" name="slug" placeholder="Enter Slug" type="text" class="form-control" value="{{ $knowledgeHub->slug }}" required>
+                                        </div>
+                                    </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
@@ -74,65 +81,27 @@
                                         </div>
                                     </div>  
 
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="author_name">Author Name</label>
-                                            <input id="author_name" name="author_name" placeholder="Enter Author Name" type="text" class="form-control" value="{{ $knowledgeHub->author_name }}" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="event_date" class="form-label">Event Date</label>
-                                            <input type="date" id="datepicker" name="event_date" value="{{ $knowledgeHub->event_date }}" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="author_image" class="form-label">Author Image</label>
-                                            <input class="form-control" type="file" name="author_image" id="author_image">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            @if(!empty($knowledgeHub->author_image))
-                                                <img src="{{ asset('assets/uploads/knowledge-hubs/'.$knowledgeHub->author_image) }}" class="rounded" height="150" width="120" />
-                                            @endif
-                                        </div>
-                                    </div>
-
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="long_description" class="form-label">Long Description</label>
                                             <textarea type="text" class="form-control" name="long_description" placeholder="Enter Description" id="long_description">{{ $knowledgeHub->long_description }}</textarea>
                                         </div>
                                     </div>
+                                    
+                                
 
-                                   <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="long_description" class="form-label">Select Tags</label>
-                                            <div class="row">
-                                                @if($tags->count() > 0)
-                                                    @foreach($tags as $tag)
-                                                        <div class="col-lg-2 col-md-4 col-sm-6">
-                                                            <div class="form-check form-check-right mb-3">
-                                                                <input class="form-check-input" type="checkbox" name="tag_id[]" id="tag-{{ $tag->id }}" value="{{ $tag->id }}" @if(is_array($knowledgeHub->tag_id) && in_array($tag->id, $knowledgeHub->tag_id))checked @endif >
-                                                                <label class="form-check-label" for="formCheckRight1">
-                                                                    {{ $tag->label }}
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
-                                            </div>
+                                    <div class="col-lg-6" style="margin-top:20px">
+                                        <label class="form-label" for="is_main">
+                                              Is Main Knowledge Hub
+                                            </label>
+                                        <div class="form-check form-check-left" >
+                                            <input class="form-check-input" type="checkbox" name="is_main" id="is_main" @if($knowledgeHub->is_main == 1) checked @endif>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
                                         <div class="mb-3">
-                                            <label for="long_description" class="form-label">Select Tags</label>
+                                            <label for="long_description" class="form-label">Select Country</label>
                                             <div class="row">
                                                 @if($countries->count() > 0)
                                                     @foreach($countries as $country)
@@ -178,7 +147,23 @@
         <script src="{{ URL::asset('build/js/pages/form-validation.init.js') }}"></script>
         <script src="{{ URL::asset('build/js/app.js') }}"></script>
         <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
+          <script>
+            function generateSlug(text) {
+                return text
+                    .toLowerCase()
+                    .trim()
+                    .replace(/[^a-z0-9\s-]/g, '')     // Remove special chars
+                    .replace(/\s+/g, '-')             // Replace spaces with dashes
+                    .replace(/-+/g, '-');             // Collapse multiple dashes
+            }
         
+            $(document).ready(function() {
+                $('#title').on('input', function() {
+                    let slug = generateSlug($(this).val());
+                    $('#slug').val(slug);
+                });
+            });
+        </script>
         <script type="text/javascript">
             setTimeout(function() {
                 $('.alert-success').fadeOut('slow');

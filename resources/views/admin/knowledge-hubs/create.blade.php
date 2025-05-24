@@ -50,6 +50,13 @@
                                             <input id="title" name="title" placeholder="Enter Title" type="text" class="form-control" value="" required>
                                         </div>
                                     </div>
+                                    
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="title">Slug</label>
+                                            <input id="slug" name="slug" placeholder="Enter Slug" type="text" class="form-control" value="" required>
+                                        </div>
+                                    </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
@@ -71,33 +78,6 @@
                                         </div>
                                     </div>  
 
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="author_name">Author Name</label>
-                                            <input id="author_name" name="author_name" placeholder="Enter Author Name" type="text" class="form-control" value="" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="event_date" class="form-label">Posted Date</label>
-                                            <input type="date" id="datepicker" name="event_date" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="author_image" class="form-label">Author Image</label>
-                                            <input class="form-control" type="file" name="author_image" id="author_image">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                           
-                                        </div>
-                                    </div>
-
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="long_description" class="form-label">Long Description</label>
@@ -105,23 +85,12 @@
                                         </div>
                                     </div>
 
-                                   <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="long_description" class="form-label">Select Tags</label>
-                                            <div class="row">
-                                                @if($tags->count() > 0)
-                                                    @foreach($tags as $tag)
-                                                        <div class="col-lg-2 col-md-4 col-sm-6">
-                                                            <div class="form-check form-check-right mb-3">
-                                                                <input class="form-check-input" type="checkbox" name="tag_id[]" id="tag-{{ $tag->id }}" value="{{ $tag->id }}">
-                                                                <label class="form-check-label" for="formCheckRight1">
-                                                                    {{ $tag->label }}
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
-                                            </div>
+                                    <div class="col-lg-6" style="margin-top:20px">
+                                        <label class="form-label" for="is_main">
+                                              Is Main Knowledge Hub
+                                            </label>
+                                        <div class="form-check form-check-left" >
+                                            <input class="form-check-input" type="checkbox" name="is_main" id="is_main">
                                         </div>
                                     </div>
 
@@ -172,6 +141,23 @@
         <script src="{{ URL::asset('build/js/pages/form-validation.init.js') }}"></script>
         <script src="{{ URL::asset('build/js/app.js') }}"></script>
         <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
+          <script>
+            function generateSlug(text) {
+                return text
+                    .toLowerCase()
+                    .trim()
+                    .replace(/[^a-z0-9\s-]/g, '')     // Remove special chars
+                    .replace(/\s+/g, '-')             // Replace spaces with dashes
+                    .replace(/-+/g, '-');             // Collapse multiple dashes
+            }
+        
+            $(document).ready(function() {
+                $('#title').on('input', function() {
+                    let slug = generateSlug($(this).val());
+                    $('#slug').val(slug);
+                });
+            });
+        </script>
         <script type="text/javascript">
 
             setTimeout(function() {

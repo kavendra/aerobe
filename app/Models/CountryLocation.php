@@ -6,18 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class NewsCategory extends Model
+class CountryLocation extends Model
 {
     use SoftDeletes;
     use HasFactory;
-    protected $table = 'news_categories';
+
     protected $fillable = [
-        'label',
-        'status'
+        'country_id',
+        'name',
+        'lat',
+        'long',
     ];
 
-    public function newsAndEvents()
+    // CountryLocation.php
+    public function country()
     {
-        return $this->hasMany(NewsAndEvent::class, 'category_id');
+        return $this->belongsTo(Country::class);
     }
 }

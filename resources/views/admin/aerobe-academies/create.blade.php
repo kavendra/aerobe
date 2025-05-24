@@ -50,6 +50,15 @@
                                             <input id="title" name="title" placeholder="Enter Title" type="text" class="form-control" value="" required>
                                         </div>
                                     </div>
+                                    
+                                     {{-- Slug --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="title">Slug</label>
+                                    <input id="slug" name="slug" placeholder="Enter Slug" type="text" class="form-control" value="{{ old('slug') }}" required>
+                                    @error('slug') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
@@ -125,6 +134,23 @@
         <script src="{{ URL::asset('build/js/pages/form-validation.init.js') }}"></script>
         <script src="{{ URL::asset('build/js/app.js') }}"></script>
         <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
+         <script>
+            function generateSlug(text) {
+                return text
+                    .toLowerCase()
+                    .trim()
+                    .replace(/[^a-z0-9\s-]/g, '')     // Remove special chars
+                    .replace(/\s+/g, '-')             // Replace spaces with dashes
+                    .replace(/-+/g, '-');             // Collapse multiple dashes
+            }
+        
+            $(document).ready(function() {
+                $('#title').on('input', function() {
+                    let slug = generateSlug($(this).val());
+                    $('#slug').val(slug);
+                });
+            });
+        </script>
         <script type="text/javascript">
 
             setTimeout(function() {

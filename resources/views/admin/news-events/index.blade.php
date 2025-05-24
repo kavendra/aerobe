@@ -54,7 +54,7 @@
                     formattedData = data.map(item => ({
                         name: item.title,
                         image: item.image,
-                        country_name: item.country_name,
+                        //country_name: item.country_name,
                         status: item.status,
                         id: item.id
                     }));
@@ -77,7 +77,7 @@
                                     return gridjs.html(`<img src="${logoUrl}" class="rounded me-2" title="User Logo" width="150" height="120" />`);
                                 }
                             },
-                            "Country",
+                            //"Country",
                             {
                                 name: "Status",
                                 formatter: (cell, row) => {
@@ -92,9 +92,9 @@
                                 formatter: (cell, row) => {
                                     return gridjs.html(`
                                         <div class="d-flex gap-3">
-                                            <a onclick="editRecord(${row.cells[4].data})" href="javascript:void(0);" title="Edit" class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
+                                            <a onclick="editRecord(${row.cells[3].data})" href="javascript:void(0);" title="Edit" class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
                                             
-                                            <a href="javascript:void(0);" onclick="deleteRecord(${row.cells[4].data})" title="Delete" class="text-danger"><i class="mdi mdi-delete font-size-18"></i></a>
+                                            <a href="javascript:void(0);" onclick="deleteRecord(${row.cells[3].data})" title="Delete" class="text-danger"><i class="mdi mdi-delete font-size-18"></i></a>
                                         </div>
                                     `);
                                 }
@@ -106,7 +106,7 @@
                         data: formattedData.map(item => [
                             item.name,
                             item.image,
-                            item.country_name,
+                            //item.country_name,
                             item.status,
                             item.id
                         ])

@@ -57,15 +57,25 @@ class AerobeAcademyController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
+         $request->validate([
+            'title' => 'required|string',
+            'slug' => 'required|string',
             'category_id' => 'required',
             'country_id' => 'required',
             'short_description' => 'required',
-            'long_description' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+        ], [
+            'title.required' => 'The title field is required.',
+            'slug.required' => 'The slug field is required.',
+            'category_id.required' => 'Please select a category.',
+            'country_id.required' => 'Please select at least one country.',
+            'short_description.required' => 'Short description is required.',
+            'image.required' => 'An image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'image.max' => 'Image size must not exceed 5MB.',
         ]);
+
 
         if ($request->hasFile('image')) {
 
@@ -77,6 +87,7 @@ class AerobeAcademyController extends Controller
 
         $aerobe_academies = AerobeAcademy::create([
             'title' => $request->title,
+            'slug' => $request->slug,
             'category_id' => $request->category_id,
             'country_id' => json_encode($request->country_id),
             'image' => $imageName,
@@ -111,16 +122,30 @@ class AerobeAcademyController extends Controller
      */
     public function update(Request $request, AerobeAcademy $aerobeAcademy)
     {
-        //dd($request->all());
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string',
+            'slug' => 'required|string',
             'category_id' => 'required',
-            'short_description' => 'required',
-            'long_description' => 'required',
             'country_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'short_description' => 'required',
+        ], [
+            'title.required' => 'The title field is required.',
+            'slug.required' => 'The slug field is required.',
+            'category_id.required' => 'Please select a category.',
+            'country_id.required' => 'Please select at least one country.',
+            'short_description.required' => 'Short description is required.',
         ]);
+        if(empty($aerobeAcademy->image))
+        {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            ], [
+                'image.required' => 'An image is required.',
+                'image.image' => 'The file must be an image.',
+                'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+                'image.max' => 'Image size must not exceed 5MB.',
+            ]);
+        }
 
         if ($request->hasFile('image')) {
             // Delete old file
@@ -137,6 +162,7 @@ class AerobeAcademyController extends Controller
 
 
         $aerobeAcademy->title = $request->title;
+        $aerobeAcademy->slug = $request->slug;
         $aerobeAcademy->category_id = $request->category_id;
         $aerobeAcademy->country_id = $request->country_id;
         $aerobeAcademy->short_description = $request->short_description;

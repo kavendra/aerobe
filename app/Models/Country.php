@@ -23,4 +23,9 @@ class Country extends Model
     {
         return $this->hasMany(Prominent::class);
     }
+
+    public function locations()
+    {
+        return $this->hasMany(CountryLocation::class);
+    }
 }

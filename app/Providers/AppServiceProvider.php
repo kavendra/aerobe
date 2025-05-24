@@ -35,7 +35,8 @@ class AppServiceProvider extends ServiceProvider
             View::composer('*', function ($view) {
             $websettingInfo = Websetting::first();
             $topMenus = TopMenu::get();
-            $countries = Country::where('is_main', 1)->orderBy('order', 'ASC')->get();
+            $countries = Country::where('is_main', 1)->where('status', 1)->orderBy('order', 'ASC')->get();
+            $prominent_countries = Country::where('status', 1)->orderBy('order', 'ASC')->get();
             $mainMenus = MainMenu::get();
             $productsResourceMenus = ProductsResourceMenu::get();
             $connectWithUsMenus = ConnectWithUsMenu::get();
@@ -79,6 +80,8 @@ class AppServiceProvider extends ServiceProvider
                 'userInfo' => $userInfo,
                 'topMenus' => $topMenus,
                 'countries' => $countries,
+                'prominent_countries' => $prominent_countries,
+                
                 'mainMenus' => $mainMenus,
                 'productsResourceMenus' => $productsResourceMenus,
                 'connectWithUsMenus' => $connectWithUsMenus,
