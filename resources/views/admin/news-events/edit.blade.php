@@ -59,6 +59,16 @@
                                 </div>
                                 @error('title') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
+                            
+                              {{-- Title --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="title">Slug</label>
+                                    <input id="slug" name="slug" type="text" class="form-control" placeholder="Enter Slug" value="{{ old('slug', $newsAndEvent->slug) }}" required>
+                                    @error('slug') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
 
                             <div class="col-lg-6">
                                 <div class="mb-3">
@@ -68,7 +78,24 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-1" style="margin-top:20px"></div>
+
+                            <div class="col-lg-2" style="margin-top:20px">
+                                <label class="form-label" for="is_main">
+                                      Is Main News & Event
+                                    </label>
+                                <div class="form-check form-check-left" >
+                                    <input class="form-check-input" type="checkbox" name="is_main" id="is_main" @if($newsAndEvent->is_main == 1) checked @endif>
+                                </div>
+                            </div>
+                                
+                            <div class="col-lg-2" style="margin-top:20px">
+                                <label class="form-label" for="is_main">
+                                      Is Home News & Event
+                                    </label>
+                                <div class="form-check form-check-left" >
+                                    <input class="form-check-input" type="checkbox" name="is_home" id="is_home" @if($newsAndEvent->is_home == 1) checked @endif>
+                                </div>
                             </div>
 
                             <div class="col-lg-6">
@@ -92,31 +119,6 @@
                                     <label for="short_description" class="form-label">Short Description</label>
                                     <textarea class="form-control" name="short_description" id="short_description" placeholder="Enter Short Description" required>{{ old('short_description', $newsAndEvent->short_description) }}</textarea>
                                     @error('short_description') <div class="text-danger">{{ $message }}</div> @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="author_name">Author Name</label>
-                                    <input id="author_name" name="author_name" type="text" class="form-control" placeholder="Enter Author Name" value="{{ old('author_name', $newsAndEvent->author_name) }}" required>
-                                    @error('author_name') <div class="text-danger">{{ $message }}</div> @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6"></div>
-
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="author_image" class="form-label">Author Image</label>
-                                    <input class="form-control" type="file" name="author_image" id="author_image">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    @if(!empty($newsAndEvent->author_image))
-                                        <img src="{{ asset('assets/uploads/news-events/'.$newsAndEvent->author_image) }}" class="rounded" height="120" width="150" />
-                                    @endif
                                 </div>
                             </div>
 
@@ -197,7 +199,23 @@
     <script src="{{ URL::asset('build/js/pages/form-validation.init.js') }}"></script>
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
-    
+ <script>
+            function generateSlug(text) {
+                return text
+                    .toLowerCase()
+                    .trim()
+                    .replace(/[^a-z0-9\s-]/g, '')     // Remove special chars
+                    .replace(/\s+/g, '-')             // Replace spaces with dashes
+                    .replace(/-+/g, '-');             // Collapse multiple dashes
+            }
+        
+            $(document).ready(function() {
+                $('#title').on('input', function() {
+                    let slug = generateSlug($(this).val());
+                    $('#slug').val(slug);
+                });
+            });
+        </script>
     <script type="text/javascript">
         setTimeout(function() {
             $('.alert-success').fadeOut('slow');
