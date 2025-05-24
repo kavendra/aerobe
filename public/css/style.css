@@ -539,7 +539,7 @@ align-items: center;justify-content: center;border-radius: 100%;}
 .news-events .title span{font-size:#71717a;font-size:14px;color:#6b7280;}
 
 .shoplist {display: flex;flex-wrap: wrap;gap: 20px;}
-.shoplist .item {width: calc(33.333% - 20px);box-sizing: border-box;box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);border:1px solid #f3f3f3;border-radius:10px;}
+.shoplist .item {width: calc(20% - 16px);box-sizing: border-box;box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);border:1px solid #f3f3f3;border-radius:10px;}
 .shoplist .item .imbg{width: 100%;}
 .shoplist .item .imbg img{width: 100%;border-radius:10px 10px 0px 0px;}
 .shoplist .item .textb{width: 100%;padding:15px; }
