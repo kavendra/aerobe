@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use App\Models\Request;
 use App\Models\Country;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewsletterSubscribed;
@@ -41,6 +42,39 @@ class ShopController extends Controller
 
 		return view('front.shop.index', compact('shops', 'total'));
 	}
+
+	/**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'country' => 'required|string|max:20',
+            'description' => 'required',
+        ]);
+
+        $data = [
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'country' => $validated['country'],
+            'description' => $validated['description'],
+        ];
+        
+        Request::create($data);
+        
+        /*Mail::send('emails.contact', $data, function($message) use ($data) {
+            $message->to('your-email@example.com')
+                    ->subject('New Contact Form Message from');
+        });*/
+        if($request->ajax()) {
+            return response()->json(['success' => true, 'message' => 'Message sent successfully!']);
+        }
+        return redirect()->back()->with('success', 'Submitted successfully');
+    }
 
 	public function show(Shop $shop)
 	{
