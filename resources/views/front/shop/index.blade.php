@@ -121,7 +121,7 @@
                     }, 3000); // 3 seconds
                     setTimeout(function() {
                         $('.request-p').removeClass('active');
-                    }, 4000); // 4 seconds
+                    }, 3200); // 4 seconds
                 },
                 error: function(xhr) {
                     let errors = xhr.responseJSON.errors;
