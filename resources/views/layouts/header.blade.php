@@ -11,12 +11,28 @@
       <div class="social">
         <ul>
             @if($websettingInfo->facebook_url)
-                <li>
-                    <a href="{{ $websettingInfo->facebook_url }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a></li>
+            <li>
+              <a href="{{ $websettingInfo->facebook_url }}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+              </li>
             @endif
-            @if($websettingInfo->instagram_url)
-            <li><a href="{{ $websettingInfo->instagram_url }}"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a></li>
+            @if($websettingInfo->instagram1_url && $websettingInfo->instagram2_url)
+            <li><a href="javascript:void(0)" class="fb-btn"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a>
+              <div class="facebook-p">
+                <div class="close-btn"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"><path d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div>
+
+                <h3><a href="javascript:void(0)"> Instageam profile</a></h3>
+                <ul>
+                  <li>
+                    <img src="{{ asset('img/icon-insta.jpg') }}" alt="" />
+                    <a href="{{ $websettingInfo->instagram1_url }}" target="_blank">Instageam1</a>
+                  </li>
+                  <li>
+                    <img src="{{ asset('img/icon-insta.jpg') }}" alt="" />
+                    <a href="{{ $websettingInfo->instagram2_url }}" target="_blank">Instageam2</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
             @endif
             @if($websettingInfo->twitter_url)
             <li><a href="{{ $websettingInfo->twitter_url }}"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter"><path d="M42.5,31.2L66,6h-6L39.8,27.6L24,6H4l24.6,33.6L4,66h6l21.3-22.8L48,66h20L42.5,31.2z M12.9,10h8l38.1,52h-8L12.9,10z"></path></svg></a></li>
@@ -233,9 +249,9 @@
               <form id="contactForm">
               @csrf
                 <input type="text" name="name" class="input" placeholder="Name*" required>
-                <input type="text" name="email" class="input" placeholder="Email" required>
+                <input type="text" name="email" class="input" placeholder="Email*" required>
                 <input type="text" name="phone" class="input" placeholder="Phone Number*" required>
-                <textarea class="textarea" name="message" placeholder="Product info request" required></textarea>
+                <textarea class="textarea" name="message" placeholder="Product info request*" required></textarea>
                 <button class="c-btn" type="submit" id="send-us">Send To Us</button>
               </form>
             </div>

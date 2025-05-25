@@ -802,12 +802,18 @@ input[type=number] {-moz-appearance: textfield;}
 .csr-banner.shop-b img{width: 100%;}
 
 .social li{position: relative;}
-.facebook-p{width: 300px;position: absolute;z-index: 9999999;padding:25px 15px 15px 15px;background: #3B5998; border-radius: 8px;top: 40px;left: -130px;display:none;}
+.facebook-p{width: 170px;position: absolute;z-index: 9999999;padding:10px 15px 15px 15px;background: #fff; border-radius: 8px;top: 32px;left:0px;display:none;border:1px solid #ddd}
 .facebook-p img{width: 100%; border-radius: 10px;}
-.facebook-p a{width: auto !important; height: auto !important; background: none !important; color: #fff;}
-.facebook-p h3{font-size: 22px; margin-bottom: 10px;}
+.facebook-p a{width: auto !important; height: auto !important; background: none !important; color: #2d2d2d;}
+.facebook-p h3{font-size: 12px; margin-bottom: 0px; font-weight: 600; color: #2d2d2d;}
 .facebook-p .close-btn{width: 25px; height: 25px; text-align: center; line-height: 25px; background: #fff; border-radius: 5px; padding-top: 2px; cursor: pointer;    position: absolute;right: 8px;top: 8px;}
 .facebook-p.active{display: block;}
+.facebook-p ul{display: flex;  flex-flow: wrap; gap: 5px;}
+.facebook-p li{width: 100%; display: flex; gap: 5px; align-items: center; padding-top: 5px;}
+.facebook-p li img{width: 15px;}
+.facebook-p li a{font-size: 11px;}
+.facebook-p li ~ li{ border-top: 1px solid #e1eeee;}
+.facebook-p h3 a{display: table;}
 
 
 
