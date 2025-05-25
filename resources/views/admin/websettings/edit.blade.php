@@ -87,8 +87,14 @@
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="instagram_url" class="form-label">Instagram URL</label>
-                                        <input type="text" class="form-control" id="instagram_url" name="instagram_url" placeholder="Enter Instagram URL" value="{{ $webSetting->instagram_url }}">
+                                        <label for="instagram_url" class="form-label">Instagram1 URL</label>
+                                        <input type="text" class="form-control" id="instagram1_url" name="instagram1_url" placeholder="Enter Instagram URL" value="{{ $webSetting->instagram1_url }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="instagram_url" class="form-label">Instagram2 URL</label>
+                                        <input type="text" class="form-control" id="instagram2_url" name="instagram2_url" placeholder="Enter Instagram URL" value="{{ $webSetting->instagram2_url }}">
                                     </div>
                                 </div>
                             </div>

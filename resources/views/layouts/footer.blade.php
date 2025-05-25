@@ -48,12 +48,11 @@
          <h5>Our Newsletter</h5>
          <div class="newsletter-f">
             <p>Subscribe to our newsletter to get our news & deals delivered to you.</p>
-            <form id="newsletter-form">
+            <div id="response-message"></div>
+            <form id="newsletter-form" style="margin-top: 0" action="{{ route('newsletter.subscribe') }}">
               @csrf
-               <input type="text" placeholder="Email Address" name="email" id="email" class="input" />
+               <input type="text" placeholder="Email Address" name="email" id="join-email" class="input" />
                <button class="c-btn">Join</button>
-               <div style="clear: both;"></div>
-               <div id="response-message"></div>
             </form>
          </div>
          <div class="social">
@@ -61,8 +60,8 @@
                @if($websettingInfo->facebook_url)
                <li><a href="{{ $websettingInfo->facebook_url }}"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a></li>
                @endif
-               @if($websettingInfo->instagram_url)
-               <li><a href="{{ $websettingInfo->instagram_url }}"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a></li>
+               @if($websettingInfo->instagram1_url)
+               <li><a href="{{ $websettingInfo->instagram1_url }}"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a></li>
                @endif
                @if($websettingInfo->twitter_url)
                <li><a href="{{ $websettingInfo->twitter_url }}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter"><path d="M42.5,31.2L66,6h-6L39.8,27.6L24,6H4l24.6,33.6L4,66h6l21.3-22.8L48,66h20L42.5,31.2z M12.9,10h8l38.1,52h-8L12.9,10z"></path></svg></a></li>

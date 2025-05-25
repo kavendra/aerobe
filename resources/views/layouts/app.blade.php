@@ -37,28 +37,6 @@
     
   <script>
     $(document).ready(function () {
-        $('#newsletter-form').on('submit', function (e) {
-            e.preventDefault();
-            let email = $('#email').val();
-            let token = $('input[name="_token"]').val();
-            $.ajax({
-                url: '{{ route('newsletter.subscribe') }}',
-                type: 'POST',
-                data: {
-                    _token: token,
-                    email: email
-                },
-                success: function (response) {
-                    $('#response-message').html('<p style="color: green;">' + response.success + '</p>');
-                    $('#newsletter-form')[0].reset();
-                },
-                error: function (xhr) {
-                    let error = xhr.responseJSON.errors.email[0];
-                    $('#response-message').html('<p style="color: red;">' + error + '</p>');
-                }
-            });
-        });
-
         $('#contactForm').on('submit', function(e) {
             e.preventDefault();
             $('#send-us').addClass('disabled');
@@ -126,11 +104,7 @@
         }
     }
 });
-   
-
-
-    });
+});
 </script>
-
 </body>
 </html>

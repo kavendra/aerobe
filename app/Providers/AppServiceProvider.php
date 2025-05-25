@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
             $productsResourceMenus = ProductsResourceMenu::get();
             $connectWithUsMenus = ConnectWithUsMenu::get();
             $legalInformationMenus = LegalInformationMenu::get();
-            $testimonials = Testimonial::get();
+            
             $categories = Category::get();
             #dd($websettingInfo);    
             // Check if the user is authenticated
@@ -68,12 +68,20 @@ class AppServiceProvider extends ServiceProvider
             $portfolioJson = json_encode($portfolioData);
             $ip = $_SERVER['REMOTE_ADDR']; # 106.219.238.209
             if (!session()->has('country') || empty(session('country'))) {
-                $country = $this->ip_info($ip, "Country");
-                session(['country' => $country]);
+                $getCountry = $this->ip_info($ip, "Country");
+                session(['country' => $getCountry]);
             }
             $countryName = strtoUpper(session('country'));
-            $isCountryExists = Country::where('is_main', 1)->where('label', $countryName)->first();
+            $country = Country::where('is_main', 1)->where('label', $countryName)->first();
             
+            $testimonials = Testimonial::where(function($query)use($country){
+                                if($country) {
+                                    $query->whereJsonContains('country_id', (string) $country->id);
+                                }else{
+                                    $query->whereJsonContains('country_id', (string) 6);
+                                }
+                            })->latest()->get();
+
             // Share data with all views
             $view->with([
                 'websettingInfo' => $websettingInfo,
@@ -91,7 +99,7 @@ class AppServiceProvider extends ServiceProvider
                 'mainMenus' => $mainMenus,
                 'categories' => $categories, 
                 'portfolioJson' => $portfolioJson, 
-                'countryName' => $isCountryExists ? $countryName : 'Global', 
+                'countryName' => !empty($country) ? $countryName : 'Global', 
             ]);
         });
     }

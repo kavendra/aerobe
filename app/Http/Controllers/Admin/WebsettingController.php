@@ -84,7 +84,8 @@ class WebsettingController extends Controller
             'site_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'site_favicon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'facebook_url' => 'nullable|url',
-            'instagram_url' => 'nullable|url',
+            'instagram1_url' => 'nullable|url',
+            'instagram2_url' => 'nullable|url',
             'twitter_url' => 'nullable|url',
             'youtube_url' => 'nullable|url',
             'linkedin_url' => 'nullable|url',
@@ -126,11 +127,11 @@ class WebsettingController extends Controller
 
         $webSetting->site_name = $request->site_name;
         $webSetting->facebook_url = $request->facebook_url;
-        $webSetting->instagram_url = $request->instagram_url;
+        $webSetting->instagram1_url = $request->instagram1_url;
         $webSetting->twitter_url = $request->twitter_url;
         $webSetting->youtube_url = $request->youtube_url;
         $webSetting->linkedin_url = $request->linkedin_url;
-        $webSetting->instagram_url = $request->instagram_url;
+        $webSetting->instagram2_url = $request->instagram2_url;
         $webSetting->pininterest_url = $request->pininterest_url;
         $webSetting->footer_shortdesc = $request->footer_shortdesc;
         $webSetting->copyright_text = $request->copyright_text;
