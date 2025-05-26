@@ -1,9 +1,16 @@
 @extends('layouts.app')
 @section('content')
 <div class="top-banner news">
-	<div class="textb2">
-	<h2>News & Events</h2>
-	<p>Who we are and what we do...</p>
+		 @if ($newsEventPage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $newsEventPage->banner_image)))
+            <img src="{{ asset('assets/uploads/cms-pages/'.$newsEventPage->banner_image) }}" />
+         @else
+            <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+         @endif
+<div class="textb2">
+	<div class="container">
+	<h2>{{ $newsEventPage->banner_title }}</h2>
+	<p>{!! $newsEventPage->banner_desc !!}</p>
+	</div>
 </div>
 </div>
 
@@ -13,7 +20,7 @@
 		<div class="container">
 			<div class="title">
 				<h3>News And Events</h3>
-				<span>Ideas for better days</span>
+				<!--<span>Ideas for better days</span>-->
 			</div>
 			<div class="news-slider">
 				@foreach($featuredNewsAndEvents as $featuredNewsAndEvent)

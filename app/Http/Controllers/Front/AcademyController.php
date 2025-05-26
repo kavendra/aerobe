@@ -6,7 +6,7 @@ use App\Models\Country;
 use App\Models\Category;
 use App\Models\AerobeAcademy;
 use App\Http\Controllers\Controller;
-
+use App\Models\AerobeAcademyPage;
 class AcademyController extends Controller
 {
 	public function index(Request $request)
@@ -38,10 +38,20 @@ class AcademyController extends Controller
 		        $query->whereJsonContains('country_id', (string) $country->id);
 		    }
 		})->orderBy('category_id');
+		
+		$aerobeAcademicsMain = AerobeAcademy::where(function($query) use ($country) {
+		    if ($country) {
+		        
+		        $query->whereJsonContains('country_id', (string) $country->id);
+		    }
+		    $query->where('is_main', 1);
+		    
+		})->orderBy('category_id')->first();
 
 		$total = $aerobeAcademics->count(); // Get total matching records
 		$aerobeAcademics = $aerobeAcademics->paginate(6)->groupBy('category_id')->flatten(); // Get paginated/limited results
-		return view('front.academy.index', compact('aerobeAcademics', 'total'));
+		$aerobeAcademicsPage = AerobeAcademyPage::find(1);
+		return view('front.academy.index', compact('aerobeAcademics', 'total', 'aerobeAcademicsMain', 'aerobeAcademicsPage'));
 	}
 
 	public function show(AerobeAcademy $academy)

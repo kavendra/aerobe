@@ -14,8 +14,14 @@ class Testimonial extends Model
     protected $fillable = [
         'label',
         'image',
-        'rating',
+        'country_id',
         'description',
         'status'
     ];
+    
+     protected $casts = [
+        //'tag_id' => 'array', // Automatically converts JSON to array when retrieved
+        'country_id' => 'array',
+    ];
+
 }

@@ -14,14 +14,15 @@ class NewsAndEvent extends Model
     protected $table = 'news_events';
     protected $fillable = [
         'title',
+        'slug',
         'image',
         'tag_id',
         'category_id',
         'country_id',
         'short_description',
         'long_description',
-        'author_name',
-        'author_image',
+        'is_main',
+        'is_home',
         'event_date',
         'status'
     ];

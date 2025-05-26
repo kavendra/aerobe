@@ -1,17 +1,24 @@
 @extends('layouts.app')
 @section('content')
 <div class="top-banner csr-banner hub">
-	<div class="container">
-		<div class="textb2">
-			<h2>Knowledge Hub</h2>
-			<p>Keep yourself more updated</p>
-		</div>
-		<div class="rightb">
-			<div class="whiteb">
-				<span class="tag-text">Tecnology</span>
-				<h3>The Impact of Technology on <br/> the Workplace: How <br/> Technology is Changing</h3>
+		 @if ($knowledgeHubPage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $knowledgeHubPage->banner_image)))
+            <img src="{{ asset('assets/uploads/cms-pages/'.$knowledgeHubPage->banner_image) }}" />
+         @else
+            <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+         @endif
+		<div class="innerb">
+		<div class="container">
+			<div class="textb2">
+				<h2>{{ $knowledgeHubPage->banner_title }}</h2>
+				<p>{!! $knowledgeHubPage->banner_desc !!}</p>
 			</div>
-		</div>
+			<div class="rightb">
+				<div class="whiteb">
+					<span class="tag-text">{{ $aerobeAcademicsMain->category->label }}</span>
+					<h3>{!! $aerobeAcademicsMain->title !!}</h3>
+				</div>
+			</div>
+	</div>
 	</div>
 </div>
 

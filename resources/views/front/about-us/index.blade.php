@@ -2,13 +2,13 @@
 @section('content')
   <div class="top-banner">
     <div class="imgb">
-        @if ($aboutUs->header_image && file_exists(public_path('assets/uploads/about-us/' . $aboutUs->header_image)))
-            <img src="{{ asset('assets/uploads/about-us/'.$aboutUs->header_image) }}" />
+        @if ($aboutUs->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $aboutUs->header_image)))
+            <img src="{{ asset('assets/uploads/cms-pages/'.$aboutUs->header_image) }}" />
         @endif
     </div>
     <div class="textb">
-        <h1>{!! $aboutUs->header_heading !!}</h1>
-        <p>{!! $aboutUs->header_title !!}</p>
+        <h1>{!! $aboutUs->header_title !!}</h1>
+        <p>{!! $aboutUs->header_desc !!}</p>
     </div>
 </div>
 <div class="mid-section">

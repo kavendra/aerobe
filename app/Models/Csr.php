@@ -14,6 +14,7 @@ class Csr extends Model
     protected $table = 'csrs';
     protected $fillable = [
         'title',
+        'slug',
         'image',
         'tag_id',
         'category_id',

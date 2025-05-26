@@ -34,34 +34,36 @@
                             </div>
                         </div>
                         <div class="p-4 border-top">
-                            <div class="row col-lg-8">
-                                <div class="mb-3">
-                                    <label class="form-label" for="header_heading">Header Heading</label>
-                                    <input id="header_heading" name="header_heading" placeholder="Enter Header Heading" type="text" class="form-control" value="{{ $aboutPage->header_heading }}" required>
-                                </div>
-                            </div>
+                            <!--<div class="row col-lg-12">-->
+                            <!--    <div class="mb-3">-->
+                            <!--        <label class="form-label" for="header_heading">Header Heading</label>-->
+                            <!--        <input id="header_heading" name="header_heading" placeholder="Enter Header Heading" type="text" class="form-control" value="{{ $aboutPage->header_heading }}" required>-->
+                            <!--    </div>-->
+                            <!--</div>-->
 
-                            <div class="row col-lg-8">
+                            <div class="row col-lg-12">
                                 <div class="mb-3">
                                     <label class="form-label" for="header_heading">Header Title</label>
                                     <input id="header_title" name="header_title" placeholder="Enter Header Title" type="text" class="form-control" value="{{ $aboutPage->header_title }}" required>
                                 </div>
                             </div>
+                            
+                            <div class="row col-lg-12"></div>
 
-                            <div class="row col-lg-8">
-                                <div class="col-lg-4">
+                            <div class="row col-lg-12">
+                                <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="header_image" class="form-label">Header Image</label>
                                         <input class="form-control" type="file" name="header_image" id="header_image">
                                     </div>
                                 </div>
 
-                                <div class="col-lg-2">
+                                <div class="col-lg-6">
                                     <div class="mb-3">
                                         @if ($aboutPage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $aboutPage->header_image)))
-                                            <img src="{{ asset('assets/cms-pagess/cms-pages/' . $aboutPage->header_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $aboutPage->header_image) }}" class="rounded me-2" title="Site Logo" height="120px" width="150px" data-holder-rendered="true" />
                                         @else
-                                            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
+                                            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" height="120px" width="150px" data-holder-rendered="true" />
                                         @endif
                                     </div>
                                 </div>
@@ -74,24 +76,24 @@
                                 </div>
 
 
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="about_image" class="form-label">About Image</label>
-                                        <input class="form-control" type="file" name="about_image" id="about_image">
-                                    </div>
-                                </div>
+                                <!--<div class="col-lg-6">-->
+                                <!--    <div class="mb-3">-->
+                                <!--        <label for="about_image" class="form-label">About Image</label>-->
+                                <!--        <input class="form-control" type="file" name="about_image" id="about_image">-->
+                                <!--    </div>-->
+                                <!--</div>-->
 
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        @if ($aboutPage->about_image && file_exists(public_path('assets/uploads/cms-pages/' . $aboutPage->about_image)))
-                                            <img src="{{ asset('assets/uploads/cms-pages/' . $aboutPage->about_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
-                                        @else
-                                            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
-                                        @endif
-                                    </div>
-                                </div>
+                                <!--<div class="col-lg-6">-->
+                                <!--    <div class="mb-3">-->
+                                <!--        @if ($aboutPage->about_image && file_exists(public_path('assets/uploads/cms-pages/' . $aboutPage->about_image)))-->
+                                <!--            <img src="{{ asset('assets/uploads/cms-pages/' . $aboutPage->about_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />-->
+                                <!--        @else-->
+                                <!--            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />-->
+                                <!--        @endif-->
+                                <!--    </div>-->
+                                <!--</div>-->
 
-                                <div class="row col-lg-8">
+                                <div class="row col-lg-12">
                                     <div class="mb-3">
                                         <label for="about_desc" class="form-label">About Description <span class="text-danger">*</span></label>
                                         <textarea type="text" class="form-control" name="about_desc" placeholder="Enter About Description" id="about_desc">{{ $aboutPage->about_desc }}</textarea>
@@ -113,7 +115,7 @@
                    
                         <div class="p-4 border-top">
                            
-                                <div class="row col-sm-8">
+                                <div class="row col-sm-12">
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="meta_title">Meta Title</label>

@@ -14,6 +14,7 @@ class AerobeAcademy extends Model
     
     protected $fillable = [
         'title',
+        'slug',
         'image',
         'category_id',
         'country_id',

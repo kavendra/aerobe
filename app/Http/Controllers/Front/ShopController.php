@@ -8,7 +8,7 @@ use App\Models\Country;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewsletterSubscribed;
 use App\Http\Controllers\Controller;
-
+use App\Models\ShopPage;
 class ShopController extends Controller
 {
 	public function index(Request $request)
@@ -39,8 +39,8 @@ class ShopController extends Controller
 
 		$total = $query->count(); // Get total matching records
 		$shops = $query->paginate(6); // Get paginated/limited results
-
-		return view('front.shop.index', compact('shops', 'total'));
+        $shopPage = ShopPage::find(1);
+		return view('front.shop.index', compact('shops', 'total', 'shopPage'));
 	}
 
 	/**

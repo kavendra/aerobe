@@ -6,12 +6,13 @@ use App\Models\Work;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewsletterSubscribed;
 use App\Http\Controllers\Controller;
-
+use App\Models\WorkAerobePage;
 class WorkController extends Controller
 {
 	public function index(Request $request)
 	{
-	    return view('front.work.index');
+	    $workAerobePage = WorkAerobePage::find(1);
+	    return view('front.work.index', compact('workAerobePage'));
 	}
 
 	/**

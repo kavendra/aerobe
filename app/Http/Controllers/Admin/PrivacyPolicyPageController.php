@@ -58,13 +58,10 @@ class PrivacyPolicyPageController extends Controller
     public function update(Request $request, PrivacyPolicyPage $privacyPolicyPage)
     {
         $request->validate([
-            'header_heading' => 'required|string|max:255',
+           
             'header_title' => 'required|string',
             'header_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'header_desc' => 'nullable|string',
-            
-            'cookie_preference_desc' => 'required|string',
-            
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:1000',
             'meta_keywords' => 'nullable|string|max:500',
@@ -73,8 +70,8 @@ class PrivacyPolicyPageController extends Controller
 
         if ($request->hasFile('header_image')) {
             // Delete old file
-            if ($privacyPolicyPage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $privacyPolicyPage->site_logo))) {
-                unlink(public_path('assets/uploads/cms-pages/' . $privacyPolicyPage->site_logo));
+            if ($privacyPolicyPage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $privacyPolicyPage->header_image))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $privacyPolicyPage->header_image));
             }
 
             // Upload new file
@@ -84,11 +81,11 @@ class PrivacyPolicyPageController extends Controller
             $privacyPolicyPage->header_image = $filename;
         }
 
-        $privacyPolicyPage->header_heading = $request->header_heading;
+       
         $privacyPolicyPage->header_title = $request->header_title;
         $privacyPolicyPage->header_desc = $request->header_desc;
         
-        $privacyPolicyPage->cookie_preference_desc = $request->cookie_preference_desc;
+        $privacyPolicyPage->privacy_desc = $request->privacy_desc;
 
         $privacyPolicyPage->meta_title = $request->meta_title;
         $privacyPolicyPage->meta_description = $request->meta_description;

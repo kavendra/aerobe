@@ -70,7 +70,8 @@
           @if($newsAndEvents->first())
             @php($featuredNewsAndEvent = $newsAndEvents->first())
             <div class="imgb">
-               @if ($featuredNewsAndEvent->author_image && file_exists(public_path('assets/uploads/news-events/' . $featuredNewsAndEvent->image)))
+               
+               @if ($featuredNewsAndEvent->image && file_exists(public_path('assets/uploads/news-events/' . $featuredNewsAndEvent->image)))
                 <img src="{{ asset('assets/uploads/news-events/'.$featuredNewsAndEvent->image) }}" />
               @else
                   <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />

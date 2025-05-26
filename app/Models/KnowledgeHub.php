@@ -14,20 +14,18 @@ class KnowledgeHub extends Model
     protected $table = 'knowledge_hubs';
     protected $fillable = [
         'title',
+        'slug',
         'image',
-        'tag_id',
         'category_id',
         'country_id',
         'short_description',
         'long_description',
-        'author_name',
-        'author_image',
-        'event_date',
+        'is_main',
         'status'
     ];
 
      protected $casts = [
-        'tag_id' => 'array', // Automatically converts JSON to array when retrieved
+        //'tag_id' => 'array', // Automatically converts JSON to array when retrieved
         'country_id' => 'array',
     ];
 

@@ -57,19 +57,21 @@ class TermsOfUsePageController extends Controller
      */
     public function update(Request $request, TermsOfUsePage $termsOfUsePage)
     {
+        
         $request->validate([
-            'header_heading' => 'required|string|max:255',
             'header_title' => 'required|string',
             'header_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'header_desc' => 'nullable|string',
             
-            'cookie_preference_desc' => 'required|string',
+           
             
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:1000',
             'meta_keywords' => 'nullable|string|max:500',
             // Add other fields as per your form...
         ]);
+        
+       
 
         if ($request->hasFile('header_image')) {
             // Delete old file
@@ -84,11 +86,11 @@ class TermsOfUsePageController extends Controller
             $termsOfUsePage->header_image = $filename;
         }
 
-        $termsOfUsePage->header_heading = $request->header_heading;
+        
         $termsOfUsePage->header_title = $request->header_title;
         $termsOfUsePage->header_desc = $request->header_desc;
         
-        $termsOfUsePage->cookie_preference_desc = $request->cookie_preference_desc;
+        $termsOfUsePage->terms_desc = $request->terms_desc;
 
         $termsOfUsePage->meta_title = $request->meta_title;
         $termsOfUsePage->meta_description = $request->meta_description;
