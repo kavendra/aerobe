@@ -13,6 +13,7 @@ class OurPortfolio extends Model
     protected $table = 'our_portfolios';
     protected $fillable = [
         'title',
+        'slug',
         'image',
         'category_id',
         'country_id',

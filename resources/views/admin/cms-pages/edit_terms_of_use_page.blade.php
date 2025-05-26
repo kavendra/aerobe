@@ -29,13 +29,13 @@
                             </div>
                         </div>
                         <div class="p-4 border-top">
-                            <div class="row col-lg-8">
-                                <div class="row col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="header_heading">Header Heading</label>
-                                        <input id="header_heading" name="header_heading" placeholder="Enter Header Heading" type="text" class="form-control" value="{{ $termsOfUsePage->header_heading }}" required>
-                                    </div>
-                                </div>
+                            <div class="row col-lg-12">
+                                <!--<div class="row col-lg-6">-->
+                                <!--    <div class="mb-3">-->
+                                <!--        <label class="form-label" for="header_heading">Header Heading</label>-->
+                                <!--        <input id="header_heading" name="header_heading" placeholder="Enter Header Heading" type="text" class="form-control" value="{{ $termsOfUsePage->header_heading }}" required>-->
+                                <!--    </div>-->
+                                <!--</div>-->
                             
                                 <div class="row col-lg-6">
                                     <div class="mb-3">
@@ -43,6 +43,8 @@
                                         <input id="header_title" name="header_title" placeholder="Enter Header Title" type="text" class="form-control" value="{{ $termsOfUsePage->header_title }}" required>
                                     </div>
                                 </div>
+                                
+                                <div class="row col-lg-6"></div>
                                
                                 <div class="col-lg-6">
                                     <div class="mb-3">
@@ -54,9 +56,9 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         @if ($termsOfUsePage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $termsOfUsePage->header_image)))
-                                            <img src="{{ asset('assets/uploads/cms-pages/' . $termsOfUsePage->header_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $termsOfUsePage->header_image) }}" class="rounded me-2" title="Site Logo" height="120px" width="150px" data-holder-rendered="true" />
                                         @else
-                                            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
+                                            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" height="120px" width="150px" data-holder-rendered="true" />
                                         @endif
                                     </div>
                                 </div>
@@ -83,8 +85,8 @@
                         <div class="p-4 border-top">
                             <div class="row col-sm-12">
                                 <div class="mb-3">
-                                    <label class="form-label" for="cookie_preference_desc">Cookie Preferences Page Description</label>
-                                    <textarea class="form-control" id="cookie_preference_desc" placeholder="Enter Cookie Preferences Page Description" name="cookie_preference_desc" rows="4">{{ $termsOfUsePage->cookie_preference_desc }}</textarea>
+                                    <label class="form-label" for="	terms_desc">Terms Of Use Description</label>
+                                    <textarea class="form-control" id="terms_desc" placeholder="Enter Cookie Preferences Page Description" name="terms_desc" rows="4">{{ $termsOfUsePage->terms_desc }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -175,7 +177,7 @@
     </script>
 
     <script>
-        CKEDITOR.ClassicEditor.create(document.getElementById("cookie_preference_desc"), {
+        CKEDITOR.ClassicEditor.create(document.getElementById("terms_desc"), {
             // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
             toolbar: {
                 items: [

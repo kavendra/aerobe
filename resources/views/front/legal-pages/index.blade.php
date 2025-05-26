@@ -1,34 +1,21 @@
 @extends('layouts.app')
 @section('content')
 
-@if($page == 'terms')
-	<div class="banner-top-term">
-		<img src="{{ asset('img/banner-term.jpg') }}" alt="" />
-		<div class="textb">
-			<div class="container">
-				<h2>Terms of Services</h2>
-			</div>
-		</div>
-	</div>
-@elseif($page == 'privacy')
-	<div class="banner-top-term">
-		<img src="{{ asset('img/banner-privacy.jpg') }}" alt="" />
-		<div class="textb">
-			<div class="container">
-				<h2>Privacy Policy</h2>
-			</div>
-		</div>
-	</div>
-@elseif($page == 'cookie-preferences')
-	<div class="banner-top-term">
-		<img src="{{ asset('img/banner-term.jpg') }}" alt="" />
-		<div class="textb">
-			<div class="container">
-				<h2>Cookie Preferences</h2>
-			</div>
-		</div>
-	</div>
-@endif	
+
+<div class="top-banner news">
+    	 @if ($legalInfo->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $legalInfo->header_image)))
+            <img src="{{ asset('assets/uploads/cms-pages/'.$legalInfo->header_image) }}" />
+         @else
+            <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+         @endif
+    <div class="textb2">
+        <div class="container">
+           	<h2>{{ $legalInfo->header_title }}</h2>
+				<p>{!! $legalInfo->header_desc !!}</p>
+        </div>
+    </div>
+</div>
+
 
 <div class="mid-section">
     <div class="container3">

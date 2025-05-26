@@ -1,15 +1,19 @@
 @extends('layouts.app')
 @section('content')
-<div class="top-banner csr-banner shop-b">
-	<img src="{{ asset('img/hero-work.jpg') }}" />
-	<div class="textb2">
-		<div class="container">
-			<h2>Shop</h2>
-			<p>Be part of a team that's revolutionizing rural healthcare through innovative telemedicine solutions.</p>
-		</div>
-	</div>
-</div>
 
+<div class="top-banner news">
+     @if ($shopPage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $shopPage->banner_image)))
+            <img src="{{ asset('assets/uploads/cms-pages/'.$shopPage->banner_image) }}" />
+         @else
+            <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+         @endif
+    <div class="textb2">
+        <div class="container">
+            <h2>{{ $shopPage->banner_title }}</h2>
+            <p>{!! $shopPage->banner_desc !!}</p>
+        </div>
+    </div>
+</div>
 <div class="mid-section">
 	<div class="latest-post">
 		<div class="container">
@@ -121,7 +125,7 @@
                     }, 3000); // 3 seconds
                     setTimeout(function() {
                         $('.request-p').removeClass('active');
-                    }, 3200); // 4 seconds
+                    }, 4000); // 4 seconds
                 },
                 error: function(xhr) {
                     let errors = xhr.responseJSON.errors;

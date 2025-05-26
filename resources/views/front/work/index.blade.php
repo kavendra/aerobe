@@ -1,9 +1,16 @@
 @extends('layouts.app')
 @section('content')
-<div class="top-banner csr-banner">
+<div class="top-banner news">
+    @if ($workAerobePage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $workAerobePage->banner_image)))
+            <img src="{{ asset('assets/uploads/cms-pages/'.$workAerobePage->banner_image) }}" />
+         @else
+            <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+         @endif
     <div class="textb2">
-        <h2>Join Our Mission to Transform Healthcare</h2>
-        <p>Be part of a team that's revolutionizing rural healthcare through innovative telemedicine solutions.</p>
+        <div class="container">
+            	<h2>{{ $workAerobePage->banner_title }}</h2>
+				<p>{!! $workAerobePage->banner_desc !!}</p>
+        </div>
     </div>
 </div>
 <div class="mid-section">

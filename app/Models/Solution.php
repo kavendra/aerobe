@@ -13,6 +13,7 @@ class Solution extends Model
     protected $table = 'solutions';
     protected $fillable = [
         'title',
+        'slug',
         'image',
         'category_id',
         'country_id',

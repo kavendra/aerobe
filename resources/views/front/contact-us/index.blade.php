@@ -1,11 +1,19 @@
 @extends('layouts.app')
 @section('content')
-<div class="top-banner contact-banner">
-    <img src="{{ asset('img/hero-contact.jpg') }}" alt=""/>
-    <h1>Contact Us</h1>
-    <p>Be in touch</p>
-</div>
 
+<div class="top-banner news">
+    	 @if ($contactPage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $contactPage->header_image)))
+            <img src="{{ asset('assets/uploads/cms-pages/'.$contactPage->header_image) }}" />
+         @else
+            <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+         @endif
+    <div class="textb2">
+        <div class="container">
+           	<h2>{{ $contactPage->header_title }}</h2>
+				<p>{!! $contactPage->header_desc !!}</p>
+        </div>
+    </div>
+</div>
 <div class="mid-section">
     <div class="contact-info">
         <div class="container">

@@ -45,13 +45,6 @@
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="rating">Rating</label>
-                                        <input id="rating" name="rating" placeholder="Enter Rating" type="text" class="form-control" value="{{ $testimonial->rating }}" required>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
                                         <label for="image" class="form-label">Image</label>
                                         <input class="form-control" type="file" name="image" id="image">
                                     </div>
@@ -71,6 +64,26 @@
                                     <div class="mb-3">
                                         <label for="description" class="form-label">Description</label>
                                         <textarea type="text" class="form-control" name="description" placeholder="Enter Description" id="description">{{ $testimonial->description }}</textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label for="long_description" class="form-label">Select Country</label>
+                                        <div class="row">
+                                            @if($countries->count() > 0)
+                                                @foreach($countries as $country)
+                                                    <div class="col-lg-2 col-md-4 col-sm-6">
+                                                        <div class="form-check form-check-right mb-3">
+                                                            <input class="form-check-input" type="checkbox" name="country_id[]" id="country-{{ $country->id }}" value="{{ $country->id }}" @if(is_array($testimonial->country_id) && in_array($country->id, $testimonial->country_id))checked @endif >
+                                                            <label class="form-check-label" for="formCheckRight1">
+                                                                {{ $country->label }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                          

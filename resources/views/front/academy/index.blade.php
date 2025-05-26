@@ -1,18 +1,39 @@
 @extends('layouts.app')
 @section('content')
 <div class="mid-section">
-  <div class="course">
-    <div class="container">
-      <div class="textb">
-        <h4>Let's <strong>Begin</strong></h4>
-        <h3>Let's Find The Right Course For you</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/>Etiam dignissim, sem non convallis molestie.</p>
-      </div>
-      <div class="imgb">
-        <img src="{{ asset('img/hero-academy.svg') }}" alt="" />
-      </div>
-    </div>
-  </div>
+  <!--<div class="course">-->
+  <!--  <div class="container">-->
+  <!--    <div class="textb">-->
+  <!--      <h4>Let's <strong>Begin</strong></h4>-->
+  <!--      <h3>Let's Find The Right Course For you</h3>-->
+  <!--      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/>Etiam dignissim, sem non convallis molestie.</p>-->
+  <!--    </div>-->
+  <!--    <div class="imgb">-->
+  <!--      <img src="{{ asset('img/hero-academy.svg') }}" alt="" />-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--</div>-->
+<div class="top-banner csr-banner hub">
+		 @if ($aerobeAcademicsPage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $aerobeAcademicsPage->banner_image)))
+            <img src="{{ asset('assets/uploads/cms-pages/'.$aerobeAcademicsPage->banner_image) }}" />
+         @else
+            <img src="{{ asset('img/img-dummy.jpg') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
+         @endif
+		<div class="innerb">
+		<div class="container">
+			<div class="textb2">
+				<h2>{{ $aerobeAcademicsPage->banner_title }}</h2>
+				<p>{!! $aerobeAcademicsPage->banner_desc !!}</p>
+			</div>
+			<div class="rightb">
+				<div class="whiteb">
+					<span class="tag-text">{{ $aerobeAcademicsMain->category->label ?? '' }}</span>
+					<h3>{!! $aerobeAcademicsMain->title ?? '' !!}</h3>
+				</div>
+			</div>
+	</div>
+	</div>
+</div>
   <div class="latest-post">
     <div class="container">
       <h2>Latest Post</h2>

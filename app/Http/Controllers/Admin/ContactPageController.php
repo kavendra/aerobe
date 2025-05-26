@@ -78,6 +78,9 @@ class ContactPageController extends Controller
     public function update(Request $request, ContactPage $contactPage)
     {
         // $request->validate([
+        //  'header_title' => 'required|string',
+        //     'header_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        //     'header_desc' => 'nullable|string',
         //     'glb_call_us_today' => 'required|digits_between:10,15|regex:/^[0-9]+$/',
         //     'glb_tech_support_email' => 'required|email',
         //     'glb_chat_with_us_email' => 'required|email',
@@ -122,7 +125,22 @@ class ContactPageController extends Controller
         //     // Add other fields as per your form...
         // ]);
         
-        
+         if ($request->hasFile('header_image')) {
+            // Delete old file
+            if ($contactPage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $contactPage->header_image))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $contactPage->header_image));
+            }
+
+            // Upload new file
+            $file = $request->file('header_image');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/cms-pages/'), $filename);
+            $contactPage->header_image = $filename;
+        }
+
+       
+        $contactPage->header_title = $request->header_title;
+        $contactPage->header_desc = $request->header_desc;
 
         $contactPage->glb_call_us_today = $request->glb_call_us_today;
         $contactPage->glb_tech_support_email = $request->glb_tech_support_email;

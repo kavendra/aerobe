@@ -48,9 +48,23 @@ class TestimonialController extends Controller
     {
         $request->validate([
             'label' => 'required|string|max:255',
+            'country_id' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
         ]);
+        
+         $request->validate([
+            'label' => 'required|string',
+            'country_id' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+        ], [
+            'label.required' => 'The title field is required.',
+            'country_id.required' => 'Please select at least one country.',
+            'image.required' => 'An image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'image.max' => 'Image size must not exceed 5MB.',
+        ]);
+
 
         if ($request->hasFile('image')) {
 
@@ -62,7 +76,7 @@ class TestimonialController extends Controller
 
         $testimonial = Testimonial::create([
             'label' => $request->label,
-            'rating' => $request->rating,
+            'country_id' => $request->country_id,
             'image' => $filename,
             'description' => $request->description,
             'status' => $request->status
@@ -92,11 +106,24 @@ class TestimonialController extends Controller
      */
     public function update(Request $request, Testimonial $testimonial)
     {
-        $request->validate([
-            'label' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+         $request->validate([
+            'label' => 'required|string',
+            'country_id' => 'required'
+        ], [
+            'label.required' => 'The title field is required.',
+            'country_id.required' => 'Please select at least one country.',
         ]);
+        if(empty($testimonial->image))
+        {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            ], [
+                'image.required' => 'An image is required.',
+                'image.image' => 'The file must be an image.',
+                'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+                'image.max' => 'Image size must not exceed 5MB.',
+            ]);
+        }
 
         if ($request->hasFile('image')) {
             // Delete old file
@@ -112,7 +139,8 @@ class TestimonialController extends Controller
         }
 
         $testimonial->label = $request->label;
-        $testimonial->rating = $request->rating;
+        $testimonial->country_id = $request->country_id;
+       
         $testimonial->description = $request->description;
         $testimonial->status = $request->status;
         $testimonial->save();

@@ -29,13 +29,8 @@
                             </div>
                         </div>
                         <div class="p-4 border-top">
-                            <div class="row col-lg-8">
-                                <div class="row col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="header_heading">Header Heading</label>
-                                        <input id="header_heading" name="header_heading" placeholder="Enter Header Heading" type="text" class="form-control" value="{{ $cookiePreferencePage->header_heading }}" required>
-                                    </div>
-                                </div>
+                            <div class="row col-lg-12">
+                              
                             
                                 <div class="row col-lg-6">
                                     <div class="mb-3">
@@ -43,6 +38,7 @@
                                         <input id="header_title" name="header_title" placeholder="Enter Header Title" type="text" class="form-control" value="{{ $cookiePreferencePage->header_title }}" required>
                                     </div>
                                 </div>
+                                <div class="col-lg-6"></div>
                                
                                 <div class="col-lg-6">
                                     <div class="mb-3">
@@ -54,9 +50,9 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         @if ($cookiePreferencePage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $cookiePreferencePage->header_image)))
-                                            <img src="{{ asset('assets/uploads/cms-pages/' . $cookiePreferencePage->header_image) }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $cookiePreferencePage->header_image) }}" class="rounded me-2" title="Site Logo" height="120px" width="150px" data-holder-rendered="true" />
                                         @else
-                                            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="80" data-holder-rendered="true" />
+                                            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" height="120px" width="150px" data-holder-rendered="true" />
                                         @endif
                                     </div>
                                 </div>
@@ -102,7 +98,7 @@
                    
                         <div class="p-4 border-top">
                            
-                                <div class="row col-sm-8">
+                                <div class="row col-sm-12">
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="meta_title">Meta Title</label>

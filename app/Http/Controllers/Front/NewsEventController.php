@@ -7,12 +7,13 @@ use App\Models\NewsCategory;
 use App\Models\NewsAndEvent;
 use App\Models\Country;
 use App\Http\Controllers\Controller;
-
+use App\Models\NewsEventPage;
 class NewsEventController extends Controller
 {
 	public function index(Request $request)
 	{
 		$countryName = strtoUpper(session('country'));
+		
 		$country = Country::where('is_main', 1)->where('label', $countryName)->first();
 		
 		$newsCategories = NewsCategory::get();
@@ -31,8 +32,8 @@ class NewsEventController extends Controller
 		if($request->ajax()) {
 			return view('front.news-event.item', compact('newsAndEvents'))->render();	
 		}
-		
-	    return view('front.news-event.index', compact('newsCategories', 'featuredNewsAndEvents', 'newsAndEvents'));
+		$newsEventPage = NewsEventPage::find(1);
+	    return view('front.news-event.index', compact('newsCategories', 'featuredNewsAndEvents', 'newsAndEvents', 'newsEventPage'));
 	}
 
 	public function show(NewsAndEvent $newsEvent)

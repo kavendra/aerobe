@@ -58,12 +58,12 @@ class CookiePreferencePageController extends Controller
     public function update(Request $request, CookiePreferencePage $cookiePreferencePage)
     {
         $request->validate([
-            'header_heading' => 'required|string|max:255',
+          
             'header_title' => 'required|string',
             'header_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'header_desc' => 'nullable|string',
             
-            'cookie_preference_desc' => 'required|string',
+           
             
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:1000',
@@ -73,8 +73,8 @@ class CookiePreferencePageController extends Controller
 
         if ($request->hasFile('header_image')) {
             // Delete old file
-            if ($cookiePreferencePage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $cookiePreferencePage->site_logo))) {
-                unlink(public_path('assets/uploads/cms-pages/' . $cookiePreferencePage->site_logo));
+            if ($cookiePreferencePage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $cookiePreferencePage->header_image))) {
+                unlink(public_path('assets/uploads/cms-pages/' . $cookiePreferencePage->header_image));
             }
 
             // Upload new file
@@ -84,7 +84,7 @@ class CookiePreferencePageController extends Controller
             $cookiePreferencePage->header_image = $filename;
         }
 
-        $cookiePreferencePage->header_heading = $request->header_heading;
+      
         $cookiePreferencePage->header_title = $request->header_title;
         $cookiePreferencePage->header_desc = $request->header_desc;
         

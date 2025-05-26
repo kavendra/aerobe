@@ -28,6 +28,53 @@
                         <div class="p-4">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1 overflow-hidden">
+                                    <h5 class="font-size-16 mb-1">Cookie Preferences Information</h5>
+                                    <p class="text-muted text-truncate mb-0">Fill all information below</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 border-top">
+                            <div class="row col-lg-12">
+                              
+                            
+                                <div class="row col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="header_title">Header Title</label>
+                                        <input id="header_title" name="header_title" placeholder="Enter Header Title" type="text" class="form-control" value="{{ $contactPage->header_title }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6"></div>
+                               
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="header_image" class="form-label">Header Image</label>
+                                        <input class="form-control" type="file" name="header_image" id="header_image">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        @if ($contactPage->header_image && file_exists(public_path('assets/uploads/cms-pages/' . $contactPage->header_image)))
+                                            <img src="{{ asset('assets/uploads/cms-pages/' . $contactPage->header_image) }}" class="rounded me-2" title="Site Logo" height="120px" width="150px" data-holder-rendered="true" />
+                                        @else
+                                            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" height="120px" width="150px" data-holder-rendered="true" />
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="row col-lg-12">
+                                    <div class="mb-3">
+                                        <label for="header_desc" class="form-label">Header Description <span class="text-danger">*</span></label>
+                                        <textarea type="text" class="form-control" name="header_desc" placeholder="Enter Header Description" id="header_desc">{{ $contactPage->header_desc }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="p-4">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1 overflow-hidden">
                                     <h5 class="font-size-16 mb-1">Global Information</h5>
                                    <!--  <p class="text-muted text-truncate mb-0">Fill all information below</p> -->
                                 </div>
@@ -315,7 +362,7 @@
                         </div>
                    
                         <div class="p-4 border-top">
-                            <div class="row col-sm-8">
+                            <div class="row col-sm-12">
                                 <div class="col-sm-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="meta_title">Meta Title</label>

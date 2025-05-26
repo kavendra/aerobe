@@ -10,6 +10,9 @@ class ContactPage extends Model
     use HasFactory;
     protected $table = 'contact_page';
     protected $fillable = [
+        'header_title',
+        'header_image',
+        'header_desc',
         'glb_call_us_today',
         'glb_tech_support_email',
         'glb_chat_with_us_email',
