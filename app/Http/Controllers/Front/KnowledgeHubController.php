@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\KnowledgeHub;
 use App\Http\Controllers\Controller;
 use App\Models\KnowledgeHubPage;
+
 class KnowledgeHubController extends Controller
 {
 	public function index(Request $request)
@@ -55,8 +56,9 @@ class KnowledgeHubController extends Controller
 		$knowledgeHubPage = KnowledgeHubPage::find(1);
 		return view('front.knowledge-hub.index', compact('aerobeAcademics', 'total', 'knowledgeHubPage', 'aerobeAcademicsMain'));
 	}
-	public function show(KnowledgeHub $knowledgeHub)
+	public function show($slug)
 	{
+		$knowledgeHub = KnowledgeHub::where('slug', $slug)->first();
 	    return view('front.knowledge-hub.show', compact('knowledgeHub'));
 	}
 }

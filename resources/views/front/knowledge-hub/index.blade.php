@@ -14,8 +14,8 @@
 			</div>
 			<div class="rightb">
 				<div class="whiteb">
-					<span class="tag-text">{{ $aerobeAcademicsMain->category->label }}</span>
-					<h3>{!! $aerobeAcademicsMain->title !!}</h3>
+					<span class="tag-text">{{ $aerobeAcademicsMain->category->label ?? '' }}</span>
+					<h3>{!! $aerobeAcademicsMain->title ?? '' !!}</h3>
 				</div>
 			</div>
 	</div>

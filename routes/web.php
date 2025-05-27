@@ -129,14 +129,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 });
 
-# Front Route
 Route::resource('product', App\Http\Controllers\Front\ProductController::class);
 Route::resource('news-event', App\Http\Controllers\Front\NewsEventController::class);
+Route::get('news-event/{slug}', [App\Http\Controllers\Front\NewsEventController::class, 'show']);
+
 Route::post('news-event/by-category', [App\Http\Controllers\Front\NewsEventController::class, 'byCategory']);
 Route::resource('knowledge-hub', App\Http\Controllers\Front\KnowledgeHubController::class);
+Route::get('knowledge-hub/{slug}', [App\Http\Controllers\Front\KnowledgeHubController::class, 'show']);
 Route::resource('academy', App\Http\Controllers\Front\AcademyController::class);
+Route::get('academy/{slug}', [App\Http\Controllers\Front\AcademyController::class, 'show']);
+
 Route::resource('csr', App\Http\Controllers\Front\CsrController::class);
 Route::resource('shop', App\Http\Controllers\Front\ShopController::class);
+Route::get('shop/{slug}', [App\Http\Controllers\Front\ShopController::class, 'show']);
 Route::resource('work', WorkController::class);
 Route::get('about-us', [AboutUsController::class, 'index']);
 Route::resource('contact-us', ContactUsController::class);

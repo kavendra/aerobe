@@ -75,8 +75,9 @@ class ShopController extends Controller
         }
     }
 
-	public function show(Shop $shop)
+	public function show($slug)
 	{
+		$shop = Shop::where('slug', $slug)->first();
 	    return view('front.shop.show', compact('shop'));
 	}
 }
