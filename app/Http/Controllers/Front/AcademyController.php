@@ -54,8 +54,9 @@ class AcademyController extends Controller
 		return view('front.academy.index', compact('aerobeAcademics', 'total', 'aerobeAcademicsMain', 'aerobeAcademicsPage'));
 	}
 
-	public function show(AerobeAcademy $academy)
+	public function show($slug)
 	{
+		$academy = AerobeAcademy::where('slug', $slug)->first();
 	    return view('front.academy.show', compact('academy'));
 	}
 }

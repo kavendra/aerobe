@@ -36,8 +36,9 @@ class NewsEventController extends Controller
 	    return view('front.news-event.index', compact('newsCategories', 'featuredNewsAndEvents', 'newsAndEvents', 'newsEventPage'));
 	}
 
-	public function show(NewsAndEvent $newsEvent)
+	public function show($slug)
 	{
+		$newsEvent = NewsAndEvent::where('slug', $slug)->first();
 	    return view('front.news-event.show', compact('newsEvent'));
 	}
 }

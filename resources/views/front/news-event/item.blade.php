@@ -1,7 +1,7 @@
 @foreach($newsAndEvents as $newsAndEvent)
 	<div class="item">
 		<div class="imgb">
-			<a href="{{ route('news-event.show', $newsAndEvent) }}" target="_blank">
+			<a href="{{ route('news-event.show', $newsAndEvent->slug) }}" target="_blank">
 				@if ($newsAndEvent->image && file_exists(public_path('assets/uploads/news-events/' . $newsAndEvent->image)))
 	                <img src="{{ asset('assets/uploads/news-events/'.$newsAndEvent->image) }}" />
 	            @else

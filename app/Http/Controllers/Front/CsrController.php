@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\NewsletterSubscribed;
 use App\Http\Controllers\Controller;
 use App\Models\CsrPage;
+
 class CsrController extends Controller
 {
 	public function index(Request $request)
@@ -15,8 +16,9 @@ class CsrController extends Controller
 	    return view('front.csr.index', compact('csrPage'));
 	}
 
-	public function show(Csr $csr)
+	public function show($slug)
 	{
+		$csr = Csr::where('slug', $slug)->first();
 	    return view('front.csr.show', compact('csr'));
 	}
 }

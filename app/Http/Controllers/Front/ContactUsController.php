@@ -22,14 +22,22 @@ class ContactUsController extends Controller
 
         $locations = $country->locations->map(function ($loc) {
             return [
-                'lat' => (float)$loc->lat,
-                'lng' => (float)$loc->long,
-                'title' => $loc->name . ' (' . $loc->country->label . ')'
+                'lat' => (float) $loc->lat,
+                'lng' => (float) $loc->long,
+                'title' => $loc->name
             ];
         });
+
+        // Calculate center coordinates (average of lat/lng)
+        $count = $locations->count();
+
+        $center = [
+            'lat' => $locations->sum('lat') / $count,
+            'lng' => $locations->sum('lng') / $count
+        ];
 		$contactPage = ContactPage::first();
 		
-	    return view('front.contact-us.index', compact('contactPage', 'prefix', 'locations'));
+	    return view('front.contact-us.index', compact('contactPage', 'prefix', 'locations', 'center'));
 	}
 
 	/**
