@@ -109,21 +109,21 @@
                       <ul>
                     @endif
                     <li>
-                      <a href="javascript:void(0)" data-cat="{{ $category->label }}" data-heading="{{ $portfolio->title }}" data-paragraph="{{ $portfolio->short_description }}" data-type="portfolio">
+                      <a href="{{ url('our-portfolio', $portfolio->slug) }}" data-cat="{{ $category->label }}" data-heading="{{ $portfolio->title }}" data-paragraph="{{ $portfolio->short_description }}" data-type="portfolio">
                         {{ $portfolio->title }}
                       </a>
-                      @if($countryName == 'Global')
+                      @if($countryName == 'Global' && !empty($portfolio->country_id[0]))
                       <span class="icon">
-                        @if(!empty($portfolio->country_id) && in_array(3, $portfolio->country_id))
+                        @if(in_array(3, $portfolio->country_id))
                         <img src="{{ asset('img/india-flag.jpg') }}"> 
                         @endif
-                        @if(!empty($portfolio->country_id) && in_array(2, $portfolio->country_id))
+                        @if(in_array(2, $portfolio->country_id))
                         <img src="{{ asset('img/australia-flag.jpg') }}">
                         @endif
-                        @if(!empty($portfolio->country_id) && in_array(1, $portfolio->country_id))
+                        @if(in_array(1, $portfolio->country_id))
                         <img src="{{ asset('img/singapore-flag.jpg') }}">
                         @endif
-                        @if(!empty($portfolio->country_id) && in_array(4, $portfolio->country_id))
+                        @if(in_array(4, $portfolio->country_id))
                         <img src="{{ asset('img/malaysia-flag.jpg') }}">
                         @endif
                       </span>
@@ -179,7 +179,7 @@
                       <ul>
                     @endif
                     <li>
-                      <a href="javascript:void(0)" data-cat="{{ $category->label }}" data-heading="{{ $solution->title }}" data-paragraph="{{ $solution->short_description }}" data-type="solution">
+                      <a href="{{ url('solution', $solution->slug) }}" data-cat="{{ $category->label }}" data-heading="{{ $solution->title }}" data-paragraph="{{ $solution->short_description }}" data-type="solution">
                         {{ $solution->title }}
                         </a>
                         @if($countryName == 'Global')

@@ -129,6 +129,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 });
 
+Route::get('our-portfolio/{slug}', [App\Http\Controllers\Front\OurPortfolioController::class, 'show']);
+Route::get('solution/{slug}', [App\Http\Controllers\Front\SolutionController::class, 'show']);
 Route::resource('product', App\Http\Controllers\Front\ProductController::class);
 Route::resource('news-event', App\Http\Controllers\Front\NewsEventController::class);
 Route::get('news-event/{slug}', [App\Http\Controllers\Front\NewsEventController::class, 'show']);
