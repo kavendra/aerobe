@@ -48,8 +48,6 @@ class KnowledgeHubController extends Controller
 		    }
 		     $query->where('is_main', 1);
 		})->orderBy('category_id')->first();
-		
-	
 
 		$total = $aerobeAcademics->count(); // Get total matching records
 		$aerobeAcademics = $aerobeAcademics->paginate(6)->groupBy('category_id')->flatten(); // Get paginated/limited results
