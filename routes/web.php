@@ -140,6 +140,7 @@ Route::resource('academy', App\Http\Controllers\Front\AcademyController::class);
 Route::get('academy/{slug}', [App\Http\Controllers\Front\AcademyController::class, 'show']);
 
 Route::resource('csr', App\Http\Controllers\Front\CsrController::class);
+Route::get('csr/{slug}', [App\Http\Controllers\Front\CsrController::class, 'show']);
 Route::resource('shop', App\Http\Controllers\Front\ShopController::class);
 Route::get('shop/{slug}', [App\Http\Controllers\Front\ShopController::class, 'show']);
 Route::resource('work', WorkController::class);

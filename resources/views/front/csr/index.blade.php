@@ -31,7 +31,7 @@
 						@foreach($category->csrs as $csr)
 						<li>
 							<div class="imgb">
-								<a href="{{ route('csr.show', $csr) }}" target="_blank">
+								<a href="{{ route('csr.show', $csr->slug) }}" target="_blank">
 									@if ($csr->image && file_exists(public_path('assets/uploads/csrs/' . $csr->image)))
 							            <img src="{{ asset('assets/uploads/csrs/'.$csr->image) }}" />
 							        @else
@@ -41,7 +41,7 @@
 							</div>
 							<div class="textb">
 								<span class="cate-tag">{{ $category->label }}</span>
-								<h3><a href="{{ route('csr.show', $csr) }}" target="_blank">{{ $csr->title }}</a></h3>
+								<h3><a href="{{ route('csr.show', $csr->slug) }}" target="_blank">{{ $csr->title }}</a></h3>
 								<p>{{ $csr->short_description }}</p>
 								<!--<div class="admin-info">-->
 								<!--	<div class="admin-icon">-->
