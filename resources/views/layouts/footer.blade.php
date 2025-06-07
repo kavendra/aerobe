@@ -18,7 +18,13 @@
          <ul>
             @foreach($productsResourceMenus as $productsResourceMenu)
             <li>
-              <a href="{{ $productsResourceMenu->link }}">{{ $productsResourceMenu->label }}</a>
+              @if($productsResourceMenu->id == 1)
+                  <a href="javascript:;" class="our-portfolio">{{ $productsResourceMenu->label }}</a>
+              @elseif($productsResourceMenu->id == 2)
+                  <a href="javascript:;" id="solutions">{{ $productsResourceMenu->label }}</a>
+              @else
+                  <a href="{{ $productsResourceMenu->link }}">{{ $productsResourceMenu->label }}</a>
+              @endif
             </li>
             @endforeach
          </ul>

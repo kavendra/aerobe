@@ -81,7 +81,7 @@
                             {
                                 name: "Status",
                                 formatter: (cell, row) => {
-                                    const status = row.cells[1].data;
+                                    const status = row.cells[2].data;
                                     const color = status == 1 ? 'success' : 'danger';
                                     const label = status == 1 ? 'Active' : 'Inactive';
                                     return gridjs.html(`<span><span class="badge badge-pill badge-soft-${color} font-size-12">${label}</span></span>`);

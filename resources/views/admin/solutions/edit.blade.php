@@ -80,7 +80,7 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     @if(!empty($solution->image))
-                                        <img src="{{ asset('assets/uploads/our-portfolios/'.$solution->image) }}" class="rounded" height="150" width="120" />
+                                        <img src="{{ asset('assets/uploads/solutions/'.$solution->image) }}" class="rounded" width="150" />
                                     @endif
                                 </div>
                             </div>

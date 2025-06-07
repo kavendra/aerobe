@@ -69,7 +69,7 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             @if(!empty($knowledgeHub->image))
-                                                <img src="{{ asset('assets/uploads/knowledge-hubs/'.$knowledgeHub->image) }}" class="rounded" height="150" width="120" />
+                                                <img src="{{ asset('assets/uploads/knowledge-hubs/'.$knowledgeHub->image) }}" class="rounded" width="150" />
                                             @endif
                                         </div>
                                     </div>

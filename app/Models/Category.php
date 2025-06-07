@@ -45,4 +45,28 @@ class Category extends Model
     {
         return $this->hasMany(NewsAndEvent::class);
     }
+
+    public function getAllOurPortfolios()
+    {
+        $countryName = strtoUpper(session('country'));
+        $country = Country::where('is_main', 1)->where('label', $countryName)->first();
+
+        return $this->hasMany(OurPortfolio::class)->where(function($query)use($country){
+                            if($country) {
+                                $query->whereJsonContains('country_id', (string)$country->id);
+                            }
+                        });
+    }
+
+    public function getAllSolutions()
+    {
+        $countryName = strtoUpper(session('country'));
+        $country = Country::where('is_main', 1)->where('label', $countryName)->first();
+
+        return $this->hasMany(Solution::class)->where(function($query)use($country){
+                            if($country) {
+                                $query->whereJsonContains('country_id', (string)$country->id);
+                            }
+                        });
+    }
 }

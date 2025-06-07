@@ -89,7 +89,7 @@ class AerobeAcademyController extends Controller
             'title' => $request->title,
             'slug' => $request->slug,
             'category_id' => $request->category_id,
-            'country_id' => json_encode($request->country_id),
+            'country_id' => $request->country_id,
             'image' => $imageName,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,

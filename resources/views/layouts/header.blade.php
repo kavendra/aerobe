@@ -101,7 +101,7 @@
              @endphp
              <div class="col">
              <ul>
-                @foreach($category->ourPortfolios as $portfolio)
+                @foreach($category->getAllOurPortfolios as $portfolio)
                     @if($portfolioCount > 0 && $portfolioCount % 6 == 0)
                       </ul>
                     </div>
@@ -112,6 +112,7 @@
                       <a href="{{ url('our-portfolio', $portfolio->slug) }}" data-cat="{{ $category->label }}" data-heading="{{ $portfolio->title }}" data-paragraph="{{ $portfolio->short_description }}" data-type="portfolio">
                         {{ $portfolio->title }}
                       </a>
+                      <?php /* ?>
                       @if($countryName == 'Global' && !empty($portfolio->country_id[0]))
                       <span class="icon">
                         @if(in_array(3, $portfolio->country_id))
@@ -128,6 +129,7 @@
                         @endif
                       </span>
                       @endif
+                      <?php */ ?>
                     </li>
                     <div class="img" style="display: none">
                        @if ($portfolio->image && file_exists(public_path('assets/uploads/our-portfolios/' . $portfolio->image)))
@@ -155,8 +157,8 @@
             </div>
             </li>
             @elseif($mainMenu->id === 2)
-            <li><a href="javascript:;">{{ $mainMenu->label }}</a>
-             <div class="dd-menu">
+            <li><a href="javascript:;" id="cate-solution">{{ $mainMenu->label }}</a>
+             <div class="dd-menu" id="dd-solutions">
               <div class="left-menu">
                 <ul>
                   @foreach($categories as $category)
@@ -171,7 +173,7 @@
              @endphp
              <div class="col">
              <ul>
-                @foreach($category->solutions as $solution)
+                @foreach($category->getAllSolutions as $solution)
                     @if($solutionCount > 0 && $solutionCount % 6 == 0)
                       </ul>
                     </div>
@@ -182,6 +184,7 @@
                       <a href="{{ url('solution', $solution->slug) }}" data-cat="{{ $category->label }}" data-heading="{{ $solution->title }}" data-paragraph="{{ $solution->short_description }}" data-type="solution">
                         {{ $solution->title }}
                         </a>
+                        <?php /* ?>
                         @if($countryName == 'Global')
                           <span class="icon">
                           @if(!empty($solution->country_id) && in_array(3, $solution->country_id))
@@ -198,6 +201,7 @@
                           @endif
                           </span>
                         @endif
+                        <?php */ ?>
                     </li>
                     <div class="sol-img" style="display: none">
                        @if ($solution->image && file_exists(public_path('assets/uploads/solutions/' . $solution->image)))

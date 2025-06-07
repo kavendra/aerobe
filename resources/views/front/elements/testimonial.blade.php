@@ -15,7 +15,7 @@
                @endif
            </div>
            <h4>{{ $testimonial->label }}</h4>
-           <p>{{ $testimonial->description }}</p>
+           <p>{{ \Illuminate\Support\Str::limit($testimonial->description, 127) }}</p>
         </div>
         @endforeach
      </div>

@@ -29,7 +29,8 @@ class AcademyController extends Controller
 		    return response()->json([
 		        'html' => $html,
 	            'nextPage' => ($request->page) ? $academics->currentPage() + 1 : '',
-	            'hasMorePages' => ($request->page) ? $academics->hasMorePages() : ''
+	            'hasMorePages' => ($request->page) ? $academics->hasMorePages() : '',
+	            'total' => $academics->total(),
 		    ]);
 		}
 
