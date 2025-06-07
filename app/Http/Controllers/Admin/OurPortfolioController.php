@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\OurPortfolio;
 use App\Models\Category;
 use App\Models\Country;
+use Imagine\Gd\Imagine;
+use Imagine\Image\Box;
 
 class OurPortfolioController extends Controller
 {
@@ -146,9 +148,13 @@ class OurPortfolioController extends Controller
         }
 
         if ($request->hasFile('image')) {
+            $width = 220; $height = 130;
+            $suffix = "_{$width}x{$height}";
             // Delete old file
             if ($ourPortfolio->image && file_exists(public_path('assets/uploads/our-portfolios/' . $ourPortfolio->image))) {
-                unlink(public_path('assets/uploads/our-portfolios/' . $ourPortfolio->image));
+                unlink(public_path('assets/uploads/our-portfolios/'.$ourPortfolio->image));
+                # Image Resize Unlink
+                unlink(public_path('assets/uploads/our-portfolios/'.replaceSize($ourPortfolio->image, $suffix)));
             }
 
             // Upload new file
@@ -156,6 +162,14 @@ class OurPortfolioController extends Controller
             $imageName = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('assets/uploads/our-portfolios/'), $imageName);
             $ourPortfolio->image = $imageName;
+            
+            # Image Resize
+            $resizeImage = replaceSize($imageName, $suffix);
+            $originalPath = public_path('assets/uploads/our-portfolios/'.$imageName);
+            $resizedPath = public_path('assets/uploads/our-portfolios/'.$resizeImage);
+            $imagine = new Imagine();
+            $image = $imagine->open($originalPath);
+            $image->resize(new Box($width, $height))->save($resizedPath);
         }
 
         $ourPortfolio->title = $request->title;

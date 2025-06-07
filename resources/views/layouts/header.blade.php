@@ -133,7 +133,7 @@
                     </li>
                     <div class="img" style="display: none">
                        @if ($portfolio->image && file_exists(public_path('assets/uploads/our-portfolios/' . $portfolio->image)))
-                         <img src="{{ asset('assets/uploads/our-portfolios/' . $portfolio->image) }}" title="Site Logo" />
+                         <img src="{{ asset('assets/uploads/our-portfolios/'.replaceSize($portfolio->image, '_220x130')) }}" title="Site Logo" />
                        @else
                          <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120" data-holder-rendered="true" />
                        @endif
