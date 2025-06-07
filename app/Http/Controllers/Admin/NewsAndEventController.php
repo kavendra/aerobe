@@ -31,7 +31,7 @@ class NewsAndEventController extends Controller
                                                 'news_events.status'
                                             )
                                             ->get();
-
+                                            
             return response()->json($newsAndEvent, 200, [
                 'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
                 'Pragma' => 'no-cache',

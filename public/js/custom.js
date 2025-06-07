@@ -90,20 +90,53 @@ $(function() {
         });
     });
 
-	$(document).on('click', '#our-portfolio', function (e) {
+	$(document).on('click', '.our-portfolio', function (e) {
 	    e.preventDefault();
-	    //$("#dd-portofolio").slideToggle();
 	    var $target = $('#dd-portofolio');
 
 		  if ($target.is(':visible')) {
-		    $target.slideUp();
+		    //$target.slideUp();
+            $target
+              .css('display', '');
 		  } else {
 		    $target
 		      .css('display', 'flex')
-		      .hide()
 		      .slideDown();
 		  }
 	});
+
+    $(document).on('click', '#solutions', function (e) {
+        e.preventDefault();
+        var $target = $('#dd-solutions');
+
+          if ($target.is(':visible')) {
+            //$target.slideUp();
+            $target
+              .css('display', '');
+          } else {
+            $target
+              .css('display', 'flex')
+              .slideDown();
+          }
+    });
+
+    $(".dsk-arrow").mouseout(function(e){
+        e.preventDefault();
+        var $target = $('#dd-portofolio');
+
+        if ($target.is(':visible')) {
+            $target.css('display', '');
+        }
+    });
+
+    $("#cate-solution").mouseout(function(e){
+        e.preventDefault();
+        var $target = $('#dd-solutions');
+
+        if ($target.is(':visible')) {
+            $target.css('display', '');
+        }
+    });
 
 	$('.dd-menu').each(function () {
       var $menu = $(this);

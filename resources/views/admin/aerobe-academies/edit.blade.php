@@ -72,7 +72,7 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             @if(!empty($aerobeAcademy->image))
-                                                <img src="{{ asset('assets/uploads/aerobe-academys/'.$aerobeAcademy->image) }}" class="rounded" height="150" width="120" />
+                                                <img src="{{ asset('assets/uploads/aerobe-academies/'.$aerobeAcademy->image) }}" class="rounded" height="150" width="120" />
                                             @endif
                                         </div>
                                     </div>

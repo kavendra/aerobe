@@ -159,6 +159,7 @@ class KnowledgeHubController extends Controller
         $knowledgeHub->title = $request->title;
         $knowledgeHub->slug = $request->slug;
         $knowledgeHub->category_id = $request->category_id;
+        $knowledgeHub->country_id = $request->country_id;
         $knowledgeHub->is_main = $is_main;
         $knowledgeHub->short_description = $request->short_description;
         $knowledgeHub->long_description = $request->long_description;

@@ -7,7 +7,7 @@
       <div class="textb">
          <h1>{!! $homePage->banner_title !!}</h1>
          <p>{{ $homePage->banner_desc }}</p>
-         <a href="javascript:;" class="c-btn" id="our-portfolio">{{ $homePage->banner_button_text }}</a>
+         <a href="javascript:;" class="c-btn our-portfolio">{{ $homePage->banner_button_text }}</a>
       </div>
       <div class="imgb">
          @if ($homePage->banner_image && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->banner_image)))
@@ -72,7 +72,7 @@
             <div class="imgb">
                
                @if ($featuredNewsAndEvent->image && file_exists(public_path('assets/uploads/news-events/' . $featuredNewsAndEvent->image)))
-                <img src="{{ asset('assets/uploads/news-events/'.$featuredNewsAndEvent->image) }}" />
+                <img src="{{ asset('assets/uploads/news-events/'.$featuredNewsAndEvent->image) }}" style="max-width: none" />
               @else
                   <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
               @endif

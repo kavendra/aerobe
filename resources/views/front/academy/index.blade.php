@@ -79,12 +79,14 @@ $(document).ready(function() {
        var button = $(this);
        let page = button.data('page') ?? 0;
        let activeCategory = $('.academy-list.active').data('category');
-       $('#load-more').show(); 
        $.ajax({
            url: '{{ route("academy.index") }}',
            type: 'GET',
            data: { page: page, category_id:activeCategory },
            success: function(response) {
+               if(response.total > 6){
+                  $('#load-more').show();
+               }
                if(!button.data('load')) {
                   $('#post-container').html(response.html);
                }else{

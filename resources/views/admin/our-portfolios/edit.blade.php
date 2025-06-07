@@ -86,7 +86,7 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     @if(!empty($ourPortfolio->image))
-                                        <img src="{{ asset('assets/uploads/our-portfolios/'.$ourPortfolio->image) }}" class="rounded" height="150" width="120" />
+                                        <img src="{{ asset('assets/uploads/our-portfolios/'.$ourPortfolio->image) }}" class="rounded" width="220" />
                                     @endif
                                 </div>
                             </div>
