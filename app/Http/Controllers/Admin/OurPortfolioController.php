@@ -84,6 +84,31 @@ class OurPortfolioController extends Controller
             $imageName = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('assets/uploads/our-portfolios/'), $imageName);
         }
+        
+        if ($request->hasFile('image')) {
+            $width_1 = 640; $height_1 = 385;
+            $width_2 = 1270; $height_2 = 535;
+            $suffix_1 = "_{$width_1}x{$height_1}";
+            $suffix_2 = "_{$width_2}x{$height_2}";
+
+            // Upload new file
+            $file = $request->file('image');
+            $imageName = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/our-portfolios/'), $imageName);
+            
+            # Image Resize
+            $resizeImage_1 = replaceSize($imageName, $suffix_1);
+            $resizeImage_2 = replaceSize($imageName, $suffix_2);
+            $originalPath = public_path('assets/uploads/our-portfolios/'.$imageName);
+            $resizedPath_1 = public_path('assets/uploads/our-portfolios/'.$resizeImage_1);
+            $resizedPath_2 = public_path('assets/uploads/our-portfolios/'.$resizeImage_2);
+            
+            $imagine = new Imagine();
+            $image = $imagine->open($originalPath);
+            $image->resize(new Box($width_1, $height_1))->save($resizedPath_1);
+            $image->resize(new Box($width_2, $height_2))->save($resizedPath_2);
+        }
+
 
         $our_portfolios = OurPortfolio::create([
             'title' => $request->title,
@@ -148,13 +173,21 @@ class OurPortfolioController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $width = 220; $height = 130;
-            $suffix = "_{$width}x{$height}";
-            // Delete old file
+            $width_1 = 640; $height_1 = 385;
+            $width_2 = 1270; $height_2 = 535;
+            $suffix_1 = "_{$width_1}x{$height_1}";
+            $suffix_2 = "_{$width_2}x{$height_2}";
+          
             if ($ourPortfolio->image && file_exists(public_path('assets/uploads/our-portfolios/' . $ourPortfolio->image))) {
-                unlink(public_path('assets/uploads/our-portfolios/'.$ourPortfolio->image));
-                # Image Resize Unlink
-                unlink(public_path('assets/uploads/our-portfolios/'.replaceSize($ourPortfolio->image, $suffix)));
+                unlink(public_path('assets/uploads/our-portfolios/' . $ourPortfolio->image));
+            }
+            
+            if ($ourPortfolio->image && file_exists(public_path('assets/uploads/our-portfolios/' . replaceSize($ourPortfolio->image, $suffix_1)))) {
+                unlink(public_path('assets/uploads/our-portfolios/' . replaceSize($ourPortfolio->image, $suffix_1)));
+            }
+            
+            if ($ourPortfolio->image && file_exists(public_path('assets/uploads/our-portfolios/' . replaceSize($ourPortfolio->image, $suffix_2)))) {
+                unlink(public_path('assets/uploads/our-portfolios/' . replaceSize($ourPortfolio->image, $suffix_2)));
             }
 
             // Upload new file
@@ -164,12 +197,16 @@ class OurPortfolioController extends Controller
             $ourPortfolio->image = $imageName;
             
             # Image Resize
-            $resizeImage = replaceSize($imageName, $suffix);
+            $resizeImage_1 = replaceSize($imageName, $suffix_1);
+            $resizeImage_2 = replaceSize($imageName, $suffix_2);
             $originalPath = public_path('assets/uploads/our-portfolios/'.$imageName);
-            $resizedPath = public_path('assets/uploads/our-portfolios/'.$resizeImage);
+            $resizedPath_1 = public_path('assets/uploads/our-portfolios/'.$resizeImage_1);
+            $resizedPath_2 = public_path('assets/uploads/our-portfolios/'.$resizeImage_2);
+            
             $imagine = new Imagine();
             $image = $imagine->open($originalPath);
-            $image->resize(new Box($width, $height))->save($resizedPath);
+            $image->resize(new Box($width_1, $height_1))->save($resizedPath_1);
+            $image->resize(new Box($width_2, $height_2))->save($resizedPath_2);
         }
 
         $ourPortfolio->title = $request->title;

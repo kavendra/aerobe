@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Solution;
 use App\Models\Category;
 use App\Models\Country;
-
+use Imagine\Gd\Imagine;
+use Imagine\Image\Box;
 class SolutionController extends Controller
 {
     public function __construct()
@@ -77,11 +78,29 @@ class SolutionController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-
+            $width_1 = 640; $height_1 = 385;
+            $width_2 = 1170; $height_2 = 396;
+            $suffix_1 = "_{$width_1}x{$height_1}";
+            $suffix_2 = "_{$width_2}x{$height_2}";
+    
             // Upload new file
             $file = $request->file('image');
             $imageName = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('assets/uploads/solutions/'), $imageName);
+           
+            # Image Resize
+            $resizeImage_1 = replaceSize($imageName, $suffix_1);
+            $resizeImage_2 = replaceSize($imageName, $suffix_2);
+            $originalPath = public_path('assets/uploads/solutions/'.$imageName);
+            $resizedPath_1 = public_path('assets/uploads/solutions/'.$resizeImage_1);
+            $resizedPath_2 = public_path('assets/uploads/solutions/'.$resizeImage_2);
+            
+            $imagine = new Imagine();
+            $image = $imagine->open($originalPath);
+            $image->resize(new Box($width_1, $height_1))->save($resizedPath_1);
+            $image->resize(new Box($width_2, $height_2))->save($resizedPath_2);
+            
+         
         }
 
         $our_portfolios = Solution::create([
@@ -145,18 +164,43 @@ class SolutionController extends Controller
                 'image.max' => 'Image size must not exceed 5MB.',
             ]);
         }
-
-        if ($request->hasFile('image')) {
-            // Delete old file
+        
+         if ($request->hasFile('image')) {
+            $width_1 = 640; $height_1 = 385;
+            $width_2 = 1170; $height_2 = 396;
+            $suffix_1 = "_{$width_1}x{$height_1}";
+            $suffix_2 = "_{$width_2}x{$height_2}";
+            
             if ($solution->image && file_exists(public_path('assets/uploads/solutions/' . $solution->image))) {
                 unlink(public_path('assets/uploads/solutions/' . $solution->image));
             }
+            
+            if ($solution->image && file_exists(public_path('assets/uploads/solutions/' . replaceSize($solution->image, $suffix_1)))) {
+                unlink(public_path('assets/uploads/solutions/' . replaceSize($solution->image, $suffix_1)));
+            }
+            
+            if ($solution->image && file_exists(public_path('assets/uploads/solutions/' . replaceSize($solution->image, $suffix_2)))) {
+                unlink(public_path('assets/uploads/solutions/' . replaceSize($solution->image, $suffix_2)));
+            }
+
 
             // Upload new file
             $file = $request->file('image');
             $imageName = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('assets/uploads/solutions/'), $imageName);
             $solution->image = $imageName;
+            
+            # Image Resize
+            $resizeImage_1 = replaceSize($imageName, $suffix_1);
+            $resizeImage_2 = replaceSize($imageName, $suffix_2);
+            $originalPath = public_path('assets/uploads/solutions/'.$imageName);
+            $resizedPath_1 = public_path('assets/uploads/solutions/'.$resizeImage_1);
+            $resizedPath_2 = public_path('assets/uploads/solutions/'.$resizeImage_2);
+            
+            $imagine = new Imagine();
+            $image = $imagine->open($originalPath);
+            $image->resize(new Box($width_1, $height_1))->save($resizedPath_1);
+            $image->resize(new Box($width_2, $height_2))->save($resizedPath_2);
         }
 
 
