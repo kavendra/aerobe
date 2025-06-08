@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-
-use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\OurPortfolio;
 use App\Models\Category;
 use App\Models\Country;
-
+use Imagine\Gd\Imagine;
+use Imagine\Image\Box;
 
 class OurPortfolioController extends Controller
 {
@@ -78,37 +77,12 @@ class OurPortfolioController extends Controller
             'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
             'image.max' => 'Image size must not exceed 5MB.',
         ]);
-       
         if ($request->hasFile('image')) {
 
+            // Upload new file
             $file = $request->file('image');
-            $imageName = time() . '_' . $file->getClientOriginalName();
-
-            // Define destination path
-            $destinationPath = public_path('assets/uploads/our-portfolios/');
-
-            // Create folder if it doesn't exist
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
-
+            $imageName = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('assets/uploads/our-portfolios/'), $imageName);
-
-            // Resize and save image
-            $resizedImage = Image::make($file)
-                ->resize(222, 125, function ($constraint) {
-                    $constraint->aspectRatio(); // Keep aspect ratio
-                    $constraint->upsize();      // Don't upscale smaller images
-                })
-                ->save($destinationPath . $imageName);
-
-              // Resize and save image
-            $resizedImage = Image::make($file)
-                ->resize(1170, 396, function ($constraint) {
-                    $constraint->aspectRatio(); // Keep aspect ratio
-                    $constraint->upsize();      // Don't upscale smaller images
-                })
-                ->save($destinationPath . $imageName);
         }
 
         $our_portfolios = OurPortfolio::create([
@@ -138,8 +112,6 @@ class OurPortfolioController extends Controller
      */
     public function edit(Request $request, OurPortfolio $ourPortfolio)
     {
-       
-
         $countries = Country::where('status', 1)->get();
         $categories = Category::where('status', 1)->get();
         return view('admin.our-portfolios.edit', compact('ourPortfolio', 'categories', 'countries'));
@@ -176,52 +148,28 @@ class OurPortfolioController extends Controller
         }
 
         if ($request->hasFile('image')) {
-
-            // Delete old image if exists
+            $width = 220; $height = 130;
+            $suffix = "_{$width}x{$height}";
+            // Delete old file
             if ($ourPortfolio->image && file_exists(public_path('assets/uploads/our-portfolios/' . $ourPortfolio->image))) {
-                unlink(public_path('assets/uploads/our-portfolios/' . $ourPortfolio->image));
-                // You may also want to unlink the thumb_* version if stored
-                $oldThumb = public_path('assets/uploads/our-portfolios/thumb_' . $ourPortfolio->image);
-                $oldMain  = public_path('assets/uploads/our-portfolios/main_' . $ourPortfolio->image);
-                if (file_exists($oldThumb)) unlink($oldThumb);
-                if (file_exists($oldMain)) unlink($oldMain);
+                unlink(public_path('assets/uploads/our-portfolios/'.$ourPortfolio->image));
+                # Image Resize Unlink
+                unlink(public_path('assets/uploads/our-portfolios/'.replaceSize($ourPortfolio->image, $suffix)));
             }
 
+            // Upload new file
             $file = $request->file('image');
-            $originalName = time() . '_' . $file->getClientOriginalName();
-
-            // File names
-            $originalImage = $originalName;
-            $thumbImage = 'thumb_' . $originalName;
-            $mainImage = 'main_' . $originalName;
-
-            $destinationPath = public_path('assets/uploads/our-portfolios/');
-
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
-
-            //Save original file
-            $file->move($destinationPath, $originalImage);
-
-            //Resize and save thumbnail (222x125)
-            Image::make($destinationPath . $originalImage)
-                ->resize(222, 125, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                })
-                ->save($destinationPath . $thumbImage);
-
-            //Resize and save main image (1170x396)
-            Image::make($destinationPath . $originalImage)
-                ->resize(1170, 396, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                })
-                ->save($destinationPath . $mainImage);
-
-            // Save main image name in DB (can store all versions if needed)
-            $ourPortfolio->image = $originalImage;
+            $imageName = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/our-portfolios/'), $imageName);
+            $ourPortfolio->image = $imageName;
+            
+            # Image Resize
+            $resizeImage = replaceSize($imageName, $suffix);
+            $originalPath = public_path('assets/uploads/our-portfolios/'.$imageName);
+            $resizedPath = public_path('assets/uploads/our-portfolios/'.$resizeImage);
+            $imagine = new Imagine();
+            $image = $imagine->open($originalPath);
+            $image->resize(new Box($width, $height))->save($resizedPath);
         }
 
         $ourPortfolio->title = $request->title;
