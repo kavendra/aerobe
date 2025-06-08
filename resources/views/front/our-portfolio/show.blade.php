@@ -50,11 +50,14 @@
    });
 
     $('.pop-o2').click(function () {
-   var curdata = "."+$(this).attr("data-type");
-   $(curdata).addClass("active");
+    var curdata = "."+$(this).attr("data-type");
+    let downloadid = $(this).attr("data-downloadid");
+    $('#downloadid').val(downloadid);
+    $(curdata).addClass("active");
   });
 
   $('.request-quotes .innerb .close-btn').click(function () {
+    $('#donwload-response').empty();
    $(".request-quotes").removeClass("active");
   });
 

@@ -135,6 +135,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('our-portfolio/{slug}', [App\Http\Controllers\Front\OurPortfolioController::class, 'show']);
+Route::post('our-portfolio/send-attachment', [App\Http\Controllers\Front\OurPortfolioController::class, 'sendAttachment'])->name('our-portfolio.send-attachment');
 Route::get('solution/{slug}', [App\Http\Controllers\Front\SolutionController::class, 'show']);
 Route::resource('product', App\Http\Controllers\Front\ProductController::class);
 Route::resource('news-event', App\Http\Controllers\Front\NewsEventController::class);

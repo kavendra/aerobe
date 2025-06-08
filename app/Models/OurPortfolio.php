@@ -25,4 +25,19 @@ class OurPortfolio extends Model
      protected $casts = [
         'country_id' => 'array', // Automatically converts JSON to array when retrieved
     ];
+
+    public function newsAndEvents()
+    {
+        return $this->hasMany(NewsAndEvent::class, 'product_id');
+    }
+
+    public function downloads()
+    {
+        return $this->hasMany(Download::class, 'product_id');
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class, 'product_id');
+    }
 }
