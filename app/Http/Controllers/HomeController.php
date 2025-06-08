@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\HomePage;
-use App\Models\MainMenu;
+use App\Models\Download;
 use App\Models\NewsAndEvent;
 use App\Models\BusinessVertical;
-use App\Models\Category;
 use App\Models\Country;
 use Illuminate\Http\Request;
 
@@ -57,5 +56,11 @@ class HomeController extends Controller
         session(['country' => $country]);
 
         return redirect()->back(); // redirect back to previous page
+    }
+
+    public function download()
+    {
+        $downloads = Download::get();
+        return view('front.home.download', compact('downloads'));
     }
 }

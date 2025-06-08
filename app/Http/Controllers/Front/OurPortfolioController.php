@@ -29,7 +29,7 @@ class OurPortfolioController extends Controller
 		    	'filename' => $download->pdf
 		    ];
 			$filePath = public_path('assets/uploads/downloads/'.$download->pdf);
-			Mail::to($request->email)->send(new ReportMail($data, $filePath));
+			# Mail::to($request->email)->send(new ReportMail($data, $filePath));
 		}
 	    return response()->json(['success' => 'Attachment sent to your email']);
 	}

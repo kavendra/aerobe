@@ -155,6 +155,7 @@ Route::resource('work', WorkController::class);
 Route::get('about-us', [AboutUsController::class, 'index']);
 Route::resource('contact-us', ContactUsController::class);
 Route::get('legal/{page}', [LegalInfoController::class, 'index']);
+Route::get('download', [App\Http\Controllers\HomeController::class, 'download']);
 Route::get('set-country', [App\Http\Controllers\HomeController::class, 'setCountry']);
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 Route::post('subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');

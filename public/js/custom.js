@@ -197,6 +197,47 @@ $(function() {
         $(".facebook-p").removeClass("active");
     });
 
+    $(document).ready(function () {
+        $('.slider-sec').owlCarousel({
+            items: 4,
+            dots: false,
+            dotsEach: false,
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            pagination: true,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                600: {
+                    items: 3,
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        });
+    $(".new-tab .top-nav2 li").click(function() {
+    $(".tab-content-n, .new-tab .top-nav2 li").removeClass("active");
+    $(this).addClass("active");
+       var target = $(this).attr("data-type");
+       $(target).addClass("active");
+    });
+
+    $('.pop-o2').click(function () {
+      var curdata = "."+$(this).attr("data-type");
+      let downloadid = $(this).attr("data-downloadid");
+      $('#downloadid').val(downloadid);
+      $(curdata).addClass("active");
+    });
+
+    $('.request-quotes .innerb .close-btn').click(function () {
+        $('#donwload-response').empty();
+        $(".request-quotes").removeClass("active");
+        });
+    });
+
     function isValidEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
