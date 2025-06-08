@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WebsettingController;
 use App\Http\Controllers\Admin\UserRoleController;
+
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\TagController;
@@ -24,6 +25,8 @@ use App\Http\Controllers\Admin\AerobeAcademyController;
 use App\Http\Controllers\Admin\OurPortfolioController;
 use App\Http\Controllers\Admin\SolutionController;
 use App\Http\Controllers\Admin\ShopController;
+use App\Http\Controllers\Admin\DownloadController;
+use App\Http\Controllers\Admin\VideoController;
 
 use App\Http\Controllers\Admin\TopMenuController;
 use App\Http\Controllers\Admin\MainMenuController;
@@ -120,6 +123,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('knowledge-hub-page', KnowledgeHubPageController::class);
         Route::resource('aerobe-academy-page', AerobeAcademyPageController::class);
         Route::resource('news-event-page', NewsEventPageController::class);
+        Route::resource('download', DownloadController::class);
+        Route::resource('video', VideoController::class);
 
 
         Route::resource('about-page', AboutPageController::class);
