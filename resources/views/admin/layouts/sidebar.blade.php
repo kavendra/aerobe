@@ -95,6 +95,26 @@
                 <li class="@if($module_path == 'solution') mm-active @endif">
                     <a href="javascript: void(0);" class="has-arrow">
                         <i class="bx bx-check-square icon nav-icon"></i>
+                        <span class="menu-item" data-key="t-dashboard">Downloads</sspan>
+                    </a>
+                    <ul class="sub-menu @if($module_path == 'solution') mm-show @endif" aria-expanded="false">
+                        <li><a href="{{ route('admin.download.index') }}" data-key="t-ecommerce">Downloads</a></li>
+                    </ul>
+                </li>
+
+                <li class="@if($module_path == 'solution') mm-active @endif">
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i class="bx bx-check-square icon nav-icon"></i>
+                        <span class="menu-item" data-key="t-dashboard">Videos</sspan>
+                    </a>
+                    <ul class="sub-menu @if($module_path == 'solution') mm-show @endif" aria-expanded="false">
+                        <li><a href="{{ route('admin.video.index') }}" data-key="t-ecommerce">Videos</a></li>
+                    </ul>
+                </li>
+
+                <li class="@if($module_path == 'solution') mm-active @endif">
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i class="bx bx-check-square icon nav-icon"></i>
                         <span class="menu-item" data-key="t-dashboard">Solutions</sspan>
                     </a>
                     <ul class="sub-menu @if($module_path == 'solution') mm-show @endif" aria-expanded="false">

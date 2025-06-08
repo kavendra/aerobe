@@ -42,8 +42,8 @@
                                         <label class="form-label" for="label">Country</label>
                                         <select id="input9" class="form-select" name="country_id" required>
                                             <option value="">Select Country</option>
-                                            @if($countries->count() > 0)
-                                                @foreach($countries as $country)
+                                            @if($all_countries->count() > 0)
+                                                @foreach($all_countries as $country)
                                                     <option value="{{ $country->id }}" @if($prominent->country_id == $country->id) selected @endif>{{ $country->label }}</option>
                                                 @endforeach
                                             @endif

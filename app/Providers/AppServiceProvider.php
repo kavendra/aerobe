@@ -77,8 +77,6 @@ class AppServiceProvider extends ServiceProvider
             $testimonials = Testimonial::where(function($query)use($country){
                                 if($country) {
                                     $query->whereJsonContains('country_id', (string) $country->id);
-                                }else{
-                                    $query->whereJsonContains('country_id', (string) 6);
                                 }
                             })->latest()->get();
 

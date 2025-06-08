@@ -81,6 +81,7 @@
         </div>
     </div>
 
+    
     <div class="address-column">
         <div class="container">
             <div class="inner-box">
@@ -130,36 +131,49 @@
             <div class="inner-box" style="padding: 60px 59% 58px 35px">
                 <div class="textb"></div>
                 <div class="map">
-                    <div id="map" style="height: 450px; width: 300%;"></div>
+                    <div id="map"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&callback=initMap">
+</script>
 <script>
-    // Receive PHP data as JSON
-    const locations = @json($locations);
-    const center = @json($center);
-    // Initialize the map
-    const map = L.map('map').setView([center.lat, center.lng], 4);
+    /*const map = L.map('map1').setView([39.8283, -98.5795], 4); // Center of USA
 
-    map.invalidateSize();
-
-    // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
     }).addTo(map);
 
-    // Add markers from Laravel data
+    const locations = @json($locations);
     locations.forEach(loc => {
-      L.marker([loc.lat, loc.lng])
-        .addTo(map)
-        .bindPopup(loc.title);
-    });
-  </script>
-<style>#map {margin:0 auto;
-  width: 960px;
-  height: 450px;}</style>
+        L.marker([loc.lat, loc.lng])
+            .addTo(map)
+            .bindPopup(loc.title);
+    });*/
+</script>
+<script>
+    function initMap() {
+        // Define multiple locations
+        const locations = @json($locations);
+        // Center the map on the first location
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: locations[0],
+        });
+
+        // Add markers
+        locations.forEach(location => {
+            new google.maps.Marker({
+                position: { lat: location.lat, lng: location.lng },
+                map: map,
+                title: location.title
+            });
+        });
+    }
+</script>
+<style>#map {height: 500px;width: 900px;}</style>
 @endsection

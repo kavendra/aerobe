@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\NewsAndEvent;
-use App\Models\Category;
+use App\Models\NewsCategory;
 use App\Models\Tag;
 use App\Models\Country;
+use App\Models\OurPortfolio;
 
 class NewsAndEventController extends Controller
 {
@@ -31,7 +32,7 @@ class NewsAndEventController extends Controller
                                                 'news_events.status'
                                             )
                                             ->get();
-                                            
+
             return response()->json($newsAndEvent, 200, [
                 'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
                 'Pragma' => 'no-cache',
@@ -49,10 +50,11 @@ class NewsAndEventController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('status', 1)->get();
+        $newsCategories = NewsCategory::where('status', 1)->get();
+        $ourPortfolios = OurPortfolio::where('status', 1)->get();
         $countries = Country::where('status', 1)->get();
         $tags = Tag::where('status', 1)->get();
-        return view('admin.news-events.create', compact('categories', 'tags', 'countries'));
+        return view('admin.news-events.create', compact('newsCategories', 'tags', 'countries', 'ourPortfolios'));
     }
 
     /**
@@ -105,6 +107,8 @@ class NewsAndEventController extends Controller
             'is_home' => $is_home,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
+            'link' => $request->link,
+            'product_id' => $request->product_id,
             'status' => $request->status
         ]);
 
@@ -124,10 +128,11 @@ class NewsAndEventController extends Controller
      */
     public function edit(Request $request, NewsAndEvent $newsAndEvent)
     {
-        $categories = Category::where('status', 1)->get();
+        $ourPortfolios = OurPortfolio::where('status', 1)->get();
+        $newsCategories = NewsCategory::where('status', 1)->get();
         $tags = Tag::where('status', 1)->get();
         $countries = Country::where('status', 1)->get();
-        return view('admin.news-events.edit', compact('newsAndEvent', 'categories', 'tags', 'countries'));
+        return view('admin.news-events.edit', compact('newsAndEvent', 'newsCategories', 'tags', 'countries', 'ourPortfolios'));
     }
 
     /**
@@ -183,6 +188,8 @@ class NewsAndEventController extends Controller
 
         $newsAndEvent->title = $request->title;
         $newsAndEvent->slug = $request->slug;
+        $newsAndEvent->link = $request->link;
+        $newsAndEvent->product_id = $request->product_id;
         $newsAndEvent->category_id = $request->category_id;
         $newsAndEvent->tag_id = $request->tag_id;
         $newsAndEvent->event_date = $request->event_date;

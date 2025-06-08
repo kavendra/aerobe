@@ -28,7 +28,7 @@ class NewsEventController extends Controller
 	        $category_ids = explode(',', $request->category_ids);
 	        $query->whereIn('category_id', $category_ids);
 	    }
-    	$newsAndEvents = $query->latest('id')->paginate(10);
+    	$newsAndEvents = $query->paginate(10);
 		if($request->ajax()) {
 			return view('front.news-event.item', compact('newsAndEvents'))->render();	
 		}

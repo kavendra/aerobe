@@ -14,7 +14,7 @@
             <span class="tag-text">{{ $newsAndEvent->tag->label ?? '' }}</span>
             @endif
 			<h3><a href="{{ route('news-event.show', $newsAndEvent->slug) }}" target="_blank">{{ $newsAndEvent->title ?? '' }}</a></h3>
-			<p>{{ \Illuminate\Support\Str::limit($newsAndEvent->short_description, 270) }}</p>
+			<p>{{ $newsAndEvent->short_description ?? '' }}</p>
 			<!--<div class="review">-->
 			<!--	<a href="{{ route('news-event.show', $newsAndEvent) }}" target="_blank">Read More</a>-->
 			<!--</div>-->
