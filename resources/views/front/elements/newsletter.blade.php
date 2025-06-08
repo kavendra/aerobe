@@ -5,7 +5,7 @@
       <div class="col">
          <img src="{{ asset('img/home/folder.svg') }}" />
          <p>Download our booklet</p>
-         <a href="#" class="c-btn">Download Now</a>
+         <a href="{{ url('download') }}" class="c-btn">Download Now</a>
       </div>
       <div class="col2">
          <img src="{{ asset('img/home/email.svg') }}" />

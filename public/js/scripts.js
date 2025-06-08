@@ -88,13 +88,13 @@ jQuery(window).resize(function(){
 });
 
 
-$(".nav-menu .dd-menu .left-menu li a").on("click", function(){
+$(".nav-menu .dd-menu .left-menu li a").hover(function(){
 	$(this).closest(".left-menu").siblings(".right-content").removeClass("active");
 	var curid = $(this).attr("data-type");
 	$(this).closest(".left-menu").siblings(curid).addClass("active");
 })
 
-$(".nav-menu .dd-menu .left-menu li").on("click", function(){
+$(".nav-menu .dd-menu .left-menu li").hover(function(){
 	$(".nav-menu .dd-menu .left-menu li").removeClass("active");
 	$(this).addClass("active");
 });

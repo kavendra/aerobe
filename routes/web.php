@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WebsettingController;
 use App\Http\Controllers\Admin\UserRoleController;
+
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\TagController;
@@ -24,6 +25,8 @@ use App\Http\Controllers\Admin\AerobeAcademyController;
 use App\Http\Controllers\Admin\OurPortfolioController;
 use App\Http\Controllers\Admin\SolutionController;
 use App\Http\Controllers\Admin\ShopController;
+use App\Http\Controllers\Admin\DownloadController;
+use App\Http\Controllers\Admin\VideoController;
 
 use App\Http\Controllers\Admin\TopMenuController;
 use App\Http\Controllers\Admin\MainMenuController;
@@ -120,6 +123,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('knowledge-hub-page', KnowledgeHubPageController::class);
         Route::resource('aerobe-academy-page', AerobeAcademyPageController::class);
         Route::resource('news-event-page', NewsEventPageController::class);
+        Route::resource('download', DownloadController::class);
+        Route::resource('video', VideoController::class);
 
 
         Route::resource('about-page', AboutPageController::class);
@@ -130,6 +135,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('our-portfolio/{slug}', [App\Http\Controllers\Front\OurPortfolioController::class, 'show']);
+Route::post('our-portfolio/send-attachment', [App\Http\Controllers\Front\OurPortfolioController::class, 'sendAttachment'])->name('our-portfolio.send-attachment');
 Route::get('solution/{slug}', [App\Http\Controllers\Front\SolutionController::class, 'show']);
 Route::resource('product', App\Http\Controllers\Front\ProductController::class);
 Route::resource('news-event', App\Http\Controllers\Front\NewsEventController::class);
@@ -149,6 +155,7 @@ Route::resource('work', WorkController::class);
 Route::get('about-us', [AboutUsController::class, 'index']);
 Route::resource('contact-us', ContactUsController::class);
 Route::get('legal/{page}', [LegalInfoController::class, 'index']);
+Route::get('download', [App\Http\Controllers\HomeController::class, 'download']);
 Route::get('set-country', [App\Http\Controllers\HomeController::class, 'setCountry']);
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 Route::post('subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');

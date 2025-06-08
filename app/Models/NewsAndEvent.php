@@ -14,7 +14,9 @@ class NewsAndEvent extends Model
     protected $table = 'news_events';
     protected $fillable = [
         'title',
+        'product_id',
         'slug',
+        'link',
         'image',
         'tag_id',
         'category_id',

@@ -41,8 +41,9 @@ class ProminentController extends Controller
      */
     public function create()
     {
-        $countries = Country::where('status', 1)->get();
-        return view('admin.prominents.create', compact('countries'));
+        $all_countries = Country::where('status', 1)->get();
+       
+        return view('admin.prominents.create', compact('all_countries'));
     }
 
     /**
@@ -95,8 +96,8 @@ class ProminentController extends Controller
      */
     public function edit(Request $request, Prominent $prominent)
     {
-        $countries = Country::where('status', 1)->get();
-        return view('admin.prominents.edit', compact('prominent', 'countries'));
+        $all_countries = Country::where('status', 1)->get();
+        return view('admin.prominents.edit', compact('prominent', 'all_countries'));
     }
 
     /**

@@ -51,6 +51,21 @@
                                     @error('category_id') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
+                            
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="product_id">Select Product</label>
+                                    <select id="product_id" class="form-select" name="product_id">
+                                        <option value="">Select Product</option>
+                                        @foreach($ourPortfolios as $ourPortfolio)
+                                            <option value="{{ $ourPortfolio->id }}" {{ old('product_id', $newsAndEvent->product_id) == $ourPortfolio->id ? 'selected' : '' }}>
+                                                {{ $ourPortfolio->title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('category_id') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
 
                             <div class="col-lg-6">
                                 <div class="mb-3">
@@ -69,6 +84,13 @@
                                 </div>
                             </div>
 
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="title">Link</label>
+                                    <input id="link" name="link" placeholder="Enter External Link" type="text" class="form-control" value="{{ old('slug', $newsAndEvent->link) }}">
+                                    @error('link') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
 
                             <div class="col-lg-6">
                                 <div class="mb-3">
@@ -78,25 +100,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-1" style="margin-top:20px"></div>
-
-                            <div class="col-lg-2" style="margin-top:20px">
-                                <label class="form-label" for="is_main">
-                                      Is Main News & Event
-                                    </label>
-                                <div class="form-check form-check-left" >
-                                    <input class="form-check-input" type="checkbox" name="is_main" id="is_main" @if($newsAndEvent->is_main == 1) checked @endif>
-                                </div>
-                            </div>
-                                
-                            <div class="col-lg-2" style="margin-top:20px">
-                                <label class="form-label" for="is_main">
-                                      Is Home News & Event
-                                    </label>
-                                <div class="form-check form-check-left" >
-                                    <input class="form-check-input" type="checkbox" name="is_home" id="is_home" @if($newsAndEvent->is_home == 1) checked @endif>
-                                </div>
-                            </div>
+                           
 
                             <div class="col-lg-6">
                                 <div class="mb-3">
@@ -111,6 +115,25 @@
                                     @if(!empty($newsAndEvent->image))
                                         <img src="{{ asset('assets/uploads/news-events/'.$newsAndEvent->image) }}" class="rounded" height="120" width="150" />
                                     @endif
+                                </div>
+                            </div>
+                            
+                          
+                            <div class="col-lg-3" style="margin-top:20px">
+                                <label class="form-label" for="is_main">
+                                      Is Main News & Event
+                                    </label>
+                                <div class="form-check form-check-left" >
+                                    <input class="form-check-input" type="checkbox" name="is_main" id="is_main" @if($newsAndEvent->is_main == 1) checked @endif>
+                                </div>
+                            </div>
+                                
+                            <div class="col-lg-3" style="margin-top:20px">
+                                <label class="form-label" for="is_main">
+                                      Is Home News & Event
+                                    </label>
+                                <div class="form-check form-check-left" >
+                                    <input class="form-check-input" type="checkbox" name="is_home" id="is_home" @if($newsAndEvent->is_home == 1) checked @endif>
                                 </div>
                             </div>
 

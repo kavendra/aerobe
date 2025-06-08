@@ -4,9 +4,9 @@
   <div class="detail-p">
     <div class="container">
       <div class="tag-text">{{ $academy->category->label ?? '' }}</div>
-      <h1>{{ $academy->title ?? '' }}</h1>
+      <h1>{{ $academy->title }}</h1>
       <div class="user-info">
-        <p>{{ $academy->event_date ?? '' }}</p>
+        <p>{{ $academy->event_date }}</p>
       </div>
       <div class="full-img">
         @if ($academy->image && file_exists(public_path('assets/uploads/aerobe-academies/' . $academy->image)))

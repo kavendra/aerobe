@@ -42,9 +42,24 @@
                                     <label class="form-label">Select Category</label>
                                     <select id="input9" class="form-select" name="category_id" required>
                                         <option value="">Select Category</option>
-                                        @foreach($categories as $category)
+                                        @foreach($newsCategories as $category)
                                             <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
                                                 {{ $category->label }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('category_id') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="product_id">Select Product</label>
+                                    <select id="product_id" class="form-select" name="product_id">
+                                        <option value="">Select Product</option>
+                                        @foreach($ourPortfolios as $ourPortfolio)
+                                            <option value="{{ $ourPortfolio->id }}">
+                                                {{ $ourPortfolio->title }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -69,6 +84,14 @@
                                     @error('slug') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
+                            
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="title">Link</label>
+                                    <input id="link" name="link" placeholder="Enter External Link" type="text" class="form-control" value="{{ old('link') }}">
+                                    @error('link') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
 
                             {{-- Event Date --}}
                             <div class="col-lg-6">
@@ -79,25 +102,7 @@
                                 @error('event_date') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
                             
-                            <div class="col-lg-1" style="margin-top:20px"></div>
-
-                            <div class="col-lg-2" style="margin-top:20px">
-                                <label class="form-label" for="is_main">
-                                      Is Main News & Event
-                                    </label>
-                                <div class="form-check form-check-left" >
-                                    <input class="form-check-input" type="checkbox" name="is_main" id="is_main">
-                                </div>
-                            </div>
-                                
-                            <div class="col-lg-2" style="margin-top:20px">
-                                <label class="form-label" for="is_main">
-                                      Is Home News & Event
-                                    </label>
-                                <div class="form-check form-check-left" >
-                                    <input class="form-check-input" type="checkbox" name="is_home" id="is_home">
-                                </div>
-                            </div>
+                           
 
                             {{-- Image --}}
                             <div class="col-lg-6">
@@ -112,9 +117,27 @@
                             <div class="col-lg-6">
                                 <div class="mb-3"></div>
                             </div>
+                            
+                            <div class="col-lg-3" style="margin-top:20px">
+                                <label class="form-label" for="is_main">
+                                      Is Main News & Event
+                                    </label>
+                                <div class="form-check form-check-left" >
+                                    <input class="form-check-input" type="checkbox" name="is_main" id="is_main">
+                                </div>
+                            </div>
+                                
+                            <div class="col-lg-3" style="margin-top:20px">
+                                <label class="form-label" for="is_main">
+                                      Is Home News & Event
+                                    </label>
+                                <div class="form-check form-check-left" >
+                                    <input class="form-check-input" type="checkbox" name="is_home" id="is_home">
+                                </div>
+                            </div>
 
                             {{-- Short Description --}}
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <div class="mb-3">
                                     <label for="short_description" class="form-label">Short Description</label>
                                     <textarea class="form-control" name="short_description" placeholder="Enter Short Description" id="short_description" required>{{ old('short_description') }}</textarea>
