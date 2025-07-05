@@ -68,7 +68,8 @@ class NewsAndEventController extends Controller
             'category_id' => 'required',
             'country_id' => 'required',
             'short_description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            'main_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+             'thumb_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             'event_date' => 'required',
             'tag_id' => 'required',
         ], [
@@ -76,20 +77,29 @@ class NewsAndEventController extends Controller
             'category_id.required' => 'Please select a category.',
             'country_id.required' => 'Please select at least one country.',
             'short_description.required' => 'Short description is required.',
-            'image.required' => 'An image is required.',
-            'image.image' => 'The file must be an image.',
-            'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
-            'image.max' => 'Image size must not exceed 5MB.',
+            'main_img.required' => 'Main Image is required.',
+            'main_img.image' => 'The Main Image must be an image.',
+            'main_img.mimes' => 'Main Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'main_img.max' => 'Main Image size must not exceed 5MB.',
+            'thumb_img.required' => 'Thumb Image is required.',
+            'thumb_img.image' => 'The Thumb Image must be an image.',
+            'thumb_img.mimes' => 'Thumb Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'thumb_img.max' => 'Thumb Image size must not exceed 5MB.',
             'event_date.required' => 'The event date field is required.',
             'tag_id.required' => 'Please select anyone tag.',
         ]);
-        $imageName = "";
-        if ($request->hasFile('image')) {
-
-            // Upload new file
-            $file = $request->file('image');
-            $imageName = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/uploads/news-events/'), $imageName);
+        $mainImg = "";
+        if ($request->hasFile('main_img')) {
+            $file = $request->file('main_img');
+            $mainImg = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/news-events/'), $mainImg);
+        }
+        
+        $thumbImg = "";
+        if ($request->hasFile('thumb_img')) {
+            $file = $request->file('thumb_img');
+            $thumbImg = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/news-events/'), $thumbImg);
         }
         
         $is_main = ($request->is_main == 'on') ? 1 : 0;
@@ -101,7 +111,8 @@ class NewsAndEventController extends Controller
             'category_id' => $request->category_id,
             'tag_id' => $request->tag_id,
             'event_date' => $request->event_date,
-            'image' => $imageName,
+            'main_img' => $mainImg,
+            'thumb_img' => $thumbImg,
             'country_id' => $request->country_id,
             'is_main' => $is_main,
             'is_home' => $is_home,
@@ -140,6 +151,7 @@ class NewsAndEventController extends Controller
      */
     public function update(Request $request, NewsAndEvent $newsAndEvent)
     {
+        //dd($request->all());
        $request->validate([
             'title' => 'required|string',
             'slug' => 'required|string',
@@ -157,30 +169,56 @@ class NewsAndEventController extends Controller
             'tag_id.required' => 'Please select anyone tag.',
         ]);
 
-        if(empty($newsAndEvent->image))
+        if(empty($newsAndEvent->main_img))
         {
             $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+                'main_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
             ], [
-                'image.required' => 'An image is required.',
-                'image.image' => 'The file must be an image.',
-                'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
-                'image.max' => 'Image size must not exceed 5MB.',
+                'main_img.required' => 'An Main Image is required.',
+                'main_img.image' => 'The  Main Image must be an image.',
+                'main_img.mimes' => ' Main Image must be a file of type: jpeg, png, jpg, gif, svg.',
+                'main_img.max' => ' Main Image size must not exceed 5MB.',
+            ]);
+        }
+        
+        if(empty($newsAndEvent->thumb_img))
+        {
+            $request->validate([
+                'thumb_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
+            ], [
+                'thumb_img.required' => 'An Thumb Image is required.',
+                'thumb_img.image' => 'The Thumb Image must be an image.',
+                'thumb_img.mimes' => 'Thumb Image must be a file of type: jpeg, png, jpg, gif, svg.',
+                'thumb_img.max' => 'Thumb Image size must not exceed 5MB.',
             ]);
         }
 
 
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('main_img')) {
             // Delete old file
-            if ($newsAndEvent->image && file_exists(public_path('assets/uploads/news-events/' . $newsAndEvent->image))) {
-                unlink(public_path('assets/uploads/news-events/' . $newsAndEvent->image));
+            if ($newsAndEvent->main_img && file_exists(public_path('assets/uploads/news-events/' . $newsAndEvent->main_img))) {
+                unlink(public_path('assets/uploads/news-events/' . $newsAndEvent->main_img));
             }
 
             // Upload new file
-            $file = $request->file('image');
-            $imageName = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/uploads/news-events/'), $imageName);
-            $newsAndEvent->image = $imageName;
+            $file = $request->file('main_img');
+            $mainImg = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/news-events/'), $mainImg);
+            $newsAndEvent->main_img = $mainImg;
+        }
+        
+        
+        if ($request->hasFile('thumb_img')) {
+            // Delete old file
+            if ($newsAndEvent->thumb_img && file_exists(public_path('assets/uploads/news-events/' . $newsAndEvent->thumb_img))) {
+                unlink(public_path('assets/uploads/news-events/' . $newsAndEvent->thumb_img));
+            }
+
+            // Upload new file
+            $file = $request->file('thumb_img');
+            $thumbImg = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/news-events/'), $thumbImg);
+            $newsAndEvent->thumb_img = $thumbImg;
         }
         
         $is_main = ($request->is_main == 'on') ? 1 : 0;
@@ -200,7 +238,7 @@ class NewsAndEventController extends Controller
         $newsAndEvent->long_description = $request->long_description;
         $newsAndEvent->status = $request->status;
 
-        //dd($newsAndEvent);
+        
         $newsAndEvent->save();
 
         return redirect()->back()->with('success', 'News & Event updated successfully!');

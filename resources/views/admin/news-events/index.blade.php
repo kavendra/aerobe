@@ -53,7 +53,7 @@
                 .then(data => {
                     formattedData = data.map(item => ({
                         name: item.title,
-                        image: item.image,
+                        image: item.thumb_img,
                         //country_name: item.country_name,
                         status: item.status,
                         id: item.id
@@ -100,7 +100,7 @@
                                 }
                             }
                         ],
-                        pagination: { limit: 15 },
+                        pagination: { limit: 25 },
                         sort: true,
                         search: true,
                         data: formattedData.map(item => [

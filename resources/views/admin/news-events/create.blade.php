@@ -101,16 +101,27 @@
                                 </div>
                                 @error('event_date') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
-                            
                            
-
                             {{-- Image --}}
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="image" class="form-label">Image</label>
-                                    <input class="form-control" type="file" name="image" id="image" required>
+                                    <label for="main_img" class="form-label">Main Image</label>
+                                    <input class="form-control" type="file" name="main_img" id="main_img" required>
                                 </div>
-                                @error('image') <div class="text-danger">{{ $message }}</div> @enderror
+                                @error('main_img') <div class="text-danger">{{ $message }}</div> @enderror
+                            </div>
+                            
+                             {{-- Empty Column --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3"></div>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="thumb_img" class="form-label">Thumb Image</label>
+                                    <input class="form-control" type="file" name="thumb_img" id="thumb_img" required>
+                                </div>
+                                @error('thumb_img') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
 
                             {{-- Empty Column --}}
@@ -194,8 +205,6 @@
                                 </div>
                             </div>
                             
-                           
-
                             {{-- Status --}}
                             <div class="col-lg-6 mb-3">
                                 <label for="input9" class="form-label">Status</label>

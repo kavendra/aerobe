@@ -11,23 +11,38 @@ use App\Http\Controllers\Controller;
 
 class ContactUsController extends Controller
 {
-	public function index(Request $request)
-	{
-		$countryName = strtoUpper(session('country'));
-		$country = Country::where('is_main', 1)->where('label', $countryName)->first();
+    public function index(Request $request)
+    {
+        $countryName = strtoUpper(session('country'));
+        $country = Country::where('is_main', 1)->where('label', $countryName)->first();
+        $prefix = $country->prefix ?? '';
         if(empty($country)) {
             $country = Country::where('is_main', 1)->where('is_default', 1)->first();
+            $allCountries = Country::where('is_main', 1)->where('status', 1)->orderBy('order', 'ASC')->get();
+            $prefix =  'glb_';
         }
-		$prefix = $country->prefix ?? 'glb_';
 
-        $locations = $country->locations->map(function ($loc) {
-            return [
-                'lat' => (float) $loc->lat,
-                'lng' => (float) $loc->long,
-                'title' => $loc->name
-            ];
-        });
-
+        if(session('country') == 'Global') {
+            $locations = collect();
+            foreach($allCountries as $country) {
+                    $loc = $country->locations->map(function ($loc) {
+                        return [
+                            'lat' => (float) $loc->lat,
+                            'lng' => (float) $loc->long,
+                            'title' => $loc->name
+                        ];
+                    });
+                $locations = $locations->merge($loc);
+            }
+        }else{
+            $locations = $country->locations->map(function ($loc) {
+                        return [
+                            'lat' => (float) $loc->lat,
+                            'lng' => (float) $loc->long,
+                            'title' => $loc->name
+                        ];
+                    });
+        } 
         // Calculate center coordinates (average of lat/lng)
         $count = $locations->count();
 
@@ -35,12 +50,13 @@ class ContactUsController extends Controller
             'lat' => $locations->sum('lat') / $count,
             'lng' => $locations->sum('lng') / $count
         ];
-		$contactPage = ContactPage::first();
-		
-	    return view('front.contact-us.index', compact('contactPage', 'prefix', 'locations', 'center'));
-	}
+        
+        $contactPage = ContactPage::first();
+        
+        return view('front.contact-us.index', compact('contactPage', 'prefix', 'locations', 'center', 'countryName', 'country'));
+    }
 
-	/**
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -60,10 +76,10 @@ class ContactUsController extends Controller
         ];
         ContactUs::create($data);
         
-        /*Mail::send('emails.contact', $data, function($message) use ($data) {
+        Mail::send('emails.contact', $data, function($message) use ($data) {
             $message->to('your-email@example.com')
-                    ->subject('New Contact Form Message from');
-        });*/
+                    ->subject('New Contact Message');
+        });
         if($request->ajax()) {
             return response()->json(['success' => true, 'message' => 'Message sent successfully!']);
         }

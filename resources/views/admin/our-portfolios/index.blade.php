@@ -36,6 +36,8 @@
         <script src="{{ URL::asset('build/libs/gridjs/gridjs.umd.js') }}"></script>
         <script src="{{ URL::asset('build/js/app.js') }}"></script>
         <script src="{{ URL::asset('build/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+          <!-- Include SortableJS -->
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
         <script>
             let gridInstance;
@@ -52,8 +54,9 @@
                 .then(response => response.json())
                 .then(data => {
                     formattedData = data.map(item => ({
+                        id: item.id,
                         name: item.title,
-                        image: item.image,
+                        image: item.thumb_img,
                         category: item.label,
                         status: item.status,
                         id: item.id
@@ -61,11 +64,12 @@
 
                     gridInstance = new gridjs.Grid({
                         columns: [
+                            "ID",
                             "Name",
                             {
                                 name: "Image",
                                 formatter: (cell, row) => {
-                                    const logo = row.cells[1].data; // Assuming logo filename is stored in the second column
+                                    const logo = row.cells[2].data; // Assuming logo filename is stored in the second column
                                     const defaultLogo = "/assets/images/no-image.png"; // Use a relative path or full URL
 
                                     if (!logo) {
@@ -81,7 +85,7 @@
                             {
                                 name: "Status",
                                 formatter: (cell, row) => {
-                                    const status = row.cells[3].data;
+                                    const status = row.cells[4].data;
                                     const color = status == 1 ? 'success' : 'danger';
                                     const label = status == 1 ? 'Active' : 'Inactive';
                                     return gridjs.html(`<span><span class="badge badge-pill badge-soft-${color} font-size-12">${label}</span></span>`);
@@ -92,25 +96,73 @@
                                 formatter: (cell, row) => {
                                     return gridjs.html(`
                                         <div class="d-flex gap-3">
-                                            <a onclick="editRecord(${row.cells[4].data})" href="javascript:void(0);" title="Edit" class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
+                                            <a onclick="editRecord(${row.cells[5].data})" href="javascript:void(0);" title="Edit" class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
                                             
-                                            <a href="javascript:void(0);" onclick="deleteRecord(${row.cells[4].data})" title="Delete" class="text-danger"><i class="mdi mdi-delete font-size-18"></i></a>
+                                            <a href="javascript:void(0);" onclick="deleteRecord(${row.cells[5].data})" title="Delete" class="text-danger"><i class="mdi mdi-delete font-size-18"></i></a>
                                         </div>
                                     `);
                                 }
                             }
                         ],
-                        pagination: { limit: 15 },
+                        pagination: { limit: 50 },
                         sort: true,
                         search: true,
                         data: formattedData.map(item => [
+                            item.id,
                             item.name,
                             item.image,
                             item.category,
                             item.status,
                             item.id
-                        ])
+                        ]),
+                         className: {
+                        tr: 'sortable-row'
+                    },
+                    rowAttributes: (rowData) => {
+                        return { 'data-id': rowData[3] }; // Assuming 'id' is the fourth column
+                    }
                     }).render(document.getElementById("table-gridjs"));
+                    setTimeout(() => {
+                    const tbody = document.querySelector("#table-gridjs table tbody");
+                    if (!tbody) return;
+
+                    // Loop through each row and assign data-id
+                    tbody.querySelectorAll("tr").forEach((row, index) => {
+                        // You can get the ID from a hidden column, or customize as needed
+                        // Example: assuming first cell (td) has the ID
+                        const idCell = row.querySelector("td"); // or use specific index: row.querySelectorAll("td")[0]
+                        if (idCell) {
+                            const id = idCell.textContent.trim();
+                            row.classList.add("sortable-row");
+                            row.setAttribute("data-id", id);
+                        }
+                    });
+
+                    new Sortable(tbody, {
+                        animation: 150,
+                        onEnd: function () {
+                            let order = [];
+                            tbody.querySelectorAll(".sortable-row").forEach((row, index) => {
+                                order.push({
+                                    id: row.getAttribute("data-id"),
+                                    position: index + 1
+                                });
+                            });
+    
+                            // Send new order to Laravel backend
+                            fetch("{{ route('admin.our-portfolio.reorder') }}", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+                                },
+                                body: JSON.stringify({ order: order })
+                            }).then(response => {
+                                if (!response.ok) console.error("Reordering failed");
+                            });
+                        }
+                    });
+                }, 500);
                 });
             }
 
@@ -139,6 +191,7 @@
                                     // ✅ Safely update Grid.js without reloading page
                                     gridInstance.updateConfig({
                                         data: formattedData.map(item => [
+                                            item.id,
                                             item.name,
                                             item.image,
                                             item.category,

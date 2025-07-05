@@ -18,7 +18,7 @@ class NewsEventController extends Controller
 		
 		$newsCategories = NewsCategory::get();
 
-		$featuredNewsAndEvents = NewsAndEvent::where('is_featured', 1)->limit(20)->get();
+		$featuredNewsAndEvents = NewsAndEvent::where('is_home', 1)->limit(20)->get();
 
 		$query = NewsAndEvent::query();
 	    if ($country) {

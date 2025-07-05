@@ -35,9 +35,43 @@
 	</div>
 	<div class="tab-content-n" id="tab03">
 		<div class="pdf-section video-sec">
+		     @php
+    function convertToYouTubeEmbed($url) {
+        if (Str::contains($url, 'youtu.be/')) {
+            // Short URL
+            preg_match('/youtu\.be\/([^?]+)/', $url, $matches);
+            return 'https://www.youtube.com/embed/' . ($matches[1] ?? '');
+        }
+
+        if (Str::contains($url, 'watch?v=')) {
+            // Standard URL
+            preg_match('/v=([^&]+)/', $url, $matches);
+            return 'https://www.youtube.com/embed/' . ($matches[1] ?? '');
+        }
+
+        return $url; // fallback
+    }
+
+  
+@endphp
 			<ul>
-				@foreach($ourPortfolio->videos as $video)
-					<li><iframe class="elementor-video" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay;"  width="640" height="360" src="{{ $video->url }}" id="widget6" ></iframe><h3>{{ $video->label }}</h3></li>
+			@foreach($ourPortfolio->videos as $video)
+			 @php
+   
+
+    $embedUrl = convertToYouTubeEmbed($video->url ?? '');
+@endphp
+            	<li>
+                <iframe width="640" height="360"
+                    src="{{ $embedUrl }}"
+                    title="{{ $video->label }}"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+                <h3>{{ $video->label }}</h3>
+                </li>
+					<!--<li><iframe class="elementor-video" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay;"  width="640" height="360" src="{{ $video->url }}" id="widget6" ></iframe><h3>{{ $video->label }}</h3></li>-->
 				@endforeach
 			</ul>
 		</div>
@@ -57,7 +91,7 @@
 				<input type="text" class="input" placeholder="example@company.com" id="attachment-email">
 			</div>
 			<div class="col-f">
-				<button class="c-btn" type="submit">Send Link</button>
+				<button class="c-btn" type="submit" id="send-link">Send Link</button>
 			</div>
 		</div>
 		</form>

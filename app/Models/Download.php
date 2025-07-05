@@ -15,6 +15,7 @@ class Download extends Model
         'label',
         'product_id',
         'pdf',
+        'image',
         'status',
     ];
 }

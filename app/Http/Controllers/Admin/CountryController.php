@@ -142,4 +142,14 @@ class CountryController extends Controller
         }
         return response()->json(['success' => $success,'message' => $message,]);
     }
+    
+    public function reorder(Request $request)
+    {
+        foreach ($request->order as $item) {
+            Country::where('id', $item['id'])
+                ->update(['order' => $item['position']]);
+        }
+    
+        return response()->json(['status' => 'success']);
+    }
 }

@@ -260,7 +260,7 @@
                         <span class="menu-item" data-key="t-dashboard">Contact Us Enquiries</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="index" data-key="t-ecommerce">Enquiries</a></li>
+                        <li><a href="{{ route('admin.contact-us.index') }}" data-key="t-ecommerce">Enquiries</a></li>
                     </ul>
                 </li>
 
@@ -270,7 +270,7 @@
                         <span class="menu-item" data-key="t-dashboard">Newsletters</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="index" data-key="t-ecommerce">Newsletters</a></li>
+                        <li><a href="{{ route('admin.newsletter.index') }}" data-key="t-ecommerce">Newsletters</a></li>
                     </ul>
                 </li>
             </ul>

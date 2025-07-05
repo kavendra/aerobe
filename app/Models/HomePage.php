@@ -10,7 +10,11 @@ class HomePage extends Model
     use HasFactory;
     protected $table = 'home_page';
     protected $fillable = [
-        'banner_title',
+        'gb_banner_title',
+        'sg_banner_title',
+        'au_banner_title',
+        'in_banner_title',
+        'my_banner_title',
         'banner_image',
         'banner_desc',
         'banner_button_text',

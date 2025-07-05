@@ -55,7 +55,7 @@ class HomePageController extends Controller
     public function update(Request $request, HomePage $homePage)
     {
         $request->validate([
-            'banner_title' => 'required|string|max:255',
+           
             'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'banner_desc' => 'nullable|string|max:1000',
             'banner_button_text' => 'nullable|string|max:255',
@@ -143,7 +143,11 @@ class HomePageController extends Controller
             $homePage->section_image4 = $sectionImage4;
         }
 
-        $homePage->banner_title = $request->banner_title;
+        $homePage->gb_banner_title = $request->gb_banner_title;
+        $homePage->sg_banner_title = $request->sg_banner_title;
+        $homePage->au_banner_title = $request->au_banner_title;
+        $homePage->in_banner_title = $request->in_banner_title;
+        $homePage->my_banner_title = $request->my_banner_title;
         $homePage->banner_desc = $request->banner_desc;
         $homePage->banner_image = $bannerImage;
         $homePage->banner_button_text = $request->banner_button_text;

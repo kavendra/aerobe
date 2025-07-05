@@ -32,14 +32,20 @@ class HomeController extends Controller
         # dd(session('country'));
         $countryName = strtoUpper(session('country'));
         $country = Country::where('is_main', 1)->where('label', $countryName)->first();
-        $newsAndEvents = NewsAndEvent::where(function($query)use($country){
+        $newsAndEventsFirst = NewsAndEvent::where('is_home', 1)->where('is_main', 1)->where(function($query)use($country){
+                                if($country) {
+                                    $query->whereJsonContains('country_id', (string) $country->id);
+                                }
+                            })->latest()->first();
+                           
+        $newsAndEvents = NewsAndEvent::where('is_home', 1)->where(function($query)use($country){
                                 if($country) {
                                     $query->whereJsonContains('country_id', (string) $country->id);
                                 }
                             })->limit(4)->latest()->get();
         $businessVerticals = BusinessVertical::latest()->get();
         
-        return view('front.home.index', compact('homePage', 'newsAndEvents', 'businessVerticals'));
+        return view('front.home.index', compact('homePage', 'newsAndEvents', 'businessVerticals', 'newsAndEventsFirst'));
     }
 
     public function index(Request $request)
@@ -56,11 +62,5 @@ class HomeController extends Controller
         session(['country' => $country]);
 
         return redirect()->back(); // redirect back to previous page
-    }
-
-    public function download()
-    {
-        $downloads = Download::get();
-        return view('front.home.download', compact('downloads'));
     }
 }

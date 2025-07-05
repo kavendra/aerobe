@@ -73,24 +73,46 @@
                                 </div>
                             </div>
 
-                            {{-- Image --}}
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="image">Image</label>
-                                    <input class="form-control" type="file" name="image" id="image">
-                                    @error('image') <div class="text-danger">{{ $message }}</div> @enderror
+                                    <label class="form-label" for="read_more">Read More Link</label>
+                                    <input type="text" class="form-control" name="read_more" id="read_more" value="{{ old('read_more', $ourPortfolio->read_more) }}">
+                                    @error('read_more') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="main_img" class="form-label">Main Image</label>
+                                    <input class="form-control" type="file" name="main_img" id="main_img" @if(empty($ourPortfolio->main_img)) required @endif>
+                                    @error('main_img') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
 
-                            {{-- Preview --}}
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    @if(!empty($ourPortfolio->image))
-                                        <img src="{{ asset('assets/uploads/our-portfolios/'.$ourPortfolio->image) }}" class="rounded" width="220" />
+                                    @if(!empty($ourPortfolio->main_img))
+                                        <img src="{{ asset('assets/uploads/our-portfolios/'.$ourPortfolio->main_img) }}" class="rounded" height="120" width="150" />
                                     @endif
                                 </div>
                             </div>
+                           
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="thumb_img" class="form-label">Thumb Image</label>
+                                    <input class="form-control" type="file" name="thumb_img" id="thumb_img" @if(empty($ourPortfolio->thumb_img)) required @endif>
+                                    @error('thumb_img') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
 
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    @if(!empty($ourPortfolio->thumb_img))
+                                        <img src="{{ asset('assets/uploads/our-portfolios/'.$ourPortfolio->thumb_img) }}" class="rounded" height="120" width="150" />
+                                    @endif
+                                </div>
+                            </div>
+                            
                             {{-- Short Description --}}
                             <div class="col-lg-12">
                                 <div class="mb-3">

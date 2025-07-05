@@ -50,9 +50,10 @@ use App\Http\Controllers\Admin\SolutionPageController;
 use App\Http\Controllers\Admin\KnowledgeHubPageController;
 use App\Http\Controllers\Admin\AerobeAcademyPageController;
 use App\Http\Controllers\Admin\NewsEventPageController;
-use App\Http\Controllers\Front\NewsletterController;
+use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Admin\NewsletterController;
+
 use App\Http\Controllers\Front\AboutUsController;
-use App\Http\Controllers\Front\ContactUsController;
 use App\Http\Controllers\Front\LegalInfoController;
 use App\Http\Controllers\Front\WorkController;
 
@@ -94,14 +95,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         
         Route::resource('tag', TagController::class);
         Route::resource('country', CountryController::class);
+        Route::post('country/reorder', [CountryController::class, 'reorder'])->name('country.reorder');
         Route::resource('prominent', ProminentController::class);
         Route::resource('business-vertical', BusinessVerticalController::class);
+        Route::post('business-vertical/reorder', [BusinessVerticalController::class, 'reorder'])->name('business-vertical.reorder');
         Route::resource('testimonial', TestimonialController::class);
         Route::resource('news-and-event', NewsAndEventController::class);
         Route::resource('csr', CsrController::class);
         Route::resource('shop', ShopController::class);
         Route::resource('knowledge-hub', KnowledgeHubController::class);
         Route::resource('our-portfolio', OurPortfolioController::class);
+        Route::post('our-portfolio/reorder', [OurPortfolioController::class, 'reorder'])->name('our-portfolio.reorder');
         Route::resource('solution', SolutionController::class);
         Route::resource('aerobe-academy', AerobeAcademyController::class);
         Route::resource('web-setting', WebsettingController::class);
@@ -131,6 +135,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('cookie-preference-page', CookiePreferencePageController::class);
         Route::resource('privacy-policy-page', PrivacyPolicyPageController::class);
         Route::resource('terms-of-use-page', TermsOfUsePageController::class);
+
+        Route::resource('contact-us', ContactUsController::class);
+        Route::resource('newsletter', NewsletterController::class);
     });
 });
 
@@ -153,10 +160,10 @@ Route::resource('shop', App\Http\Controllers\Front\ShopController::class);
 Route::get('shop/{slug}', [App\Http\Controllers\Front\ShopController::class, 'show']);
 Route::resource('work', WorkController::class);
 Route::get('about-us', [AboutUsController::class, 'index']);
-Route::resource('contact-us', ContactUsController::class);
+Route::resource('contact-us', App\Http\Controllers\Front\ContactUsController::class);
 Route::get('legal/{page}', [LegalInfoController::class, 'index']);
-Route::get('download', [App\Http\Controllers\HomeController::class, 'download']);
+Route::resource('download', App\Http\Controllers\Front\DownloadController::class);
 Route::get('set-country', [App\Http\Controllers\HomeController::class, 'setCountry']);
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-Route::post('subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+Route::post('subscribe', [App\Http\Controllers\Front\NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);

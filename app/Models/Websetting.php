@@ -13,32 +13,25 @@ class Websetting extends Model
         'site_name',
         'site_logo',
         'site_favicon',
-        'facebook_url',
-        'instagram_url',
-        'twitter_url',
-        'youtube_url',
-        'linkedin_url',
         'pininterest_url',
         'footer_shortdesc',
         'copyright_text',
         'opening_hours',
         'customers_in_countries',
         'offices_in_countries',
-      
+        'facebook_url',
+        'sg_instagram_url_1',
+        'sg_instagram_url_2',
+        'in_instagram_url_1',
+        'in_instagram_url_2',
+        'au_instagram_url',
+        'my_instagram_url',
+        'twitter_url',
+        'youtube_url',
+        'linkedin_url',
+       
         'meta_title',
         'meta_description',
         'meta_keywords',
-      
-       
-        'from_name',
-        'from_email',
-        'to_name',
-        'to_email',
-        'mail_mailer',
-        'mail_host',
-        'mail_port',
-        'mail_username',
-        'mail_password',
-        'mail_encryption'        
     ];
 }

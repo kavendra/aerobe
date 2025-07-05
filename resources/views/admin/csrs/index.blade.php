@@ -53,7 +53,7 @@
                 .then(data => {
                     formattedData = data.map(item => ({
                         name: item.title,
-                        image: item.image,
+                        image: item.thumb_img,
                         author_name: item.author_name,
                         author_image: item.author_image,
                         short_description: item.short_description,

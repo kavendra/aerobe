@@ -64,43 +64,62 @@ class SolutionController extends Controller
             'category_id' => 'required',
             'country_id' => 'required',
             'short_description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+             'main_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+             'thumb_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         ], [
             'title.required' => 'The title field is required.',
             'slug.required' => 'The slug field is required.',
             'category_id.required' => 'Please select a category.',
             'country_id.required' => 'Please select at least one country.',
             'short_description.required' => 'Short description is required.',
-            'image.required' => 'An image is required.',
-            'image.image' => 'The file must be an image.',
-            'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
-            'image.max' => 'Image size must not exceed 5MB.',
+             'main_img.required' => 'Main Image is required.',
+            'main_img.image' => 'The Main Image must be an image.',
+            'main_img.mimes' => 'Main Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'main_img.max' => 'Main Image size must not exceed 5MB.',
+            'thumb_img.required' => 'Thumb Image is required.',
+            'thumb_img.image' => 'The Thumb Image must be an image.',
+            'thumb_img.mimes' => 'Thumb Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'thumb_img.max' => 'Thumb Image size must not exceed 5MB.',
         ]);
 
-        if ($request->hasFile('image')) {
-            $width_1 = 640; $height_1 = 385;
-            $width_2 = 1170; $height_2 = 396;
-            $suffix_1 = "_{$width_1}x{$height_1}";
-            $suffix_2 = "_{$width_2}x{$height_2}";
+        // if ($request->hasFile('image')) {
+        //     $width_1 = 640; $height_1 = 385;
+        //     $width_2 = 1170; $height_2 = 396;
+        //     $suffix_1 = "_{$width_1}x{$height_1}";
+        //     $suffix_2 = "_{$width_2}x{$height_2}";
     
-            // Upload new file
-            $file = $request->file('image');
-            $imageName = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/uploads/solutions/'), $imageName);
+        //     // Upload new file
+        //     $file = $request->file('image');
+        //     $imageName = time().'_'.$file->getClientOriginalName();
+        //     $file->move(public_path('assets/uploads/solutions/'), $imageName);
            
-            # Image Resize
-            $resizeImage_1 = replaceSize($imageName, $suffix_1);
-            $resizeImage_2 = replaceSize($imageName, $suffix_2);
-            $originalPath = public_path('assets/uploads/solutions/'.$imageName);
-            $resizedPath_1 = public_path('assets/uploads/solutions/'.$resizeImage_1);
-            $resizedPath_2 = public_path('assets/uploads/solutions/'.$resizeImage_2);
+        //     # Image Resize
+        //     $resizeImage_1 = replaceSize($imageName, $suffix_1);
+        //     $resizeImage_2 = replaceSize($imageName, $suffix_2);
+        //     $originalPath = public_path('assets/uploads/solutions/'.$imageName);
+        //     $resizedPath_1 = public_path('assets/uploads/solutions/'.$resizeImage_1);
+        //     $resizedPath_2 = public_path('assets/uploads/solutions/'.$resizeImage_2);
             
-            $imagine = new Imagine();
-            $image = $imagine->open($originalPath);
-            $image->resize(new Box($width_1, $height_1))->save($resizedPath_1);
-            $image->resize(new Box($width_2, $height_2))->save($resizedPath_2);
+        //     $imagine = new Imagine();
+        //     $image = $imagine->open($originalPath);
+        //     $image->resize(new Box($width_1, $height_1))->save($resizedPath_1);
+        //     $image->resize(new Box($width_2, $height_2))->save($resizedPath_2);
             
          
+        // }
+        
+        $mainImg = "";
+        if ($request->hasFile('main_img')) {
+            $file = $request->file('main_img');
+            $mainImg = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/solutions/'), $mainImg);
+        }
+        
+        $thumbImg = "";
+        if ($request->hasFile('thumb_img')) {
+            $file = $request->file('thumb_img');
+            $thumbImg = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/solutions/'), $thumbImg);
         }
 
         $our_portfolios = Solution::create([
@@ -108,10 +127,12 @@ class SolutionController extends Controller
             'slug' => $request->slug,
             'category_id' => $request->category_id,
             'country_id' => $request->country_id,
-            'image' => $imageName,
+             'main_img' => $mainImg,
+            'thumb_img' => $thumbImg,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
-            'status' => $request->status
+            'status' => $request->status,
+             'read_more' => $request->read_more
         ]);
 
         return redirect()->back()->with('success', 'Solutions created successfully!');
@@ -153,54 +174,106 @@ class SolutionController extends Controller
             'country_id.required' => 'Please select at least one country.',
             'short_description.required' => 'Short description is required.',
         ]);
-        if(empty($solution->image))
+        // if(empty($solution->image))
+        // {
+        //     $request->validate([
+        //         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+        //     ], [
+        //         'image.required' => 'An image is required.',
+        //         'image.image' => 'The file must be an image.',
+        //         'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+        //         'image.max' => 'Image size must not exceed 5MB.',
+        //     ]);
+        // }
+        
+        //  if ($request->hasFile('image')) {
+        //     $width_1 = 640; $height_1 = 385;
+        //     $width_2 = 1170; $height_2 = 396;
+        //     $suffix_1 = "_{$width_1}x{$height_1}";
+        //     $suffix_2 = "_{$width_2}x{$height_2}";
+            
+        //     if ($solution->image && file_exists(public_path('assets/uploads/solutions/' . $solution->image))) {
+        //         unlink(public_path('assets/uploads/solutions/' . $solution->image));
+        //     }
+            
+        //     if ($solution->image && file_exists(public_path('assets/uploads/solutions/' . replaceSize($solution->image, $suffix_1)))) {
+        //         unlink(public_path('assets/uploads/solutions/' . replaceSize($solution->image, $suffix_1)));
+        //     }
+            
+        //     if ($solution->image && file_exists(public_path('assets/uploads/solutions/' . replaceSize($solution->image, $suffix_2)))) {
+        //         unlink(public_path('assets/uploads/solutions/' . replaceSize($solution->image, $suffix_2)));
+        //     }
+
+
+        //     // Upload new file
+        //     $file = $request->file('image');
+        //     $imageName = time().'_'.$file->getClientOriginalName();
+        //     $file->move(public_path('assets/uploads/solutions/'), $imageName);
+        //     $solution->image = $imageName;
+            
+        //     # Image Resize
+        //     $resizeImage_1 = replaceSize($imageName, $suffix_1);
+        //     $resizeImage_2 = replaceSize($imageName, $suffix_2);
+        //     $originalPath = public_path('assets/uploads/solutions/'.$imageName);
+        //     $resizedPath_1 = public_path('assets/uploads/solutions/'.$resizeImage_1);
+        //     $resizedPath_2 = public_path('assets/uploads/solutions/'.$resizeImage_2);
+            
+        //     $imagine = new Imagine();
+        //     $image = $imagine->open($originalPath);
+        //     $image->resize(new Box($width_1, $height_1))->save($resizedPath_1);
+        //     $image->resize(new Box($width_2, $height_2))->save($resizedPath_2);
+        // }
+        
+        if(empty($solution->main_img))
         {
             $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+                'main_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
             ], [
-                'image.required' => 'An image is required.',
-                'image.image' => 'The file must be an image.',
-                'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
-                'image.max' => 'Image size must not exceed 5MB.',
+                'main_img.required' => 'An Main Image is required.',
+                'main_img.image' => 'The  Main Image must be an image.',
+                'main_img.mimes' => ' Main Image must be a file of type: jpeg, png, jpg, gif, svg.',
+                'main_img.max' => ' Main Image size must not exceed 5MB.',
             ]);
         }
         
-         if ($request->hasFile('image')) {
-            $width_1 = 640; $height_1 = 385;
-            $width_2 = 1170; $height_2 = 396;
-            $suffix_1 = "_{$width_1}x{$height_1}";
-            $suffix_2 = "_{$width_2}x{$height_2}";
-            
-            if ($solution->image && file_exists(public_path('assets/uploads/solutions/' . $solution->image))) {
-                unlink(public_path('assets/uploads/solutions/' . $solution->image));
-            }
-            
-            if ($solution->image && file_exists(public_path('assets/uploads/solutions/' . replaceSize($solution->image, $suffix_1)))) {
-                unlink(public_path('assets/uploads/solutions/' . replaceSize($solution->image, $suffix_1)));
-            }
-            
-            if ($solution->image && file_exists(public_path('assets/uploads/solutions/' . replaceSize($solution->image, $suffix_2)))) {
-                unlink(public_path('assets/uploads/solutions/' . replaceSize($solution->image, $suffix_2)));
-            }
+        if(empty($solution->thumb_img))
+        {
+            $request->validate([
+                'thumb_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
+            ], [
+                'thumb_img.required' => 'An Thumb Image is required.',
+                'thumb_img.image' => 'The Thumb Image must be an image.',
+                'thumb_img.mimes' => 'Thumb Image must be a file of type: jpeg, png, jpg, gif, svg.',
+                'thumb_img.max' => 'Thumb Image size must not exceed 5MB.',
+            ]);
+        }
 
+
+        if ($request->hasFile('main_img')) {
+            // Delete old file
+            if ($solution->main_img && file_exists(public_path('assets/uploads/solutions/' . $solution->main_img))) {
+                unlink(public_path('assets/uploads/solutions/' . $solution->main_img));
+            }
 
             // Upload new file
-            $file = $request->file('image');
-            $imageName = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/uploads/solutions/'), $imageName);
-            $solution->image = $imageName;
-            
-            # Image Resize
-            $resizeImage_1 = replaceSize($imageName, $suffix_1);
-            $resizeImage_2 = replaceSize($imageName, $suffix_2);
-            $originalPath = public_path('assets/uploads/solutions/'.$imageName);
-            $resizedPath_1 = public_path('assets/uploads/solutions/'.$resizeImage_1);
-            $resizedPath_2 = public_path('assets/uploads/solutions/'.$resizeImage_2);
-            
-            $imagine = new Imagine();
-            $image = $imagine->open($originalPath);
-            $image->resize(new Box($width_1, $height_1))->save($resizedPath_1);
-            $image->resize(new Box($width_2, $height_2))->save($resizedPath_2);
+            $file = $request->file('main_img');
+            $mainImg = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/solutions/'), $mainImg);
+            $solution->main_img = $mainImg;
+        }
+        
+        
+        if ($request->hasFile('thumb_img')) {
+            // Delete old file
+            if ($solution->thumb_img && file_exists(public_path('assets/uploads/solutions/' . $solution->thumb_img))) {
+                unlink(public_path('assets/uploads/solutions/' . $solution->thumb_img));
+            }
+
+            // Upload new file
+            $file = $request->file('thumb_img');
+            $thumbImg = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/solutions/'), $thumbImg);
+            $solution->thumb_img = $thumbImg;
         }
 
 
@@ -211,6 +284,7 @@ class SolutionController extends Controller
         $solution->short_description = $request->short_description;
         $solution->long_description = $request->long_description;
         $solution->status = $request->status;
+        $solution->read_more = $request->read_more;
        
         $solution->save();
 

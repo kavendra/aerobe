@@ -15,11 +15,15 @@ class OurPortfolio extends Model
         'title',
         'slug',
         'image',
+        'main_img',
+        'thumb_img',
         'category_id',
         'country_id',
         'short_description',
         'long_description',
-        'status'
+        'status',
+        'read_more',
+        'order'
     ];
 
      protected $casts = [

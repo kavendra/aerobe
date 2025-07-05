@@ -19,7 +19,7 @@ class BusinessVerticalController extends Controller
     {
 
         if ($request->ajax()) {
-            $business_verticals = BusinessVertical::select('business_verticals.id', 'business_verticals.label', 'business_verticals.logo', 'business_verticals.status')->get();
+            $business_verticals = BusinessVertical::select('business_verticals.id', 'business_verticals.label', 'business_verticals.logo', 'business_verticals.status')->orderBy('order', 'ASC')->get();
 
              return response()->json($business_verticals, 200, [
             'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
@@ -155,5 +155,15 @@ class BusinessVerticalController extends Controller
             $message = "Business Vertical  not found!";
         }
         return response()->json(['success' => $success,'message' => $message,]);
+    }
+    
+    public function reorder(Request $request)
+    {
+        foreach ($request->order as $item) {
+            \App\Models\BusinessVertical::where('id', $item['id'])
+                ->update(['order' => $item['position']]);
+        }
+    
+        return response()->json(['status' => 'success']);
     }
 }

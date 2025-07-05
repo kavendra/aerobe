@@ -36,8 +36,36 @@
                         <div class="p-4 border-top">
                             <div class="row col-lg-12">
                                 <div class="mb-3">
-                                    <label class="form-label" for="banner_title">Banner Title</label>
-                                    <input id="banner_title" name="banner_title" placeholder="Enter Banner Title" type="text" class="form-control" value="{{ $homePage->banner_title }}" required>
+                                    <label class="form-label" for="gb_banner_title">Banner Title Global</label>
+                                    <input id="gb_banner_title" name="gb_banner_title" placeholder="Enter Banner Title" type="text" class="form-control" value="{{ $homePage->gb_banner_title }}" required>
+                                </div>
+                            </div>
+
+                            <div class="row col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="sg_banner_title">Banner Title Singapore</label>
+                                    <input id="sg_banner_title" name="sg_banner_title" placeholder="Enter Banner Title" type="text" class="form-control" value="{{ $homePage->sg_banner_title }}" required>
+                                </div>
+                            </div>
+
+                            <div class="row col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="au_banner_title">Banner Title Australia</label>
+                                    <input id="au_banner_title" name="au_banner_title" placeholder="Enter Banner Title" type="text" class="form-control" value="{{ $homePage->au_banner_title }}" required>
+                                </div>
+                            </div>
+
+                            <div class="row col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="in_banner_title">Banner Title India</label>
+                                    <input id="in_banner_title" name="in_banner_title" placeholder="Enter Banner Title" type="text" class="form-control" value="{{ $homePage->in_banner_title }}" required>
+                                </div>
+                            </div>
+
+                            <div class="row col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="my_banner_title">Banner Title Malaysia</label>
+                                    <input id="my_banner_title" name="my_banner_title" placeholder="Enter Banner Title" type="text" class="form-control" value="{{ $homePage->my_banner_title }}" required>
                                 </div>
                             </div>
 
@@ -106,7 +134,7 @@
                             <div class="row col-lg-12">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="section_image1" class="form-label">Section Image 1</label>
+                                        <label for="section_image1" class="form-label">Section Image</label>
                                         <input class="form-control" type="file" name="section_image1" id="section_image1">
                                     </div>
                                 </div>
@@ -121,56 +149,56 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="section_image2" class="form-label">Section Image 2</label>
-                                        <input class="form-control" type="file" name="section_image2" id="section_image2">
-                                    </div>
-                                </div>
+                                <!--<div class="col-lg-6">-->
+                                <!--    <div class="mb-3">-->
+                                <!--        <label for="section_image2" class="form-label">Section Image 2</label>-->
+                                <!--        <input class="form-control" type="file" name="section_image2" id="section_image2">-->
+                                <!--    </div>-->
+                                <!--</div>-->
 
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        @if ($homePage->section_image2 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image2)))
-                                            <img src="{{ asset('assets/uploads/cms-pages/' . $homePage->section_image2) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
-                                        @else
-                                            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
-                                        @endif
-                                    </div>
-                                </div>
+                                <!--<div class="col-lg-6">-->
+                                <!--    <div class="mb-3">-->
+                                <!--        @if ($homePage->section_image2 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image2)))-->
+                                <!--            <img src="{{ asset('assets/uploads/cms-pages/' . $homePage->section_image2) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />-->
+                                <!--        @else-->
+                                <!--            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />-->
+                                <!--        @endif-->
+                                <!--    </div>-->
+                                <!--</div>-->
 
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="section_image3" class="form-label">Section Image 3</label>
-                                        <input class="form-control" type="file" name="section_image3" id="section_image3">
-                                    </div>
-                                </div>
+                                <!--<div class="col-lg-6">-->
+                                <!--    <div class="mb-3">-->
+                                <!--        <label for="section_image3" class="form-label">Section Image 3</label>-->
+                                <!--        <input class="form-control" type="file" name="section_image3" id="section_image3">-->
+                                <!--    </div>-->
+                                <!--</div>-->
 
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        @if ($homePage->section_image3 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image3)))
-                                            <img src="{{ asset('assets/uploads/cms-pages/' . $homePage->section_image3) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
-                                        @else
-                                            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
-                                        @endif
-                                    </div>
-                                </div>
+                                <!--<div class="col-lg-6">-->
+                                <!--    <div class="mb-3">-->
+                                <!--        @if ($homePage->section_image3 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image3)))-->
+                                <!--            <img src="{{ asset('assets/uploads/cms-pages/' . $homePage->section_image3) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />-->
+                                <!--        @else-->
+                                <!--            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />-->
+                                <!--        @endif-->
+                                <!--    </div>-->
+                                <!--</div>-->
 
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="section_image4" class="form-label">Section Image 4</label>
-                                        <input class="form-control" type="file" name="section_image4" id="section_image4">
-                                    </div>
-                                </div>
+                                <!--<div class="col-lg-6">-->
+                                <!--    <div class="mb-3">-->
+                                <!--        <label for="section_image4" class="form-label">Section Image 4</label>-->
+                                <!--        <input class="form-control" type="file" name="section_image4" id="section_image4">-->
+                                <!--    </div>-->
+                                <!--</div>-->
 
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        @if ($homePage->section_image4 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image4)))
-                                            <img src="{{ asset('assets/uploads/cms-pages/' . $homePage->section_image4) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
-                                        @else
-                                            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />
-                                        @endif
-                                    </div>
-                                </div>
+                                <!--<div class="col-lg-6">-->
+                                <!--    <div class="mb-3">-->
+                                <!--        @if ($homePage->section_image4 && file_exists(public_path('assets/uploads/cms-pages/' . $homePage->section_image4)))-->
+                                <!--            <img src="{{ asset('assets/uploads/cms-pages/' . $homePage->section_image4) }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />-->
+                                <!--        @else-->
+                                <!--            <img src="{{ asset('assets/images/no-image.png') }}" class="rounded me-2" title="Site Logo" width="150" height="120"  data-holder-rendered="true" />-->
+                                <!--        @endif-->
+                                <!--    </div>-->
+                                <!--</div>-->
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">

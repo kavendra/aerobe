@@ -99,26 +99,39 @@
                                     @error('event_date') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
-
-                           
-
+                            
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="image" class="form-label">Image</label>
-                                    <input class="form-control" type="file" name="image" id="image" @if(empty($newsAndEvent->image)) required @endif>
-                                    @error('image') <div class="text-danger">{{ $message }}</div> @enderror
+                                    <label for="main_img" class="form-label">Main Image</label>
+                                    <input class="form-control" type="file" name="main_img" id="main_img" @if(empty($newsAndEvent->main_img)) required @endif>
+                                    @error('main_img') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    @if(!empty($newsAndEvent->image))
-                                        <img src="{{ asset('assets/uploads/news-events/'.$newsAndEvent->image) }}" class="rounded" height="120" width="150" />
+                                    @if(!empty($newsAndEvent->main_img))
+                                        <img src="{{ asset('assets/uploads/news-events/'.$newsAndEvent->main_img) }}" class="rounded" height="120" width="150" />
+                                    @endif
+                                </div>
+                            </div>
+                           
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="thumb_img" class="form-label">Thumb Image</label>
+                                    <input class="form-control" type="file" name="thumb_img" id="thumb_img" @if(empty($newsAndEvent->thumb_img)) required @endif>
+                                    @error('thumb_img') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    @if(!empty($newsAndEvent->thumb_img))
+                                        <img src="{{ asset('assets/uploads/news-events/'.$newsAndEvent->thumb_img) }}" class="rounded" height="120" width="150" />
                                     @endif
                                 </div>
                             </div>
                             
-                          
                             <div class="col-lg-3" style="margin-top:20px">
                                 <label class="form-label" for="is_main">
                                       Is Main News & Event

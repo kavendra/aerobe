@@ -103,6 +103,7 @@ $(function() {
           return;
         }
         let token = $('input[name="_token"]').val();
+        $('#send-link').text('Sending..');
         $.ajax({
             url: $(this).attr('action'),
             type: 'POST',
@@ -112,6 +113,7 @@ $(function() {
                 downloadid:downloadid
             },
             success: function (response) {
+                $('#send-link').text('Send Link');
                 $('#attachment-email').css('border', 0);
                 $('#donwload-response').html('<p style="color: green;">' + response.success + '</p>');
                 $('#send-attachment-form')[0].reset();
@@ -189,12 +191,71 @@ $(function() {
       }
     });
 
-    $(".fb-btn").hover(function(){
-        $(".facebook-p").addClass("active");
-    }); 
-
+    $(".fb-btn, .facebook-pop").hover(
+        function () {
+            $(".facebook-pop").addClass("active");
+        },
+        function () {
+            $(".facebook-pop").removeClass("active");
+        }
+    );
+    
     $(".facebook-p .close-btn").on("click", function(){
         $(".facebook-p").removeClass("active");
+    });
+
+    $(".insta-btn, .insta-pop").hover(
+        function () {
+            $(".insta-pop").addClass("active");
+        },
+        function () {
+            $(".insta-pop").removeClass("active");
+        }
+    );
+
+    $(".insta-pop .close-btn").on("click", function(){
+        $(".insta-popp").removeClass("active");
+    });
+
+    $(".twitter-btn, .twitter-p").hover(
+        function () {
+            $(".twitter-p").addClass("active");
+        },
+        function () {
+            $(".twitter-p").removeClass("active");
+        }
+    );
+
+
+    $(".twitter-p .close-btn").on("click", function(){
+        $(".twitter-p").removeClass("active");
+    });
+
+   $(".linkedin-btn, .linkedin-p").hover(
+        function () {
+            $(".linkedin-p").addClass("active");
+        },
+        function () {
+            $(".linkedin-p").removeClass("active");
+        }
+    );
+
+
+    $(".linkedin-p .close-btn").on("click", function(){
+        $(".linkedin-p").removeClass("active");
+    });
+    
+     $(".youtube-btn, .youtube-p").hover(
+        function () {
+            $(".youtube-p").addClass("active");
+        },
+        function () {
+            $(".youtube-p").removeClass("active");
+        }
+    );
+
+    $(".youtube-p .close-btn").on("click", function(){
+        $(".youtube-p").removeClass("active");
     });
 
     $(document).ready(function () {
@@ -237,6 +298,16 @@ $(function() {
         $(".request-quotes").removeClass("active");
         });
     });
+
+
+    $(window).scroll(function () {
+                if ($(window).scrollTop() > 60) {
+                    $(".header-btm").addClass("fixed");
+                } else {
+                    $(".header-btm").removeClass("fixed");
+                }
+            });
+
 
     function isValidEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

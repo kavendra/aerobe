@@ -16,6 +16,8 @@ class AerobeAcademy extends Model
         'title',
         'slug',
         'image',
+        'main_img',
+        'thumb_img',
         'category_id',
         'country_id',
         'short_description',

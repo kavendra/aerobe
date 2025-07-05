@@ -142,35 +142,40 @@ class ContactPageController extends Controller
         $contactPage->header_title = $request->header_title;
         $contactPage->header_desc = $request->header_desc;
 
-        $contactPage->glb_call_us_today = $request->glb_call_us_today;
+        $contactPage->glb_call_us_phone = $request->glb_call_us_phone;
+        $contactPage->glb_call_us_landline = $request->glb_call_us_landline;
         $contactPage->glb_tech_support_email = $request->glb_tech_support_email;
         $contactPage->glb_chat_with_us_email = $request->glb_chat_with_us_email;
         $contactPage->glb_enquiry_email = $request->glb_enquiry_email;
         $contactPage->glb_company_name = $request->glb_company_name;
         $contactPage->glb_company_address = $request->glb_company_address;
 
-        $contactPage->sg_call_us_today = $request->sg_call_us_today;
+        $contactPage->sg_call_us_phone = $request->sg_call_us_phone;
+        $contactPage->sg_call_us_landline = $request->sg_call_us_landline;
         $contactPage->sg_tech_support_email = $request->sg_tech_support_email;
         $contactPage->sg_chat_with_us_email = $request->sg_chat_with_us_email;
         $contactPage->sg_enquiry_email = $request->sg_enquiry_email;
         $contactPage->sg_company_name = $request->sg_company_name;
         $contactPage->sg_company_address = $request->sg_company_address;
 
-        $contactPage->au_call_us_today = $request->au_call_us_today;
+        $contactPage->au_call_us_phone = $request->au_call_us_phone;
+        $contactPage->au_call_us_landline = $request->au_call_us_landline;
         $contactPage->au_tech_support_email = $request->au_tech_support_email;
         $contactPage->au_chat_with_us_email = $request->au_chat_with_us_email;
         $contactPage->au_enquiry_email = $request->au_enquiry_email;
         $contactPage->au_company_name = $request->au_company_name;
         $contactPage->au_company_address = $request->au_company_address;
 
-        $contactPage->in_call_us_today = $request->in_call_us_today;
+        $contactPage->in_call_us_phone = $request->in_call_us_phone;
+        $contactPage->in_call_us_landline = $request->in_call_us_landline;
         $contactPage->in_tech_support_email = $request->in_tech_support_email;
         $contactPage->in_chat_with_us_email = $request->in_chat_with_us_email;
         $contactPage->in_enquiry_email = $request->in_enquiry_email;
         $contactPage->in_company_name = $request->in_company_name;
         $contactPage->in_company_address = $request->in_company_address;
 
-        $contactPage->my_call_us_today = $request->my_call_us_today;
+        $contactPage->my_call_us_phone = $request->my_call_us_phone;
+        $contactPage->my_call_us_landline = $request->my_call_us_landline;
         $contactPage->my_tech_support_email = $request->my_tech_support_email;
         $contactPage->my_chat_with_us_email = $request->my_chat_with_us_email;
         $contactPage->my_enquiry_email = $request->my_enquiry_email;

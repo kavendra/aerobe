@@ -15,6 +15,7 @@ class BusinessVertical extends Model
         'label',
         'logo',
         'link',
-        'status'
+        'status',
+        'order'
     ];
 }

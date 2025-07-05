@@ -19,7 +19,7 @@ class NewsletterController extends Controller
 	        'email' => $request->email,
 	    ]);
 
-	    # Mail::to($subscriber->email)->send(new NewsletterSubscribed($subscriber->email));
+	    Mail::to($subscriber->email)->send(new NewsletterSubscribed($subscriber->email));
 
 	    return response()->json(['success' => 'Thanks for subscribed to newsletter']);
 	}

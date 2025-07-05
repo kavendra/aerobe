@@ -16,6 +16,8 @@ class Csr extends Model
         'title',
         'slug',
         'image',
+        'main_img',
+        'thumb_img',
         'tag_id',
         'category_id',
         'short_description',

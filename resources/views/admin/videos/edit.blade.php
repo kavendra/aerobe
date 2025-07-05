@@ -73,8 +73,27 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     @if(!empty($video->url))
-                                       <iframe width="150" height="120"
-    src="{{ $video->url }}"
+                                      @php
+    function convertToYouTubeEmbed($url) {
+        if (Str::contains($url, 'youtu.be/')) {
+            // Short URL
+            preg_match('/youtu\.be\/([^?]+)/', $url, $matches);
+            return 'https://www.youtube.com/embed/' . ($matches[1] ?? '');
+        }
+
+        if (Str::contains($url, 'watch?v=')) {
+            // Standard URL
+            preg_match('/v=([^&]+)/', $url, $matches);
+            return 'https://www.youtube.com/embed/' . ($matches[1] ?? '');
+        }
+
+        return $url; // fallback
+    }
+
+    $embedUrl = convertToYouTubeEmbed($video->url ?? '');
+@endphp
+<iframe width="150" height="120"
+    src="{{ $embedUrl }}"
     title="YouTube video player"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

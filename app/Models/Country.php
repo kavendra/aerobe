@@ -16,7 +16,8 @@ class Country extends Model
         'code',
         'image',
         'is_main',
-        'status'
+        'status',
+        'order'
     ];
 
     public function prominents()

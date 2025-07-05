@@ -58,7 +58,7 @@ class DownloadController extends Controller
         $request->validate([
             'label' => 'required|string',
             'product_id' => 'required',
-            'file' => 'required|mimes:pdf|max:5000',
+            'file' => 'required|mimes:pdf|max:15000',
         ], [
             'label.required' => 'The title field is required.',
             'product_id.required' => 'Please select a product.',
@@ -66,6 +66,14 @@ class DownloadController extends Controller
             'file.mimes' => 'The file must be a PDF.',
             'file.max' => 'The file size must not exceed 5MB.',
         ]);
+        
+        if ($request->hasFile('image')) {
+
+            // Upload new file
+            $file = $request->file('image');
+            $imageName = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/downloads/'), $imageName);
+        }
 
        if ($request->hasFile('file')) {
 
@@ -90,6 +98,7 @@ class DownloadController extends Controller
             'label' => $request->label,
             'product_id' => $request->product_id,
             'pdf' => $fileName,
+            'image' => $imageName,
             'status' => $request->status
         ]);
 
@@ -124,6 +133,32 @@ class DownloadController extends Controller
             'status' => 'required',
 
         ]);
+        
+          if(empty($download))
+        {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
+            ], [
+                'image.required' => 'An image is required.',
+                'image.image' => 'The file must be an image.',
+                'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+                'image.max' => 'Image size must not exceed 5MB.',
+            ]);
+        }
+
+        if ($request->hasFile('image')) {
+            // Delete old file
+            if ($download->image && file_exists(public_path('assets/uploads/downloads/' . $download->image))) {
+                unlink(public_path('assets/uploads/downloads/' . $download->image));
+            }
+
+            // Upload new file
+            $file = $request->file('image');
+            $imageName = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('assets/uploads/downloads/'), $imageName);
+            $download->image = $imageName;
+        }
+
 
         if(empty($download->pdf))
         {

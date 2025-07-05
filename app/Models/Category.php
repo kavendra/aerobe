@@ -40,6 +40,16 @@ class Category extends Model
     {
         return $this->hasMany(KnowledgeHub::class);
     }
+    
+    public function shops()
+    {
+        return $this->hasMany(Shop::class);
+    }
+    
+    public function downloads()
+    {
+        return $this->hasMany(Download::class);
+    }
 
     public function newsAndEvents()
     {

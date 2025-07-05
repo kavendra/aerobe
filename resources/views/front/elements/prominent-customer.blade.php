@@ -8,12 +8,12 @@
          <div class="client-tabnav">
             <ul>
                @foreach($prominent_countries as $country)
-               <li><a href="javascrit:void(0)" class="{{ ((strtoUpper(session('country')) == $country->label) || ((empty(session('country')) || session('country') == 'Global') && $loop->first)) ? 'active' : '' }}" data-type="#{{ $country->label }}">{{ $country->label }}</a></li>
+               <li><a href="javascrit:void(0)" class="{{ ((strtoUpper(session('country')) == $country->label) || ((empty(session('country')) || session('country') == 'Global') && $loop->first)) ? 'active' : '' }}" data-type="#{{ str_replace(' ', '', $country->label) }}">{{ $country->label }}</a></li>
                @endforeach
             </ul>
          </div>
          @foreach($prominent_countries as $country)
-         <div class="tab-content {{ ((strtoUpper(session('country')) == $country->label) || ((empty(session('country')) || session('country') == 'Global') && $loop->first)) ? 'active' : '' }}" id="{{ $country->label }}">
+         <div class="tab-content {{ ((strtoUpper(session('country')) == $country->label) || ((empty(session('country')) || session('country') == 'Global') && $loop->first)) ? 'active' : '' }}" id="{{ str_replace(' ', '', $country->label) }}">
             <ul>
                @foreach($country->prominents as $prominent)
                <li>

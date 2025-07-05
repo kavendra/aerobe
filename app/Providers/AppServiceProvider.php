@@ -79,6 +79,44 @@ class AppServiceProvider extends ServiceProvider
                                     $query->whereJsonContains('country_id', (string) $country->id);
                                 }
                             })->latest()->get();
+            $facebookLinks = $instagramLinks = $twitterLinks = $linkedinLinks = $youtubeLinks = [];
+            foreach($countries as $countryRow) {
+                if(empty($country) || $countryRow->id == $country->id){
+                    $prefix = $countryRow->prefix;
+                    $instagram_url1 = $prefix.'instagram_url_1';
+                    $instagram_url2 = $prefix.'instagram_url_2';
+                    $instagram_url = $prefix.'instagram_url';
+                    $twitter_url = $prefix.'twitter_url';
+                    $linkedin_url = $prefix.'linkedin_url';
+                    $youtube_url = $prefix.'youtube_url';
+
+                    if(empty($country)) {
+                        if(isset($websettingInfo->$instagram_url1)){
+                            $instagramLinks['Aerobe'.' '.ucfirst(strtolower($countryRow->label))] = $websettingInfo->$instagram_url1;    
+                        }if(isset($websettingInfo->$instagram_url2)){
+                            $instagramLinks['Aerobe Aethesis'.' ('.ucfirst(strtolower($countryRow->code)).')'] = $websettingInfo->$instagram_url2;
+                        }else{
+                            $instagramLinks['Aerobe'.' '.ucfirst(strtolower($countryRow->label))] = $websettingInfo->$instagram_url;
+                        }
+                        $twitterLinks[$countryRow->label] = $websettingInfo->$twitter_url;
+                        $linkedinLinks[$countryRow->label] = $websettingInfo->$linkedin_url;
+                        $youtubeLinks[$countryRow->label] = $websettingInfo->$youtube_url;
+                    } else{
+                        if(isset($websettingInfo->$instagram_url1)){
+                            $instagramLinks['Aerobe'.' '.ucfirst(strtolower($countryRow->label))] = $websettingInfo->$instagram_url1;    
+                        }if(isset($websettingInfo->$instagram_url2)){
+                            $instagramLinks['Aerobe Aethesis'.' ('.ucfirst(strtolower($countryRow->code)).')'] = $websettingInfo->$instagram_url2;
+                        }else{
+                            $instagramLinks[] = $websettingInfo->$instagram_url;
+                        }
+                        # echo "<pre>";print_r($instagramLinks);die;
+                        $twitterLinks[] = $websettingInfo->$twitter_url;
+                        $linkedinLinks[] = $websettingInfo->$linkedin_url;
+                        $youtubeLinks[] = $websettingInfo->$youtube_url;
+                    }
+                }    
+            }
+                # dd($facebookLinks);
 
             // Share data with all views
             $view->with([
@@ -97,7 +135,12 @@ class AppServiceProvider extends ServiceProvider
                 'mainMenus' => $mainMenus,
                 'categories' => $categories, 
                 'portfolioJson' => $portfolioJson, 
-                'countryName' => !empty($country) ? $countryName : 'Global', 
+                'countryName' => !empty($country) ? $countryName : 'Global',
+                'facebookLinks' => array_filter($facebookLinks),
+                'instagramLinks' => array_filter($instagramLinks),
+                'twitterLinks' => array_filter($twitterLinks),
+                'linkedinLinks' => array_filter($linkedinLinks),
+                'youtubeLinks' => array_filter($youtubeLinks),
             ]);
         });
     }

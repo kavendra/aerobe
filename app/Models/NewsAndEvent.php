@@ -18,6 +18,8 @@ class NewsAndEvent extends Model
         'slug',
         'link',
         'image',
+        'main_img',
+        'thumb_img',
         'tag_id',
         'category_id',
         'country_id',

@@ -16,12 +16,15 @@ class KnowledgeHub extends Model
         'title',
         'slug',
         'image',
+        'main_img',
+        'thumb_img',
         'category_id',
         'country_id',
         'short_description',
         'long_description',
         'is_main',
-        'status'
+        'status',
+        'read_more'
     ];
 
      protected $casts = [

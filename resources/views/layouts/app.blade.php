@@ -39,17 +39,40 @@
     $(document).ready(function () {
         $('#contactForm').on('submit', function(e) {
             e.preventDefault();
-            $('#send-us').addClass('disabled');
+            $('#send-us').text('Sending..');
             $.ajax({
                 url: '{{ route('contact-us.store') }}',
                 method: 'POST',
                 data: $(this).serialize(),
                 success: function(response) {
-                    $('#send-us').removeClass('disabled');
+                    $('#contactForm')[0].reset();
+                    $('#send-us').text('Send To Us');
                     $('#success-msg').text(response.message).fadeIn();
                     $('.clear-form').val('');
                     setTimeout(function() {
                         $('#success-msg').fadeOut();
+                    }, 3000); // 3 seconds
+                },
+                error: function(xhr) {
+                    let errors = xhr.responseJSON.errors;
+                    alert(Object.values(errors).join("\n"));
+                }
+            });
+        });
+
+        $('#contactUs').on('submit', function(e) {
+            e.preventDefault();
+            $('#send-message').text('Sending..');
+            $.ajax({
+                url: '{{ route('contact-us.store') }}',
+                method: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    $('#contactUs')[0].reset();
+                    $('#send-message').text('Send To Us');
+                    $('#contact-success-msg').text(response.message).fadeIn();
+                    setTimeout(function() {
+                        $('#contact-success-msg').fadeOut();
                     }, 3000); // 3 seconds
                 },
                 error: function(xhr) {

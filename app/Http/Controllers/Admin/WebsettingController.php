@@ -83,13 +83,6 @@ class WebsettingController extends Controller
             'site_name' => 'required|string|max:255',
             'site_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'site_favicon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'facebook_url' => 'nullable|url',
-            'instagram1_url' => 'nullable|url',
-            'instagram2_url' => 'nullable|url',
-            'twitter_url' => 'nullable|url',
-            'youtube_url' => 'nullable|url',
-            'linkedin_url' => 'nullable|url',
-            'pininterest_url' => 'nullable|url',
             'footer_shortdesc' => 'required|string',
             'opening_hours' => 'required|string',
             'copyright_text' => 'required|string',
@@ -126,12 +119,6 @@ class WebsettingController extends Controller
         }
 
         $webSetting->site_name = $request->site_name;
-        $webSetting->facebook_url = $request->facebook_url;
-        $webSetting->instagram1_url = $request->instagram1_url;
-        $webSetting->twitter_url = $request->twitter_url;
-        $webSetting->youtube_url = $request->youtube_url;
-        $webSetting->linkedin_url = $request->linkedin_url;
-        $webSetting->instagram2_url = $request->instagram2_url;
         $webSetting->pininterest_url = $request->pininterest_url;
         $webSetting->footer_shortdesc = $request->footer_shortdesc;
         $webSetting->copyright_text = $request->copyright_text;
@@ -139,20 +126,22 @@ class WebsettingController extends Controller
         $webSetting->customers_in_countries = $request->customers_in_countries;
         $webSetting->offices_in_countries = $request->offices_in_countries;
 
+        $webSetting->facebook_url = $request->facebook_url;
+        $webSetting->sg_instagram_url_1 = $request->sg_instagram_url_1;
+        $webSetting->sg_instagram_url_2 = $request->sg_instagram_url_2;
+        $webSetting->in_instagram_url_1 = $request->in_instagram_url_1;
+        $webSetting->in_instagram_url_2 = $request->in_instagram_url_2;
+        
+        $webSetting->au_instagram_url = $request->au_instagram_url;
+        $webSetting->my_instagram_url = $request->my_instagram_url;
+        
+        $webSetting->twitter_url = $request->twitter_url;
+        $webSetting->youtube_url = $request->youtube_url;
+        $webSetting->linkedin_url = $request->linkedin_url;
+
         $webSetting->meta_title = $request->meta_title;
         $webSetting->meta_description = $request->meta_description;
         $webSetting->meta_keywords = $request->meta_keywords;
-
-        $webSetting->from_name = $request->from_name;
-        $webSetting->from_email = $request->from_email;
-        $webSetting->to_name = $request->to_name;
-        $webSetting->to_email = $request->to_email;
-        $webSetting->mail_mailer = $request->mail_mailer;
-        $webSetting->mail_host = $request->mail_host;
-        $webSetting->mail_port = $request->mail_port;
-        $webSetting->mail_username = $request->mail_username;
-        $webSetting->mail_password = $request->mail_password;
-        $webSetting->mail_encryption = $request->mail_encryption;
 
         $webSetting->save();
 

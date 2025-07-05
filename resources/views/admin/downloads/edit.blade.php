@@ -60,6 +60,24 @@
                                     @error('label') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
+                            
+                            
+                                 {{-- Image --}}
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Image</label>
+                                    <input class="form-control" type="file" name="image" id="image" @if(empty($download->image)) required @endif>
+                                    @error('image') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    @if(!empty($csr->image))
+                                        <img src="{{ asset('assets/uploads/downloads/'.$download->image) }}" class="rounded" height="100" width="100" />
+                                    @endif
+                                </div>
+                            </div>
+
 
                             {{-- Image --}}
                             <div class="col-lg-6">
@@ -115,5 +133,28 @@
             setTimeout(function() {
                 $('.alert-success').fadeOut('slow');
             }, 3000);
+        </script>
+          <script type="text/javascript">
+            $(document).ready(function () {
+                $('input[type=file]').on('change', function (event) {
+                    let tmppath = URL.createObjectURL(event.target.files[0]);
+
+                    // Find the next `.col-lg-2` div and place the image inside it
+                    let previewContainer = $(this).closest('.col-lg-6').next('.col-lg-6').find('.mb-3');
+
+                    // Check if an image preview already exists
+                    let previewImage = previewContainer.find('img');
+                    if (previewImage.length === 0) {
+                        previewImage = $('<img/>', {
+                            width: 100,
+                            height: 100,
+                            class: 'rounded',
+                            src: tmppath
+                        }).appendTo(previewContainer); // Append inside .mb-3 div
+                    } else {
+                        previewImage.attr('src', tmppath); // Update existing preview
+                    }
+                });
+            });
         </script>
 @endsection

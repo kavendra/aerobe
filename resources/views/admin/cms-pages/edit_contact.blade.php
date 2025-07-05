@@ -84,8 +84,15 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="glb_call_us_today">Call US Today</label>
-                                        <input id="glb_call_us_today" name="glb_call_us_today" placeholder="Enter Banner Title" type="text" class="form-control" value="{{ $contactPage->glb_call_us_today }}" required>
+                                        <label class="form-label" for="glb_call_us_phone">Call Us Phone</label>
+                                        <input id="glb_call_us_phone" name="glb_call_us_phone" placeholder="EnterCall Us Phone" type="text" class="form-control" value="{{ $contactPage->glb_call_us_phone }}" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="glb_call_us_landline">Call Us Landline</label>
+                                        <input id="glb_call_us_landline" name="glb_call_us_landline" placeholder="Enter Call Us Landline" type="text" class="form-control" value="{{ $contactPage->glb_call_us_landline }}" required>
                                     </div>
                                 </div>
 
@@ -140,8 +147,15 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="sg_call_us_today">Call US Today</label>
-                                        <input id="sg_call_us_today" name="sg_call_us_today" placeholder="Enter Banner Title" type="text" class="form-control" value="{{ $contactPage->sg_call_us_today }}" required>
+                                        <label class="form-label" for="sg_call_us_phone">Call Us Phone</label>
+                                        <input id="sg_call_us_phone" name="sg_call_us_phone" placeholder="Enter Call Us Phone" type="text" class="form-control" value="{{ $contactPage->sg_call_us_phone }}" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="sg_call_us_landline">Call Us Landline</label>
+                                        <input id="sg_call_us_landline" name="sg_call_us_landline" placeholder="Enter Call Us Landline" type="text" class="form-control" value="{{ $contactPage->sg_call_us_landline }}" required>
                                     </div>
                                 </div>
 
@@ -196,8 +210,15 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="au_call_us_today">Call US Today</label>
-                                        <input id="au_call_us_today" name="au_call_us_today" placeholder="Enter Banner Title" type="text" class="form-control" value="{{ $contactPage->au_call_us_today }}" required>
+                                        <label class="form-label" for="au_call_us_phone">Call Us Phone</label>
+                                        <input id="au_call_us_phone" name="au_call_us_phone" placeholder="Enter Call Us Phone" type="text" class="form-control" value="{{ $contactPage->au_call_us_phone }}" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="au_call_us_landline">Call Us Landline</label>
+                                        <input id="au_call_us_landline" name="au_call_us_landline" placeholder="Enter Call Us Landline" type="text" class="form-control" value="{{ $contactPage->au_call_us_landline }}" required>
                                     </div>
                                 </div>
 
@@ -252,8 +273,15 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="in_call_us_today">Call US Today</label>
-                                        <input id="in_call_us_today" name="in_call_us_today" placeholder="Enter Banner Title" type="text" class="form-control" value="{{ $contactPage->in_call_us_today }}" required>
+                                        <label class="form-label" for="in_call_us_phone">Call Us Phone</label>
+                                        <input id="in_call_us_phone" name="in_call_us_phone" placeholder="Enter Call Us Phone" type="text" class="form-control" value="{{ $contactPage->in_call_us_phone }}" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="in_call_us_landline">Call Us Landline</label>
+                                        <input id="in_call_us_landline" name="in_call_us_landline" placeholder="Enter Call Us Landline" type="text" class="form-control" value="{{ $contactPage->in_call_us_landline }}" required>
                                     </div>
                                 </div>
 
@@ -308,10 +336,18 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="my_call_us_today">Call US Today</label>
-                                        <input id="my_call_us_today" name="my_call_us_today" placeholder="Enter Banner Title" type="text" class="form-control" value="{{ $contactPage->my_call_us_today }}" required>
+                                        <label class="form-label" for="my_call_us_phone">Call Us Phone</label>
+                                        <input id="my_call_us_phone" name="my_call_us_phone" placeholder="Enter Call Us Phone" type="text" class="form-control" value="{{ $contactPage->my_call_us_phone }}" required>
                                     </div>
                                 </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="my_call_us_landline">Call Us Landline</label>
+                                        <input id="my_call_us_landline" name="my_call_us_landline" placeholder="Enter Call Us Landline" type="text" class="form-control" value="{{ $contactPage->my_call_us_landline }}" required>
+                                    </div>
+                                </div>
+
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">

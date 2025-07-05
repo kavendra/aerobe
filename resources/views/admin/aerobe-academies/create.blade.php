@@ -51,26 +51,45 @@
                                         </div>
                                     </div>
                                     
-                                     {{-- Slug --}}
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="title">Slug</label>
-                                    <input id="slug" name="slug" placeholder="Enter Slug" type="text" class="form-control" value="{{ old('slug') }}" required>
-                                    @error('slug') <div class="text-danger">{{ $message }}</div> @enderror
-                                </div>
-                            </div>
-
+                                    {{-- Slug --}}
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="image" class="form-label">Image</label>
-                                            <input class="form-control" type="file" name="image" id="image">
+                                            <label class="form-label" for="title">Slug</label>
+                                            <input id="slug" name="slug" placeholder="Enter Slug" type="text" class="form-control" value="{{ old('slug') }}" required>
+                                            @error('slug') <div class="text-danger">{{ $message }}</div> @enderror
                                         </div>
                                     </div>
 
+                                    {{-- Empty Column --}}
+                                    <div class="col-lg-6">
+                                        <div class="mb-3"></div>
+                                    </div>
+
+                                    {{-- Image --}}
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                           
+                                            <label for="main_img" class="form-label">Main Image</label>
+                                            <input class="form-control" type="file" name="main_img" id="main_img" required>
                                         </div>
+                                        @error('main_img') <div class="text-danger">{{ $message }}</div> @enderror
+                                    </div>
+                            
+                                    {{-- Empty Column --}}
+                                    <div class="col-lg-6">
+                                        <div class="mb-3"></div>
+                                    </div>
+                            
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="thumb_img" class="form-label">Thumb Image</label>
+                                            <input class="form-control" type="file" name="thumb_img" id="thumb_img" required>
+                                        </div>
+                                        @error('thumb_img') <div class="text-danger">{{ $message }}</div> @enderror
+                                    </div>
+
+                                    {{-- Empty Column --}}
+                                    <div class="col-lg-6">
+                                        <div class="mb-3"></div>
                                     </div>
 
                                     <div class="col-lg-12">

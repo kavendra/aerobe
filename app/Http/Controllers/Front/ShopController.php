@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\NewsletterSubscribed;
 use App\Http\Controllers\Controller;
 use App\Models\ShopPage;
+
 class ShopController extends Controller
 {
 	public function index(Request $request)
@@ -16,19 +17,23 @@ class ShopController extends Controller
 		$countryName = strtoUpper(session('country'));
 		$country = Country::where('is_main', 1)->where('label', $countryName)->first();
 		if($request->ajax()) {
-		    $shops = Shop::where(function($query)use($country){
+		    $category = $request->category_id ?? '';
+		    $shops = Shop::where(function($query)use($country,$category){
 	                        if($country) {
 	                            $query->whereJsonContains('country_id', (string)$country->id);
+	                        }if($category) {
+	                            $query->where('category_id', $category);
 	                        }
 	                        })
-							->paginate(6, ['*'], 'page', $request->get('page', 1));
+							->paginate(10, ['*'], 'page', $request->get('page', 1));
 							
 		    $html = view('front.shop.item', compact('shops'))->render();
 
 		    return response()->json([
 		        'html' => $html,
-	            'nextPage' => $shops->currentPage() + 1,
-	            'hasMorePages' => $shops->hasMorePages()
+	            'nextPage' => ($request->page) ? $shops->currentPage() + 1 : '',
+	            'hasMorePages' => ($request->page) ? $shops->hasMorePages() : '',
+	            'total' => $shops->total(),
 		    ]);
 		}
 		$query = Shop::where(function($query) use ($country) {
@@ -38,7 +43,7 @@ class ShopController extends Controller
 		});
 
 		$total = $query->count(); // Get total matching records
-		$shops = $query->paginate(6); // Get paginated/limited results
+		$shops = $query->paginate(10); // Get paginated/limited results
         $shopPage = ShopPage::find(1);
 		return view('front.shop.index', compact('shops', 'total', 'shopPage'));
 	}
