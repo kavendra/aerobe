@@ -75,7 +75,7 @@
                 <div class="row-f">
                   <div class="col-f">
                     <label>Current Salary (per annum)</label>
-                    <input type="text" name="salary" class="input" placeholder="₹ 0,00,000" required>
+                    <input type="text" name="salary" class="input" placeholder="0,00,000" required>
                   </div>
                   <div class="col-f">
                     <label>Current Experience</label>

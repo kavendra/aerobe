@@ -110,30 +110,11 @@
                       <a href="{{ url('our-portfolio', $portfolio->slug) }}" data-cat="{{ $category->label }}" data-heading="{{ $portfolio->title }}" data-paragraph="{{ $portfolio->short_description }}" data-type="portfolio">
                         {{ $portfolio->title }}
                       </a>
-                      <?php /* ?>
-                      @if($countryName == 'Global' && !empty($portfolio->country_id[0]))
-                      <span class="icon">
-                        @if(in_array(3, $portfolio->country_id))
-                        <img src="{{ asset('img/india-flag.jpg') }}"> 
-                        @endif
-                        @if(in_array(2, $portfolio->country_id))
-                        <img src="{{ asset('img/australia-flag.jpg') }}">
-                        @endif
-                        @if(in_array(1, $portfolio->country_id))
-                        <img src="{{ asset('img/singapore-flag.jpg') }}">
-                        @endif
-                        @if(in_array(4, $portfolio->country_id))
-                        <img src="{{ asset('img/malaysia-flag.jpg') }}">
-                        @endif
-                      </span>
-                      @endif
-                      <?php */ ?>
                     </li>
                     <div class="img" style="display: none">
                          <div class="image-box">
                        @if ($portfolio->thumb_img && file_exists(public_path('assets/uploads/our-portfolios/' . $portfolio->thumb_img)))
                          <img src="{{ asset('assets/uploads/our-portfolios/'.$portfolio->thumb_img) }}" title="Site Logo" />
-                         <!--<img src="{{ asset('assets/uploads/our-portfolios/'.replaceSize($portfolio->image, '_640x385')) }}" title="Site Logo" />-->
                        @else
                          <img src="{{ asset('assets/images/no-image.png') }}" title="Site Logo" width="150" height="120" data-holder-rendered="true" />
                        @endif
@@ -185,24 +166,6 @@
                       <a href="{{ url('solution', $solution->slug) }}" data-cat="{{ $category->label }}" data-heading="{{ $solution->title }}" data-paragraph="{{ $solution->short_description }}" data-type="solution">
                         {{ $solution->title }}
                         </a>
-                        <?php /* ?>
-                        @if($countryName == 'Global')
-                          <span class="icon">
-                          @if(!empty($solution->country_id) && in_array(3, $solution->country_id))
-                          <img src="{{ asset('img/india-flag.jpg') }}"> 
-                          @endif
-                          @if(!empty($solution->country_id) && in_array(2, $solution->country_id))
-                          <img src="{{ asset('img/australia-flag.jpg') }}">
-                          @endif
-                          @if(!empty($solution->country_id) && in_array(1, $solution->country_id))
-                          <img src="{{ asset('img/singapore-flag.jpg') }}">
-                          @endif
-                          @if(!empty($solution->country_id) && in_array(4, $solution->country_id))
-                          <img src="{{ asset('img/malaysia-flag.jpg') }}">
-                          @endif
-                          </span>
-                        @endif
-                        <?php */ ?>
                     </li>
                     <div class="sol-img" style="display: none">
                         <div class="image-box">
